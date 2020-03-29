@@ -12,9 +12,6 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v2
 
-      - name: Prepare LaTeX
-        run: sudo mkdir -p '/root/texlive/texmf-var'
-
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@master
         with:
