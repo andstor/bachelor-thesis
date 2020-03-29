@@ -12,11 +12,13 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v2
 
+      - name: Prepare LaTeX
+        run: mkdir -p '/root/texmf'
+
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@master
         with:
           root_file: thesis.tex
-          args: -e mkdir -p /root/texmf
           extra_system_packages: "perl-file-which"
 
       - name: Commit thesis
