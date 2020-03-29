@@ -16,7 +16,7 @@ jobs:
         uses: xu-cheng/latex-action@master
         with:
           root_file: thesis.tex
-          extra_system_packages: "libfile-which-perl"
+          extra_system_packages: "perl-file-which"
 
       - name: Commit thesis
         run: |
