@@ -7,7 +7,7 @@ $paxscript =~ s/\n//g;
 
 if (!-e $file.".pax") {
 #	system('mkdir -p /root/texlive/texmf-var');
-	system($paxscript, '--install', '--debug');
+	system('sudo '.$paxscript.' --install --debug');
 	
 }
 
