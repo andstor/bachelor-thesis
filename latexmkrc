@@ -6,7 +6,7 @@ my $paxscript = $texmfdist.'/scripts/pax/pdfannotextractor.pl';
 $paxscript =~ s/\n//g;
 
 if (!-e $file.".pax") {
-	system($paxscript, '--install');
+	system($paxscript, '--install', '--debug');
 }
 
 system($paxscript." ".$file.'.pdf');
