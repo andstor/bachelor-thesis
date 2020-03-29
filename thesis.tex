@@ -1,0 +1,51 @@
+% This is the root file of your thesis: thesis.tex
+% A line starting with % is a comment. In some cases, I have included a command preceded by a %. You may activate the command by removing the %.
+
+%%===================================
+\documentclass[12pt]{report}
+\usepackage{ramsstyle}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{gensymb}
+
+\usepackage{import}
+\usepackage{pax}
+\usepackage{pdfpages}
+\usepackage{minitoc}
+%\usepackage{showframe}
+%%===================================
+%Write the various parts of your thesis as separate files and include them into the main file by the command \include{name of included file}. When you compile the LaTeX file, you may choose which subfiles to include by the command
+
+%%\includeonly{chapter01,chapter02}
+
+%%===================================
+\begin{document}
+
+\setcounter{page}{0}
+\pagenumbering{roman}
+\include{sections/_meta/frontpage} % This is the titlepage
+\include{sections/_meta/preface}
+\include{sections/_meta/acknowledgment}
+\include{sections/_meta/summary}
+\include{acronyms}
+\listoffigures
+\listoftables
+\tableofcontents
+\setcounter{page}{0}
+\pagenumbering{arabic}
+
+\include{sections/introduction/introduction}
+\include{sections/theory/theory}
+\include{sections/methodology/methodology}
+\include{sections/result/result}
+\include{sections/discussion/discussion}
+\include{sections/conclusion/conclusions}
+\bibliographystyle{plainnat}
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliography{refs}
+
+\include{appendices}
+
+\end{document}
