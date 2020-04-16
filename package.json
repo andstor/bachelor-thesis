@@ -1,0 +1,33 @@
+{
+  "name": "bachelor-thesis",
+  "version": "1.0.0",
+  "description": "My Bachelor's Thesis in Computer Engineering, written at the Norwegian University of Science and Technology (NTNU)",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andstor/bachelor-thesis.git"
+  },
+  "keywords": [
+    "Bachelor",
+    "Thesis",
+    "Voxelization",
+    "JavaScript"
+  ],
+  "author": {
+    "name": "André Storhaug",
+    "email": "andr3.storhaug@gmail.com",
+    "url": "https://github.com/andstor"
+  },
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/andstor/bachelor-thesis/issues"
+  },
+  "homepage": "https://github.com/andstor/bachelor-thesis#readme",
+  "dependencies": {
+    "mermaid.cli": "^0.5.1"
+  }
+}
