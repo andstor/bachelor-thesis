@@ -9,9 +9,94 @@
 \section{Project Organisation}
 The group consists of ...
 Meetings ....
-\section{Data}
 
-\section{Control device}
+\section{Working methodology}
+\section{Scrum}
+Even though i am alone, i have tried to adapt the scrum methodology.
+
+\section{GitFlow}
+
+\section{Requirements sepcification}
+Acceptance criteria - custom field in Jira.
+Specially for the voxelisation algorithm.
+
+\section{Tools and libraries}
+
+\section{Semantic versioning}
+
+\subsection{JavaScript version}
+ES6 - needs to be transpiled with Babel.
+
+\subsection{Third party libraries}
+Why did i use them???
+list up like:
+- xxx because ...
+- xxx provides ...
+Elaborate some on three.js
+
+
+\subsection{GitHub Actions}
+Why? How did i use it?
+
+\section{Debugging and metrics}
+how did i provide this?
+
+\section{Graphix}
+three-voxel-loader
+
+
+\section{Voxelization}
+The voxelization algorithm is mainly based on picking. More specifically, raycasting. ..........
+
+Alternatively to raycasting, one could make use of color picking. This is in principle significantly quicker than normal raycasting since it is computed on the GPU. One could render a "heightmap" from each side of the 3D model. Each pixel in the heightmaps could then be looped over, mapping the pixel color back to the face's location in space, representing a filled voxel. Even though effective, it has a severe downside. No hidden or internal structures would be detected with this sort of system. Raycasting is therefore the obvious choise, even thoug it is CPU bound.
+
+\subsection{Raycasting}
+The raycasting is supplied by three.js library. The library provides a thoughourly tested and accurate raycasting solution.
+
+The raycasting is demonstrated in figure \ref{fig:raycasting-intersections-example}. A ray is directed towards an object. If it intersects a face
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.8]{sections/methodology/figures/raycast-intersections}
+    \caption{Raycasting intersections example.}
+    \label{fig:raycasting-intersections-example}
+\end{figure}
+
+
+Asd
+
+\subsection{Algorithm}
+Asd
+
+\subsection{Shell voxelization}
+Asd
+
+\subsection{Solid voxelization}
+\colorbox{RubineRed}{Maybe more discussion or result related?}
+The solid voxelisation, or filled voxelisation, is achieved by interpreting the first raycast intersect as the surface of the object. From this point will everything be considered "inside" the object. When a second intersect is detected, the state is changed to be "outside" the object. A new hit would indicate "inside", and so on. This works verry well with a watertight (\colorbox{RubineRed}{edges are manifolded?}) 3D model, as can be seen from figure \ref{fig:filling-non-watertight-model}. However, when trying to fill an object which is not watertight, this can result in severe inaccuracies. This can be seen in figure \ref{fig:filling-watertight-model}
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{sections/methodology/figures/solid-non-watertight}
+        \caption{Non-watertight 3D model cross section.}
+        \label{fig:filling-non-watertight-model}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{sections/methodology/figures/solid-watertight}
+        \caption{Watertight 3D model cross section.}
+        \label{fig:filling-watertight-model}
+    \end{subfigure}
+       \caption{Solid (voxelization) filling of 3D model cross section.}
+       \label{fig:filling-3d-model}
+\end{figure}
+
+
+\section{Color system}
+Asd
 
 \section{GUI}
 
@@ -20,6 +105,9 @@ Meetings ....
 \section{Design and modelling}
 This section contains a description of the alternatives considered for designing...
 
-\subsection{Materials}
 
-\section{Software}
+\section{Plattform cross compatibility}
+Mainly voxelizer-desktop program....??
+
+\subsection{Building}
+All 
