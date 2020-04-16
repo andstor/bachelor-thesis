@@ -1,9 +1,18 @@
 %This is chapter 5
 %%=========================================
 \chapter{Discussion}
+\section{Completness compared to requirements specification}
+The system is overall considered a sucess. All primary objectives are completed and 
+
 \section{Test results}
 
 \subsection{Result 1}\label{platformDesAndBuo}
 The ...
-\section{Result 2}
-As the ....
+\section{Future work}
+
+\subsection{three-voxel-loader}
+\subsubsection{Performance}
+
+The three-voxel-loader plugin generates a cube buffergeometry for every voxel. Even for voxels that are not visible from outside the model. When loading a large and filled voxel model, this results in an enourmous number of faces being rendered, putting a heavy load on the hardware. A future improvement could be to only render a shell geometry based on the voxel "cubes". This would dramatically reduce the number of triangles needed to render the voxel model.
+
+
