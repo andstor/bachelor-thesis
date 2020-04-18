@@ -5,6 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
+    "mermaid": "mmdc -i diagrams/voxelizer.mmd -c mermaid.config.json -C mermaid.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,6 +29,6 @@
   },
   "homepage": "https://github.com/andstor/bachelor-thesis#readme",
   "dependencies": {
-    "mermaid.cli": "^0.5.1"
+    "@mermaid-js/mermaid-cli": "^8.4.8"
   }
 }

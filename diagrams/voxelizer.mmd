@@ -1,0 +1,22 @@
+sequenceDiagram
+    Actor->>three.js: Load 3D model file
+    three.js-->>Actor: Mesh
+    Actor->>voxelizer: Sample mesh
+    loop Front, Left and Top
+        loop Resolution^2 times
+            voxelizer->>three.js: Raycast against mesh
+            alt Intersected
+                three.js-->>voxelizer: Intersection data
+            else No intersect
+                three.js-->>voxelizer: null
+            end
+        end
+    end
+    voxelizer->>voxelizer: Merge sample arrays
+    voxelizer-->>Actor: Volume data
+
+    %% Remove --> ?????????
+    Actor->>voxelizer: Volume data
+    voxelizer-->>Actor: Exported data
+    Actor->>three_voxel_loader: Exported data
+    three_voxel_loader-->>Actor: Voxel mesh
