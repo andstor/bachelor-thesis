@@ -1,0 +1,12 @@
+{
+    "dimension": { "depth": 32, "width": 32, "height": 32 },
+    "translate": { 
+        "depth": 11.81, "width": 21.39, "height": -1.69 
+    },
+    "scale": 30.206,
+    "voxels": [
+        { "x": 0, "y": 2, "z": 3 },
+        { "x": 0, "y": 3, "z": 3 },
+        { "x": 0, "y": 4, "z": 3 }
+    ]
+}

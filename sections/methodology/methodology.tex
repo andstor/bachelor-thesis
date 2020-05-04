@@ -69,8 +69,8 @@ Short intro
 Currently, the only voxelization algorithm that is implemented is mainly based on raycasting.
 
 \colorbox{RubineRed}{SKIP?:
-Alternatively to raycasting, one could make use of color picking. This is in principle significantly quicker than normal raycasting since it is computed on the GPU. One could render a "heightmap" from each side of the 3D model. Each pixel in the heightmaps could then be looped over, mapping the pixel color back to the face's location in space, representing a filled voxel. Even though effective, it has a severe downside. No hidden or internal structures would be detected with this sort of system. Raycasting is therefore the obvious choise, even thoug it is CPU bound.
-}
+Alternatively to raycasting}..., one could make use of color picking. This is in principle significantly quicker than normal raycasting since it is computed on the GPU. One could render a "heightmap" from each side of the 3D model. Each pixel in the heightmaps could then be looped over, mapping the pixel color back to the face's location in space, representing a filled voxel. Even though effective, it has a severe downside. No hidden or internal structures would be detected with this sort of system. Raycasting is therefore the obvious choise, even thoug it is CPU bound.
+
 
 The raycasting is supplied by three.js library. The library provides a thoughourly tested and accurate raycasting solution. However, it itterates every face.. O(n).. Not good... The implementation of a three.js plugin were therefore used. it uses BVH to speed up the raycasting from O(n) to O(log n).
 
@@ -118,6 +118,8 @@ Developed an example -> later polished so you can find it on github...
 
 \section{BINVOX}
 A separate repo for building and parsing binvox files were constructed during refactoring of the voxelizer and the three-voxel-loader plugin....
+\lstinputlisting[language=JSON,style=numbers,caption={Example BINVOX data in JSON format}]{sections/methodology/code/binvox-json.json}
+
 
 \section{Voxelizer-Desktop}
 \subsection{Electron}

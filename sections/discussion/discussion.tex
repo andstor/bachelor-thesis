@@ -12,7 +12,10 @@ The ...
 
 \subsection{three-voxel-loader}
 \subsubsection{Performance}
-
 The three-voxel-loader plugin generates a cube buffergeometry for every voxel. Even for voxels that are not visible from outside the model. When loading a large and filled voxel model, this results in an enourmous number of faces being rendered, putting a heavy load on the hardware. A future improvement could be to only render a shell geometry based on the voxel "cubes". This would dramatically reduce the number of triangles needed to render the voxel model.
 
+\subsection{Voxelizer}
+Currently, raw usage of the engine in a browser, the program will run on the main thread. This will in turn freez the GUI. It should be possible to run the engine in a WebWorker, hence leveraging multithreading. However, future work could look into implementing support for webworkers directly into the Voxelizer engine. This way, the heavy voxelization calculations could be split up into chuncs and voxelized in parallel.
 
+\subsection{isosurface extraction}
+Isosurface extraction is the exact opposite process of the voxelization process. It tries to approximate a 3D mesh based on voxel data. Implementing this possibility into the projects could be of great value.
