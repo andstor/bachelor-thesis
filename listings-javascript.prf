@@ -1,5 +1,5 @@
 \ProvidesFile{listings-javascript.prf}
-    [  listings language file]
+    [listings language file]
 
 \usepackage{color}
 \usepackage[pdftex]{xcolor}
