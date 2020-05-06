@@ -5,11 +5,50 @@
 %%=========================================
 \section{Agile methods}
 \subsection{Scrum}
-Scrum is an agile methodology. 
-Background and history of the evolution of scrum......
-What is it? How does it work?
-s
-\begin{figure}[h]
+Scrum \cite{scrum} is an agile methodology. It is a lightweight, iterative and incremental framework for managing complex work. It is one of the most popular agile methodologies used in the software business. The framework is mainly intended for developing information systems. Scrum defines several roles and different processes. Table \ref{tab:scrum-roles} lists the various roles. An illustration of the Scrum process is shown in Figure \ref{fig:scrum}.
+
+At the hart of Scrum, there is a development team. This team is comprised of around three to nine people. The team collectively breaks down project tasks (user-stories) from the backlog into projects. These are then to be completed within a given time frame, so-called "sprints". A sprint usually lasts for about two weeks, to a month. Scrum is also highly focused in the communication, defining several short planning- and review-meetings. Table \ref{tab:scrum-processes} lists a more detailed description of the various processes in Scrum. 
+
+
+\begin{table}[H]
+    \centering
+    \caption{Roles in Scrum.}
+    \label{tab:scrum-roles}
+    \begin{tabularx}{\textwidth}{|l|X|}
+        \hline
+        \textbf{Role} & \textbf{Description}\\
+        \hline
+        Product owner & Responsible for representing the stakeholders interests, and ensuring the product success.\\
+        \hline
+        Development team & The persons actually implementing the project task. They are also responsible for setting up the sprints and having daily stand up meetings.\\
+        \hline
+        Scrum Master & Person within the agile development team. The Scrum Master is to serve as a facilitator for the development team. A good Scrum Master should make himself/herself superfluous.\\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Scrum processes.}
+    \label{tab:scrum-processes}
+    \begin{tabularx}{\textwidth}{|l|X|}
+        \hline
+        \textbf{Process} & \textbf{Description}\\
+        \hline
+        Sprint planning & The team selects user-stories from the product backlog. Normally, story points are assigned to user stories, based on the effort needed to implement it.\\
+        \hline
+        Sprint & The actual implementation of the selected user stories. This should result in the next increment (or version) of the product.\\
+        \hline
+        Stand-up meeting & Each day, the team then has a 10-15 minute long "stand-up" meeting. This gives the team an opportunity to plan for the day, as well as catching up on the progress done by the other team members.\\
+        \hline
+        Sprint review& An evaluation process of what was and what was not finished in the last sprint. The results of the sprint are also presented to the product owner and the various stakeholders.\\
+        \hline
+        Sprint retrospect & The team will have a meeting for assessing the completed sprint. This is an important step, as this presents an opportunity to find out how to improve the process of next sprint.\\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\begin{figure}[ht]
     \centering
     \includegraphics[page=1,width=0.75\textwidth]{sections/theory/figures/scrum.eps}
     \caption{Scrum workflow.}
@@ -17,21 +56,25 @@ s
 \end{figure}
 
 \subsection{Kanban}
+Kanban \cite{kanban} is a lean software development methodology, based on the lean methodologies. These have been highly successfully in manufacturing processes. At the hart of Kanban is a just-in-time (JIT) process. No new tasks are to be started unless there is a need for it. Further, once a capacity limit has been reached, no further task can be started on. When a task has been resolved, a new one can be started. This can simply be described as a pulling workflow. Kanban also often focuses on the visualization of tasks. This is normally done with a Kanban Board. In contrast to Scrum, Kanban allows for the software to be developed in one large development cycle. It is much more flexible and does not define any roles.
 
 \section{Git}
 Git\cite{git} is a type of distributed version control system (VCS), originally created by Linus Torvalds in 2005. Git is free and opensource, and is today the most popularly used VCS. It is fast and efficient, able to handle everything from small hobby projects to giant projects like the Linux kernel. Every Git directory is a complete repository with history and full version-tracking abilities. It does not need access to internet, nor a central server in order to work.
 
 \subsection{GitFlow}
-GitFlow is a popular branching model for Git, created by \cite{gitflow}. Figure \ref{fig:gitflow} displays an example git history, adhering the GitFlow branching style.
+GitFlow is a popular branching model for Git, created by Vincent Driessen \cite{gitflow}. Figure \ref{fig:gitflow} displays an example git history, adhering the GitFlow branching style. GitFlow truly excels in parallel development. It is extremely well suited for collaboration and scales well. It also provide an efficient and predictable merging flow, making it easy to customize workflows for various needs.
+
+Development of new features are done in \textbf{feature} branches. These branch of of the \textbf{development branch}, often named \textbf{develop}, reflecting the current state of "development". When a feature is done, it is merged back into the \textbf{development branch}. When it is time for a new release, a \textbf{release branch} is created based on the \textbf{development branch}. In this branch, finishing touches can be made, like bumping the version numbers, etc. When approved, the \textbf{release branch} is then merged into a \textbf{master branch}, and also back into the \textbf{development branch}. The \textbf{master branch} only contains released code. In the event of an emergency, a \textbf{hotfix branch} can be used. This provides a shortcut for implementing critical fixes. A \textbf{hotfix branch} branches directly from master. When finished, the \textbf{hotfix} is merged into both \textbf{master} and \textbf{develop}.
+
 \begin{figure}[h]
     \centering
-    \includegraphics[page=1,width=\textwidth]{sections/methodology/figures/gitflow.pdf}
+    \includegraphics[page=1,width=\textwidth]{sections/theory/figures/gitflow.pdf}
     \caption{GitFlow branching model example.}
     \label{fig:gitflow}
 \end{figure}
 
 \section{GitHub}
-GitHub is primarily a hosting service for Git repositories. The company was acquired by Microsoft in 2019. In addition to repository hosting, GitHub provides a range of different services through it's web-based GUI. This includes both wikis, access controls, simple task management tools, automation capabilities and websites hosting.
+GitHub is primarily a hosting service for Git repositories. The company was acquired by Microsoft in 2019. In addition to repository hosting, GitHub provides a range of different services through it's web-based GUI. This includes both wikis, access controls, simple task management tools, statistics, automation capabilities and websites hosting.
 
 \subsection{GitHub Actions}
 GitHub Actions \cite{github-actions} is a fairly very new service provided by GitHub. It enables users to automate software workflows, effectively providing a high quality CI/CD for free \footnote{GitHub Actions usage is completely free for public repositories. For private repositories, depending on the subscription plan, some thousand minutes of free usage is provided each month.}. It is also possible to set up self-hosted runners. GitHub Actions makes it possible to both build, test and deploy code directly from within GitHub.
@@ -85,7 +128,10 @@ JavaScript Object Notation, better known as JSON, is a lightweight data intercha
 \lstinputlisting[language=JSON,style=numbers,caption={Example JSON data},label={lst:json-example}]{sections/theory/code/json-example.json}
 
 \section{JSDoc}
-JSDoc is markup language for annotating JavaScript source code files. The JSDoc specification was released in 1999. Today it has become the de-facto JavaScript documentation language. It is for example used in projects like the Google Closure Compiler \cite{google-closure-compiler} by Google. Since JavaScript has no type-checking, JSDoc is able to patch some of this inconvenience. By using various tools, one is able to generate documentation in formats like HTML and RTF. JSDoc 3 is the current version of the original companion documentation generation tool for JSDoc. JSDoc 3 \cite{jsdoc-3}, also referred to as just JSDoc, is the most used tool for programmatically generating JavaScript documentation. It has a wast feature set, even allowing users to create customized themes, known as templates. Currently, JSDoc is used by more than 38.800 public projects \cite{jsdoc-used-by}, and has over 10.600 stars on GitHub \cite{jsdoc-stargazers}.
+JSDoc is markup language for annotating JavaScript source code files. The JSDoc specification was released in 1999. Today it has become the de-facto JavaScript documentation language. It is for example used in projects like the Google Closure Compiler \cite{google-closure-compiler} by Google. Since JavaScript has no type-checking, JSDoc is able to patch some of this inconvenience. Figure \ref{lst:jsdoc-example} shows an example of JSDoc code, describing a soda bottle class implementation. By using various tools, one is able to generate documentation in formats like HTML and RTF. JSDoc 3 is the current version of the original companion documentation generation tool for JSDoc. JSDoc 3 \cite{jsdoc-3}, also referred to as just JSDoc, is the most used tool for programmatically generating JavaScript documentation. It has a wast feature set, even allowing users to create customized themes, known as templates. Currently, JSDoc is used by more than 38.800 public projects \cite{jsdoc-used-by}, and has over 10.600 stars on GitHub \cite{jsdoc-stargazers}.
+
+\lstinputlisting[language=JavaScript,style=numbers,caption={JSDoc example code},label={lst:jsdoc-example}]{sections/theory/code/jsdoc-example.js}
+
 
 \section{Tools and libraries}
 \subsection{ndarray}
@@ -98,14 +144,14 @@ Electron \cite{electron} is an open-source framework developed and maintained by
 React \cite{react} is a JavaScript library for building user interfaces, created by \citet{facebook}. It is based around components, where each component manage its own state. These are then composed together, enabling the creation of intricate and complex UIs. The library also implements its own syntax extension to JavaScript. It is named JavaScript XML, or the more popular used term - JSX. In addition to this, there exists a vast ecosystem of plugins for React, greatly simplifying the implementation of everything from localization to state management.
 
 \subsection{Semmle LGTM}
-LGTM by Semmle \cite{lgtm} is a web service providing code security analysis. The service is free for open-source projects. LGTM integrates with GitHub and Bitbucket, and is able to analyze projects written in Java, Python, JavaScript, TypeScript, C\#, Go, C and C++. It seeks out to combat the manual process of finding vulnerabilities. By catching them at an early stage, one can prevent vulnerabilities from reaching production. LGTM is based on large community of top security researchers, making it possible to help developers ship secure code \cite{lgtm-security}.
+LGTM by Semmle \cite{lgtm} is a web service providing code security analysis. The service is free for open-source projects. LGTM integrates with sites like GitHub and Bitbucket, and is able to analyze projects written in Java, Python, JavaScript, TypeScript, C\#, Go, C and C++. It seeks out to combat the manual process of finding vulnerabilities. By catching them at an early stage, one can prevent vulnerabilities from reaching production. LGTM is based on large community of top security researchers, making it possible to help developers ship secure code \cite{lgtm-security}.
 
 \subsection{Coveralls}
 Coveralls \cite{coveralls} is a web service for code testing coverage. It enables one to track a projects code coverage over time, providing valuable insight in a projects testing suite. Coveralls also features close integration with GitHub, enabling pull request coverage reviews.
 
 \section{Acceleration data structures}
 \subsection{Octrees}
-An octree is a type of tree structure. Each internal node of an octree has exactly eight children. An octree is most commonly used for partitioning three-dimensional space. This is done by recursively subdividing the space into eight octants. Note that depending on the number of recursive subdivisions, an octree may contain multiple objects in its leaf nodes. Figure \ref{fig:octree-example} shows an example of an octree with three levels. Octrees are very commonly used in 3D computer graphics. Another common use case of octrees is for storing voxel data.
+An octree is a type of tree structure. Each internal node of an octree has exactly eight children. An octree is most commonly used for partitioning three-dimensional space. This is done by recursively subdividing the space into eight octants. Note that depending on the number of recursive subdivisions, an octree may contain multiple objects in its leaf nodes. Figure \ref{fig:octree-example} shows an example of an octree with three levels. Octrees are very commonly used in 3D computer graphics. Another common use case of octrees is for storing voxel data. 
 
 \begin{figure}[h]
     \centering
@@ -115,7 +161,7 @@ An octree is a type of tree structure. Each internal node of an octree has exact
         \includegraphics[width=\textwidth]{sections/theory/figures/octree-cube.eps}
     \end{subfigure}
     \hspace{1cm}
-    \begin{subfigure}[c]{0.40\textwidth}
+    \begin{subfigure}[c]{0.5\textwidth}
         \vspace{0pt}
         \centering
         \includegraphics[width=\textwidth]{sections/theory/figures/octree-tree.eps}
@@ -124,15 +170,12 @@ An octree is a type of tree structure. Each internal node of an octree has exact
     \label{fig:octree-example}
 \end{figure}
 
-
-
 \subsection{Bounding volume hierarchy }
 A bounding volume hierarchy, abbreviated BVH, is a tree structure on a set of geometric objects. A BVH construction algorithm partitions the actual objects. The objects are wrapped in a so-called bounding volume. These forms the leaves of the tree. These are then grouped together into a larger bounding volume. This process is then repeated in a recursive manner. The result is a tree structure with one single bounding volume as the root node. An example of a BVH is shown in Figure \ref{fig:bvh-example}. BVH are often used for accelerating collision detection and raytracing.
 
-
 \begin{figure}[h]
     \centering
-    \begin{subfigure}[c]{0.40\textwidth}
+    \begin{subfigure}[c]{0.37\textwidth}
         \vspace{0pt}
         \centering
         \includegraphics[width=\textwidth]{sections/theory/figures/bvh-cube.eps}
@@ -177,13 +220,11 @@ The first use of the term ray casting was made by Scott Roth, in a paper from 19
     \label{fig:raycasting-intersections-example}
 \end{figure}
 
-\subsection{OpenGL}
-
 \subsection{WebGL}
-Uses OpenGl ES, a subset of OpenGL. ...
+WebGL (Web Graphics Library) \cite{webgl} is a JavaScript API for rendering interactive high-performance 3D and 2D graphics in a web browser. WebGL uses OpenGl ES \cite{opengl-es}, a subset of OpenGL. WebGL makes it possible to take advantage of hardware graphics acceleration provided by the user's device. For actually displaying the graphics in the browser, HTML5 <canvas> elements are used. 
 
 \subsection{three.js}
-three.js abstracts away a lot of the manual handling of constructing vertices, faces, setup of WebGL ....
+three.js\cite{three.js} is a cross-browser JavaScript library for creating and displaying 3D computer graphics in a web browser. It is open-source and licensed under the MIT license. three.js uses WebGL under the hood. The library abstracts away a lot of tedious manual labour, like the setup of WebGL, construction of vertices, faces, etc. three.js provides the user with an easy API for directly constructing three-dimensional objects like boxes, spheres and toruses, as well as easy camera controls. The library is the most popular 3D graphics JavaScript library for use in the browser, as can be seen on its GitHub repo \cite{three.js}.
 
 \section{Voxel}
 A voxel is the three-dimensional analogue of a pixel \cite{wiki-voxel}. It represents a single data point in a regularly spaced three-dimensional grid. Figure \ref{fig:three-voxels} shows an illustration of three voxels, where one of the voxels are marked with blue color. A very common use of voxels are in medical imaging, for example datasets produced by a CT scan. Other areas where voxels are commonly used includes simulations and for representing terrain in games.
