@@ -8,7 +8,7 @@
 Scrum \cite{scrum} is an agile methodology. It is a lightweight, iterative and incremental framework for managing complex work. It is one of the most popular agile methodologies used in the software business. The framework is mainly intended for developing information systems. Scrum defines several roles and different processes. Table \ref{tab:scrum-roles} lists the various roles. An illustration of the Scrum process is shown in Figure \ref{fig:scrum}.
 
 At the hart of Scrum, there is a development team. This team is comprised of around three to nine people. The team collectively breaks down project tasks (user-stories) from the backlog into projects. These are then to be completed within a given time frame, so-called "sprints". A sprint usually lasts for about two weeks, to a month. Scrum is also highly focused in the communication, defining several short planning- and review-meetings. Table \ref{tab:scrum-processes} lists a more detailed description of the various processes in Scrum. 
-s
+
 \begin{table}[H]
     \centering
     \caption{Roles in Scrum.}
@@ -241,7 +241,7 @@ Voxelizer v0.1.3 \cite{voxelizer-v0.1.3} is a JavaScript library for conducting 
 
 The library is using ES6 features, hence it is transpiled with Babel (see Section \ref{sec:intro-transpilation}). However, the library is not bundled. It is therefore not possible to use the program out of the box in a browser. One is limited to Node.js, or setting up a build system involving a module bundler like Webpack or Rollup, as described in Section \ref{sec:intro-bundling}. The source code is messy, and it is very hard to extend functionality. Especially due to a severe lack of documentation.
 
-Voxelizer v0.1.3 produces unsatisfactory voxelization results. Firstly, several of the voxelizations contains holes. This can be clearly seen in Figure \ref{fig:voxelizer-v0.1.3-torus}. A voxelization with holes often renders the voxelization useless. Secondly, a lot of artifacts are often generated, severely degrading the results. This is shown in Figure \ref{fig:voxelizer-v0.1.3-monkey}, where long strains of voxels appear in the front of the model. Thirdly, the software is only able to produce a filled voxelization result. Shell voxelization is therefore not an option.
+Voxelizer v0.1.3 produces unsatisfactory voxelization results. Firstly, several of the voxelizations contains holes. This can be clearly seen in Figure \ref{fig:voxelizer-v0.1.3-torus}. A voxelization with holes often renders the voxelization useless. Secondly, a lot of artifacts are often generated, severely degrading the results. This is shown in Figure \ref{fig:voxelizer-v0.1.3-monkey}, where long strains of voxels appear in the front of the model. This is especially pronounced around the ears of the monkey. Thirdly, the software is only able to produce a filled voxelization result. This is mainly due to the fact that the model is only sampled from the front and back. The other sides of the model is not taken into account. Shell voxelization is therefore not an option.
 
 \begin{figure}[h]
     \centering

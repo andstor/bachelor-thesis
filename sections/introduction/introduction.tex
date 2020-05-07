@@ -28,24 +28,30 @@ In order to ensure the maintainability of the various software projects, automat
 
 %%=========================================
 \section{Scope}
-The main purpose of this project is to make it easy to conduct high quality voxelization of 3D models. Its scope is limited by the requirements specification defined in the Preliminary report. Complementary to these requirements, a backlog with user-stories has been created. See Appendix \ref{appendix:requirements-specification}
+The main purpose of this project is to make it easy to conduct high quality voxelization of 3D models. Its scope is limited by the requirements specification defined in the Preliminary report. Complementary to these requirements, a backlog with user-stories has been created. See Appendix \ref{appendix:requirements-specification}.
 
 It is important to note that the project does not primary focus on speed of the voxelization algorithm. The targeted systems often run in an environment where resources are scarce. Performance is therefore of course important. However, usability is also extremely important. This thesis will mainly focus on providing easy access to high-quality voxelization, with reasonable performance. If speed is of the main concerns, it would be better to do the extra work of setting up a native solution (for example binvox \cite{binvox}), often written in C/C++.
 
 %%=========================================
-\section{Structure}
-\subsection{Voxelization systems overview}
-The diagram in figure \ref{fig:systems-overview} shows how the different software repositories regarding voxelization interconnects. The green boxes represents the main software projects. The blue box represents side projects. During development, some components were generalized and extracted into a separate repository.
+\section{Systems overview}
+\subsection{Voxelization systems}
+The diagram in figure \ref{fig:voxel-systems-overview} shows how the different software repositories regarding voxelization interconnects. The green boxes represents the main software projects. The blue box represents side projects. During development, some components were generalized and extracted into a separate repository. The white box represents a third party library.
 %\clearpage % remove this ??
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
-    \includegraphics[page=1,scale=1]{sections/introduction/figures/systems-overview.pdf}
+    \includegraphics[page=1,scale=0.85]{sections/introduction/figures/voxel-systems-overview.pdf}
     \caption{Automation of release publishing process.}
-    \label{fig:systems-overview}
+    \label{fig:voxel-systems-overview}
 \end{figure}
 
-\subsection{Automation overview}
-\colorbox{RubineRed}{Include diagram of simple github automation prosess?}
+\subsection{Automation systems}
+Figure \ref{fig:automation-systems-overview} shows a diagram of the various automation repositories. This is mainly GitHub Actions, published to the GitHub Marketplace. The yellow box represents a main project. Throughout the project, it also became clear that some supportive actions needed to be created. These side projects are represented by the blue boxes. The white box represents third party software.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[page=1,scale=0.85]{sections/introduction/figures/automation-systems-overview.pdf}
+    \caption{Automation of release publishing process.}
+    \label{fig:automation-systems-overview}
+\end{figure}
 
 %%=========================================
 \section{Outline}
@@ -53,11 +59,7 @@ The diagram in figure \ref{fig:systems-overview} shows how the different softwar
 The rest of the report is structured as follows.\\
 \break
 \textbf{Chapter 2 - Theory:} Chapter two gives an introduction to the theoretical background that lies the foundation of this thesis.\\
-\break
 \textbf{Chapter 3 - Method:} Contains a description of the methodology and materials that were considered throughout the project.\\
-\break
 \textbf{Chapter 4 - Result:} Contains a description of the finished software systems.\\
-\break
 \textbf{Chapter 5 - Discussion:} Discusses the achieved results, the execution of methodologies and tools, in addition to encountered difficulties.\\
-\break
 \textbf{Chapter 6 - Conclusions:} This chapter presents an overall conclusion of the project, reviewing the objectives and the progress made.\\
