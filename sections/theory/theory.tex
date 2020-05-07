@@ -8,8 +8,7 @@
 Scrum \cite{scrum} is an agile methodology. It is a lightweight, iterative and incremental framework for managing complex work. It is one of the most popular agile methodologies used in the software business. The framework is mainly intended for developing information systems. Scrum defines several roles and different processes. Table \ref{tab:scrum-roles} lists the various roles. An illustration of the Scrum process is shown in Figure \ref{fig:scrum}.
 
 At the hart of Scrum, there is a development team. This team is comprised of around three to nine people. The team collectively breaks down project tasks (user-stories) from the backlog into projects. These are then to be completed within a given time frame, so-called "sprints". A sprint usually lasts for about two weeks, to a month. Scrum is also highly focused in the communication, defining several short planning- and review-meetings. Table \ref{tab:scrum-processes} lists a more detailed description of the various processes in Scrum. 
-
-
+s
 \begin{table}[H]
     \centering
     \caption{Roles in Scrum.}
@@ -134,6 +133,12 @@ JSDoc is markup language for annotating JavaScript source code files. The JSDoc 
 
 
 \section{Tools and libraries}
+\subsection{WebGL}
+WebGL (Web Graphics Library) \cite{webgl} is a JavaScript API for rendering interactive high-performance 3D and 2D graphics in a web browser. WebGL uses OpenGl ES \cite{opengl-es}, a subset of OpenGL. WebGL makes it possible to take advantage of hardware graphics acceleration provided by the user's device. For actually displaying the graphics in the browser, HTML5 <canvas> elements are used. 
+
+\subsection{three.js}
+three.js\cite{three.js} is a cross-browser JavaScript library for creating and displaying 3D computer graphics in a web browser. It is open-source and licensed under the MIT license. three.js uses WebGL under the hood. The library abstracts away a lot of tedious manual labour, like the setup of WebGL, construction of vertices, faces, etc. three.js provides the user with an easy API for directly constructing three-dimensional objects like boxes, spheres and toruses, as well as easy camera controls. The library also includes a vast set of shaders, making it very simple to make use of high quality materials. three.js is one of the most popular 3D graphics JavaScript library for use in the browser, as can be seen on its GitHub repo \cite{three.js}.
+
 \subsection{ndarray}
 ndarray is an open-source JavaScript package providing modular multidimensional arrays, written by Mikola Lysenko in 2013. In short does ndarray implement a higher dimensional views of 1D arrays. The 1D array can either be a normal JavaScript  Array, or a JavaScript typed array. MDN defines typed arrays as \textquote[\citet{mdn-typed-arrays}]{array-like objects that provide a mechanism for reading and writing raw binary data in memory buffers.}. Mainly, they are used for maximizing efficiency and reducing memory footprint. However, typed arrays are normally quite difficult to work with in JavaScript. Multidimensional typed arrays even more so. ndarray provides a simple but powerful API, making use of multidimensional typed arrays easy.
 
@@ -148,6 +153,36 @@ LGTM by Semmle \cite{lgtm} is a web service providing code security analysis. Th
 
 \subsection{Coveralls}
 Coveralls \cite{coveralls} is a web service for code testing coverage. It enables one to track a projects code coverage over time, providing valuable insight in a projects testing suite. Coveralls also features close integration with GitHub, enabling pull request coverage reviews.
+
+\section{3D computer graphics}
+3D computer graphics refers to three-dimensional representation of geometric data in computers, normally to be rendered to a two-dimensional image. The finalized render may be saved or displayed on a screen in realtime. The geometric data is usually a 3D model, stored in an appropriate file format. The most basic polygon primitives in computer graphics includes vertices, edges and faces. A vertex is simply point in space. An edge is a connection between two vertices. A face is a closed set of edges. Figure \ref{fig:triangular-mesh} shows a yellow triangle with the appropriate vertex, edge and face labels. These primitives together defines a polyhedral. Polyhedrons can then be further grouped together into a mesh. The most common type of polygon mesh is a triangular mesh. This is a mesh comprised of only triangles. Figure \ref{fig:triangular-mesh} shows an illustration of a section of a triangular mesh.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{sections/theory/figures/mesh.eps}
+    \caption{Triangular mesh}
+    \label{fig:triangular-mesh}
+\end{figure}
+
+\subsection{Texture maps}
+A texture map is an image which is applied, or mapped, onto the surface of a geometry. The images is often in the form of a bitmap image or a procedural texture. Texture mapping, or UV mapping, is the process of projecting an actual 2D image onto a 3D model. The technique was initially developed by Edwin Catmull in 1974 \cite{catmull-texture-mapping}. UVs are two-dimensional texture coordinates, assigned to every vertex in a polygon. They are essential in terms of describing how an image gets applied onto a geometry. Figure \ref{fig:texture-mapping} shows an illustrative example of how a 2D image gets "wrapped" around a 3D model. A lot of 3D modeling software are able to do the UV unwrapping automatically, for example Blender \cite{blender}. It is also possible to map a finalized render into a surface texture, a process known as baking \cite{blender-texture-baking}. This is primarily used as an optimization technique.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{sections/theory/figures/texture-mapping.png}
+    \caption{Texture mapping illustration.}
+    \label{fig:texture-mapping}
+\end{figure}
+
+\subsection{Ray casting}
+Ray casting is the concept of use of ray–surface intersection tests to solve a variety of problems in 3D computer graphics and computational geometry. 
+The first use of the term ray casting was made by Scott Roth, in a paper from 1982 titled "Ray casting for modeling solids" \cite{roth-ray-casting}. Raycasting is demonstrated in Figure \ref{fig:raycasting-intersections-example}. A ray is directed towards an object. If it crosses a face, an intersection is registered.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.8]{sections/theory/figures/raycast-intersections}
+    \caption{Raycasting intersections example.}
+    \label{fig:raycasting-intersections-example}
+\end{figure}
 
 \section{Acceleration data structures}
 \subsection{Octrees}
@@ -190,42 +225,6 @@ A bounding volume hierarchy, abbreviated BVH, is a tree structure on a set of ge
     \label{fig:bvh-example}
 \end{figure}
 
-\section{3D computer graphics}
-3D computer graphics refers to three-dimensional representation of geometric data in computers, normally to be rendered to a two-dimensional image. The finalized render may be saved or displayed on a screen in realtime. The geometric data is usually a 3D model, stored in an appropriate file format. The most basic polygon primitives in computer graphics includes vertices, edges and faces. A vertex is simply point in space. An edge is a connection between two vertices. A face is a closed set of edges. Figure \ref{fig:triangular-mesh} shows a yellow triangle with the appropriate vertex, edge and face labels. These primitives together defines a polyhedral. Polyhedrons can then be further grouped together into a mesh. The most common type of polygon mesh is a triangular mesh. This is a mesh comprised of only triangles. Figure \ref{fig:triangular-mesh} shows an illustration of a section of a triangular mesh.
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.75\textwidth]{sections/theory/figures/mesh.eps}
-    \caption{Triangular mesh}
-    \label{fig:triangular-mesh}
-\end{figure}
-
-\subsection{Texture maps}
-A texture map is an image which is applied, or mapped, onto the surface of a geometry. The images is often in the form of a bitmap image or a procedural texture. Texture mapping, or UV mapping, is the process of projecting an actual 2D image onto a 3D model. The technique was initially developed by Edwin Catmull in 1974 \cite{catmull-texture-mapping}. UVs are two-dimensional texture coordinates, assigned to every vertex in a polygon. They are essential in terms of describing how an image gets applied onto a geometry. Figure \ref{fig:texture-mapping} shows an illustrative example of how a 2D image gets "wrapped" around a 3D model. A lot of 3D modeling software are able to do the UV unwrapping automatically, for example Blender \cite{blender}. It is also possible to map a finalized render into a surface texture, a process known as baking \cite{blender-texture-baking}. This is primarily used as an optimization technique.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\textwidth]{sections/theory/figures/texture-mapping.png}
-    \caption{Texture mapping illustration.}
-    \label{fig:texture-mapping}
-\end{figure}
-
-\subsection{Ray casting}
-Ray casting is the concept of use of ray–surface intersection tests to solve a variety of problems in 3D computer graphics and computational geometry. 
-The first use of the term ray casting was made by Scott Roth, in a paper from 1982 titled "Ray casting for modeling solids" \cite{roth-ray-casting}. Raycasting is demonstrated in Figure \ref{fig:raycasting-intersections-example}. A ray is directed towards an object. If it crosses a face, an intersection is registered.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.8]{sections/theory/figures/raycast-intersections}
-    \caption{Raycasting intersections example.}
-    \label{fig:raycasting-intersections-example}
-\end{figure}
-
-\subsection{WebGL}
-WebGL (Web Graphics Library) \cite{webgl} is a JavaScript API for rendering interactive high-performance 3D and 2D graphics in a web browser. WebGL uses OpenGl ES \cite{opengl-es}, a subset of OpenGL. WebGL makes it possible to take advantage of hardware graphics acceleration provided by the user's device. For actually displaying the graphics in the browser, HTML5 <canvas> elements are used. 
-
-\subsection{three.js}
-three.js\cite{three.js} is a cross-browser JavaScript library for creating and displaying 3D computer graphics in a web browser. It is open-source and licensed under the MIT license. three.js uses WebGL under the hood. The library abstracts away a lot of tedious manual labour, like the setup of WebGL, construction of vertices, faces, etc. three.js provides the user with an easy API for directly constructing three-dimensional objects like boxes, spheres and toruses, as well as easy camera controls. The library is the most popular 3D graphics JavaScript library for use in the browser, as can be seen on its GitHub repo \cite{three.js}.
-
 \section{Voxel}
 A voxel is the three-dimensional analogue of a pixel \cite{wiki-voxel}. It represents a single data point in a regularly spaced three-dimensional grid. Figure \ref{fig:three-voxels} shows an illustration of three voxels, where one of the voxels are marked with blue color. A very common use of voxels are in medical imaging, for example datasets produced by a CT scan. Other areas where voxels are commonly used includes simulations and for representing terrain in games.
 
@@ -237,6 +236,7 @@ A voxel is the three-dimensional analogue of a pixel \cite{wiki-voxel}. It repre
 \end{figure}
 
 \section{Voxelizer v0.1.3}
+\label{sec:voxelizer-v013}
 Voxelizer v0.1.3 \cite{voxelizer-v0.1.3} is a JavaScript library for conducting voxelization of 3D models. It was written by me, André Storhaug, in 2019. Version 0.1.3 features a relatively simple voxelization algorithm which is based on raycasting. The sampling algorithm tries to produce a filled volume-representation of a supplied 3D model. It samples the front and the back of the model, combines the two results together and tries to fill the in-between gap. The 3D model loading capabilities of the program is limited to plain OBJ files. In terms of exporting, the software is able to output a 3D JavaScript array (nested arrays).
 
 The library is using ES6 features, hence it is transpiled with Babel (see Section \ref{sec:intro-transpilation}). However, the library is not bundled. It is therefore not possible to use the program out of the box in a browser. One is limited to Node.js, or setting up a build system involving a module bundler like Webpack or Rollup, as described in Section \ref{sec:intro-bundling}. The source code is messy, and it is very hard to extend functionality. Especially due to a severe lack of documentation.

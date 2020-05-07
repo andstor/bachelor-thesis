@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-my $file = 'appendices/assets/preliminary-report';
+my $dir = 'appendices/assets';
 my $texmfdist = `kpsewhich -var-value TEXMFDIST`;
 my $texmfvar = `kpsewhich -var-value TEXMFVAR`;
 $texmfdist =~ s/\n//g;
@@ -11,8 +11,11 @@ if (!-d $texmfvar) {
 	system('mkdir', '-p', $texmfvar);
 }
 
-if (!-e $file.".pax") {
+if (not my @files = glob "$dir/*.pax"){
 	system($paxscript, '--install');
 }
 
-system($paxscript." ".$file.'.pdf');
+my @files = glob "$dir/*.pdf";
+for (0..$#files){
+	system($paxscript." ".$files[$_]);
+}

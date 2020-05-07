@@ -1,61 +1,36 @@
 %This is chapter 1
 %%=========================================
 \chapter[Introductions]{Introduction}
-
-This report will review different ...
-...\\
-
-%%=========================================
 \section{Background}
-Since the introduction of the relatively new technology WebGL, users has been able to significantly expand the graphical user-experience for the large user mass of the web. It has allowed for almost desktop like / native graphics performance, 
-
+Since the introduction of the relatively new technology WebGL, users has been able to significantly expand the graphical user-experience for the large user mass of the web. It has allowed for almost desktop like graphics performance.
 WebGl has especially expanded the abilities regarding the creation of web browser games and simulations. Creating high performance graphics applications in the browser has never been easier. It has opened up for a sea of possibilities where only your imagination is the limit.
 
-In a lot of simulation software, and even some games, volumetric information plays a crucial part. With everything from fluid dynamics to voxel games like Minecraft, volumetric information is a key component. However, to the best of my knowledge, it does not exist any easy to use open-source voxelization software in JavaScript. In order to obtain such volumetric data, developers are therefore forced to go through a tedious preprocessing steps, often involving old and complex, har to use, platform specific tools.
+In a lot of simulation software, and even some games, volumetric information plays a crucial part. With everything from fluid dynamics to voxel games like Minecraft, volumetric information is a key component. One way to acquire such volumetric data is through voxelizing a 3D model (polygon mesh). However, to the best of my knowledge, it does not exist any easy-to-use open-source voxelization software written in JavaScript. So, in order to obtain such volumetric data, developers are therefore forced to go through a tedious preprocessing steps, often involving old and complex, har to use, platform specific tools.
 
-This was a problem I encountered myself a year ago in 2019. In connection with an assignment in a simulation course at the Norwegian University of Science and Technology, I needed to be able to easily generate some volumetric data based on 3D models. I was using web-technologies so I was looking for a simple solution in plain JavaScript. However, I was not able to find such a solution. I therefore decided to make one myself. The result was an open source voxelization project, written entirely in JavaScript, named Voxelizer.
+This was a problem I encountered myself a year ago in 2019. In connection with an assignment in a simulation course at the Norwegian University of Science and Technology (NTNU), I needed to be able to easily generate some volumetric data based on 3D models. I was using web-technologies so I was looking for a simple solution in plain JavaScript. However, I was not able to find such a solution. I therefore decided to make one myself. The result was an open-source voxelization project, written entirely in JavaScript, named Voxelizer.
 
-The Voxelizer project carries strong signs of the limited amount of time allocated for sowing the software together. PROBLEMS HERE........ Due to it's vast range of applicability, improving and expanding the capabilities of the project could therefore serve to be a valuable open-source asset to the web based game- and simulation-development ecosystem, providing easy access to voxelization.
+However, the Voxelizer project carries strong signs of the limited amount of time allocated for sowing the software together. Due to it's vast range of applicability, improving and expanding the capabilities of the project could therefore serve to be a valuable open-source asset to the web based game- and simulation-development ecosystem, providing easy access to voxelization.
 
 %==========================================
 \section{Problem Formulation}
 
 \subsubsection{Problems to be addressed}
-There exists an open-source JavaScript voxelization engine for voxelizing 3D models. The project faces several issues and is lacking important features. The engine does not produce accurate and representative results. The output sometimes contains holes and contains a lot of artifacts. Importing support is limited to OBJ files. In terms of exporting, only 3D arrays are supported. [SHORTEN THIS!!!!].. Documentation is lacking, and the coding quality is relatively poor. The project needs to be professionalized, and made easy to both use and maintain.
+There exists an open-source JavaScript voxelization project for voxelizing 3D models. The software faces several issues and is lacking important features. It does not produce accurate and representative results. The output sometimes contains holes and a lot of artifacts. Importing and exporting support is extremely limited. Documentation is lacking, and the coding is of poor quality. The project needs to be professionalized, and made easy to both use and maintain.
+A more complete description of the problems Voxelizer v0.1.3 faces are described in Section \ref{sec:voxelizer-v013}.
 
-Something about automation, maintainability?
+Packaging and publication of new releases, as well as documentation, are tedious and manual procedures. This workflow is prone to human errors, potentially introducing critical bugs. These processes could be automated with modern continuous integration and continuous deployment tools, effectively eliminating these vulnerabilities.
 
-\begin{itemize}
-\item Design ..
-\item Develop ...
-\end{itemize}
-
-%%=========================================
-\section{Literature Survey}
-This report is based on ....  published in 2016.
 %%=========================================
 \section{Objectives}
-The main goals of this thesis is to improve and extend the open-source JavaScript Voxelizer engine, turning it into a maintainable, high-quality, open-source project. A secondary goal will be to develop complimentary software for the Voxelizer project. This will be in the form of a cross platform desktop application and CLI, based on the Voxelizer engine, making it easy to voxelize 3D models.
+The main goals of this thesis is to improve and extend the open-source JavaScript Voxelizer engine, turning it into a maintainable and high-quality open-source project. A second goal will be to develop complimentary software for the Voxelizer project. This will be in the form of a cross platform desktop application and CLI, based on the Voxelizer engine, making it easy to voxelize 3D models.
 
-In order to ensure the maintainability of the various software projects, automation is a critical component. Therefore a common subgoal will be to develop a GitHub Action for automating the API documentation generation process.
-
-SOMETHING ABOUT REQUIREMENT SPECIFICATION????
-Thus, the objectives for this report thesis are: ????????
-\begin{enumerate}
-\item Make ...
-\item Implement ...
-\item Create ...
-\end{enumerate}
+In order to ensure the maintainability of the various software projects, automation is a critical component. Therefore a third goal will be to develop a GitHub Action for automating the API documentation generation process.
 
 %%=========================================
 \section{Scope}
-In this particular project .....  
+The main purpose of this project is to make it easy to conduct high quality voxelization of 3D models. Its scope is limited by the requirements specification defined in the Preliminary report. Complementary to these requirements, a backlog with user-stories has been created. See Appendix \ref{appendix:requirements-specification}
 
-The main purpose of this thesis is to make it easy to conduct high quality voxelization of 3D models. 
-
-It is important to note that the project does not mainly focus on speed of the voxelization algorithm. The targeted systems often runs in an environment where resources are scarce and performance is important. However, usability is also extremely important. This thesis will mainly focus on providing easy access to high-quality voxelization, within a reasonable performance. If speed is of the main concerns, it would be better to do the extra work i setting up native solutions, often written in C/C++.
-
-
+It is important to note that the project does not primary focus on speed of the voxelization algorithm. The targeted systems often run in an environment where resources are scarce. Performance is therefore of course important. However, usability is also extremely important. This thesis will mainly focus on providing easy access to high-quality voxelization, with reasonable performance. If speed is of the main concerns, it would be better to do the extra work of setting up a native solution (for example binvox \cite{binvox}), often written in C/C++.
 
 %%=========================================
 \section{Structure}
