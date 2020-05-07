@@ -5,9 +5,9 @@
 %%=========================================
 \section{Agile methods}
 \subsection{Scrum}
-Scrum \cite{scrum} is an agile methodology. It is a lightweight, iterative and incremental framework for managing complex work. It is one of the most popular agile methodologies used in the software business. The framework is mainly intended for developing information systems. Scrum defines several roles and different processes. Table \ref{tab:scrum-roles} lists the various roles. An illustration of the Scrum process is shown in Figure \ref{fig:scrum}.
+Scrum~\cite{scrum} is an agile methodology. It is a lightweight, iterative and incremental framework for managing complex work. Scrum is one of the most popular agile methodologies used in the software business. The framework is mainly intended for developing information systems. Scrum defines several roles and different processes. Table~\ref{tab:scrum-roles} lists the various roles. An illustration of the Scrum process is shown in Figure~\ref{fig:scrum}.
 
-At the hart of Scrum, there is a development team. This team is comprised of around three to nine people. The team collectively breaks down project tasks (user-stories) from the backlog into projects. These are then to be completed within a given time frame, so-called "sprints". A sprint usually lasts for about two weeks, to a month. Scrum is also highly focused in the communication, defining several short planning- and review-meetings. Table \ref{tab:scrum-processes} lists a more detailed description of the various processes in Scrum. 
+At the hart of Scrum, there is a development team. This team is comprised of around three to nine people. The team collectively breaks down project tasks (user-stories) from the backlog into projects. These are then to be completed within a given time frame, so-called "sprints". A sprint usually lasts for about two weeks, to a month. Scrum is also highly focused in the communication between the involved persons, defining several short planning- and review-meetings. Table~\ref{tab:scrum-processes} lists a more detailed description of the various processes in Scrum. 
 
 \begin{table}[H]
     \centering
@@ -19,7 +19,7 @@ At the hart of Scrum, there is a development team. This team is comprised of aro
         \hline
         Product owner & Responsible for representing the stakeholders interests, and ensuring the product success.\\
         \hline
-        Development team & The persons actually implementing the project task. They are also responsible for setting up the sprints and having daily stand up meetings.\\
+        Development team & The persons actually implementing the project tasks. They are also responsible for setting up the sprints and having daily stand up meetings.\\
         \hline
         Scrum Master & Person within the agile development team. The Scrum Master is to serve as a facilitator for the development team. A good Scrum Master should make himself/herself superfluous.\\
         \hline
@@ -34,7 +34,7 @@ At the hart of Scrum, there is a development team. This team is comprised of aro
         \hline
         \textbf{Process} & \textbf{Description}\\
         \hline
-        Sprint planning & The team selects user-stories from the product backlog. Normally, story points are assigned to user stories, based on the effort needed to implement it.\\
+        Sprint planning & The team selects user-stories from the product backlog. Normally, story points are assigned to the user stories, based on the effort needed to implement it.\\
         \hline
         Sprint & The actual implementation of the selected user stories. This should result in the next increment (or version) of the product.\\
         \hline
@@ -42,7 +42,7 @@ At the hart of Scrum, there is a development team. This team is comprised of aro
         \hline
         Sprint review& An evaluation process of what was and what was not finished in the last sprint. The results of the sprint are also presented to the product owner and the various stakeholders.\\
         \hline
-        Sprint retrospect & The team will have a meeting for assessing the completed sprint. This is an important step, as this presents an opportunity to find out how to improve the process of next sprint.\\
+        Sprint retrospect & The team will have a meeting for assessing the completed sprint. This is an important step, as this presents an opportunity to find out how to improve the process of the next sprint.\\
         \hline
     \end{tabularx}
 \end{table}
@@ -55,15 +55,15 @@ At the hart of Scrum, there is a development team. This team is comprised of aro
 \end{figure}
 
 \subsection{Kanban}
-Kanban \cite{kanban} is a lean software development methodology, based on the lean methodologies. These have been highly successfully in manufacturing processes. At the hart of Kanban is a just-in-time (JIT) process. No new tasks are to be started unless there is a need for it. Further, once a capacity limit has been reached, no further task can be started on. When a task has been resolved, a new one can be started. This can simply be described as a pulling workflow. Kanban also often focuses on the visualization of tasks. This is normally done with a Kanban Board. In contrast to Scrum, Kanban allows for the software to be developed in one large development cycle. It is much more flexible and does not define any roles.
+Kanban~\cite{kanban} is a lean software development methodology, based on the lean methodologies. These have been highly successfully in manufacturing processes. At the center of Kanban is a just-in-time (JIT) process. No new tasks are to be started unless there is a need for it. Further, once a capacity limit has been reached, no further task can be started on. When a task has been resolved, a new one can be started. This can simply be described as a pulling workflow. Kanban also often focuses on the visualization of tasks. This is normally done with a Kanban Board. In contrast to Scrum, Kanban allows for the software to be developed in one large development cycle. It is much more flexible, and does not define any roles.
 
 \section{Git}
-Git\cite{git} is a type of distributed version control system (VCS), originally created by Linus Torvalds in 2005. Git is free and opensource, and is today the most popularly used VCS. It is fast and efficient, able to handle everything from small hobby projects to giant projects like the Linux kernel. Every Git directory is a complete repository with history and full version-tracking abilities. It does not need access to internet, nor a central server in order to work.
+Git~\cite{git} is a type of distributed version control system (VCS), originally created by Linus Torvalds in 2005. Git is free and open-source, and is today the most popularly used VCS. It is fast and efficient, able to handle everything from small hobby projects to giant projects like the Linux kernel. Every Git directory is a complete repository with history and full version-tracking abilities. It does not need access to internet, nor a central server in order to work.
 
 \subsection{GitFlow}
-GitFlow is a popular branching model for Git, created by Vincent Driessen \cite{gitflow}. Figure \ref{fig:gitflow} displays an example git history, adhering the GitFlow branching style. GitFlow truly excels in parallel development. It is extremely well suited for collaboration and scales well. It also provide an efficient and predictable merging flow, making it easy to customize workflows for various needs.
+GitFlow is a popular branching model for Git, created by Vincent Driessen~\cite{gitflow}. Figure~\ref{fig:gitflow} displays an example git history, adhering to the GitFlow branching style. GitFlow truly excels in parallel development. It is extremely well suited for collaboration and scales well. It also provide an efficient and predictable merging flow, making it easy to customize workflows for various needs.
 
-Development of new features are done in \textbf{feature} branches. These branch of of the \textbf{development branch}, often named \textbf{develop}, reflecting the current state of "development". When a feature is done, it is merged back into the \textbf{development branch}. When it is time for a new release, a \textbf{release branch} is created based on the \textbf{development branch}. In this branch, finishing touches can be made, like bumping the version numbers, etc. When approved, the \textbf{release branch} is then merged into a \textbf{master branch}, and also back into the \textbf{development branch}. The \textbf{master branch} only contains released code. In the event of an emergency, a \textbf{hotfix branch} can be used. This provides a shortcut for implementing critical fixes. A \textbf{hotfix branch} branches directly from master. When finished, the \textbf{hotfix} is merged into both \textbf{master} and \textbf{develop}.
+Development of new features are done in \textbf{feature branches}. These branch off from the \textbf{development branch}, often named \textbf{develop}, reflecting the current state of "development". When a feature is done, it is merged back into the \textbf{development branch}. When it is time for a new release, a \textbf{release branch} is created based on the \textbf{development branch}. In this branch, finishing touches can be made, like bumping up the version numbers, etc. When approved, the \textbf{release branch} is then merged into a \textbf{master branch}, and also back into the \textbf{development branch}. The \textbf{master branch} only contains released code. In the event of an emergency, a \textbf{hotfix branch} can be used. This provides a shortcut for implementing critical fixes. A \textbf{hotfix branch} branches directly from master. When finished, the \textbf{hotfix} is merged into both \textbf{master} and \textbf{develop}.
 
 \begin{figure}[h]
     \centering
@@ -76,24 +76,26 @@ Development of new features are done in \textbf{feature} branches. These branch 
 GitHub is primarily a hosting service for Git repositories. The company was acquired by Microsoft in 2019. In addition to repository hosting, GitHub provides a range of different services through it's web-based GUI. This includes both wikis, access controls, simple task management tools, statistics, automation capabilities and websites hosting.
 
 \subsection{GitHub Actions}
-GitHub Actions \cite{github-actions} is a fairly very new service provided by GitHub. It enables users to automate software workflows, effectively providing a high quality CI/CD for free \footnote{GitHub Actions usage is completely free for public repositories. For private repositories, depending on the subscription plan, some thousand minutes of free usage is provided each month.}. It is also possible to set up self-hosted runners. GitHub Actions makes it possible to both build, test and deploy code directly from within GitHub.
+GitHub Actions~\cite{github-actions} is a fairly very new service provided by GitHub. It enables users to automate software workflows, effectively providing a high quality CI/CD for free~\footnote{GitHub Actions usage is completely free for public repositories. For private repositories, depending on the subscription plan, some thousand minutes of free usage is provided each month.}. It is also possible to set up self-hosted runners. GitHub Actions makes it possible to both build, test and deploy code directly from within GitHub.
+
+To setup and configure an automated process, so-called workflows needs to be defined. These are made up of one or more jobs. The actual workflow has to be defined in a YAML file. This file needs to be created and placed in a repository hosted on GitHub. Consult the documentation available at GitHub for the appropriate workflow syntax for creating such YAML files~\cite{github-actions-workflow-syntax}.
 
 \subsection{GitHub Pages}
-Github provides its users with a public webpage hosting service. This is named GitHub Pages \cite{github-pages}. User are able to serve static websites directly from their repository hosted on GitHub.
+Github provides its users with a public webpage hosting service. This is named GitHub Pages \cite{github-pages}. User are able to serve static websites directly from their repository hosted on GitHub. Normally, a GitHub Pages site is published by pushing static files to a specific branch named \textit{gh-pages}.
 
 \section{HyperText Markup Language (HTML)}
-HTML is a markup language, originally defined by Tim Berners-Lee and Robert Caillau in 1989. It is primarily used for documents on the web, intended to be displayed in a web-browser. It is used for structuring and formatting information. HTML can be used in conjunction with other web technologies such as Cascading Style Sheets (CSS) and scripting languages like JavaScript, in order to either style or dynamically change and alter the contents of a web page. The currently latest release of the language is HTML5.
+HTML is a markup language, originally defined by Tim Berners-Lee and Robert Caillau in 1989. It is primarily used for documents on the web, intended to be displayed in a web-browser. It is used for structuring and formatting information. HTML can be used in conjunction with other web technologies such as Cascading Style Sheets (CSS) and scripting languages like JavaScript, in order to either style, or dynamically change and alter the contents of a web page. The currently latest release of the language is HTML5.
 
 \section{Cascading Style Sheets (CSS)}
 CSS is short for Cascading Style Sheets. CSS is a programming language in order to describe how HTML elements in a HTML file are to be rendered. Everything from the boldness of a headline, to the background of the entire page.
 
 \section{JavaScript}
-JavaScript is a lightweight interpreted programming language. The language is prototype-based, a type of object-oriented programming where properties and methods are added to an instance of an implicitly defined class \cite{prototype-based-programming}. JavaScript does not provide any type-checking.
+JavaScript is a lightweight interpreted programming language. The language is prototype-based, a type of object-oriented programming where properties and methods are added to an instance of an implicitly defined class~\cite{prototype-based-programming}. JavaScript does not provide any type-checking.
 
-JavaScript was developed by Brendan Eichand and released in 1995 \cite{javascript-original-release}. Initially, it was designed to be a small scripting language for enabling interaction with web pages. A standardization effort of JavaScript, led by Ecma International \cite{ecma-international}, lead to the ECMAScript specification.  that the modern JavaScript language conforms to. Several releases. Since then, the language has evolved rapidly and gained massive in popularity. It has become the de-facto language for adding dynamic behavior to HTML. As of may 2020, JavaScript is among the top ten programming languages according to the TIOBE index \cite{tiobe-index}.
+JavaScript was developed by Brendan Eichand and released in 1995~\cite{javascript-original-release}. Initially, it was designed to be a small scripting language for enabling interaction with web pages. A standardization effort of JavaScript, led by Ecma International~\cite{ecma-international}, lead to the ECMAScript specification that the modern JavaScript language conforms to. Since then, the language has evolved rapidly and gained massive in popularity. It has become the de-facto language for adding dynamic behavior to HTML. As of may 2020, JavaScript is among the top ten programming languages according to the TIOBE index \cite{tiobe-index}.
 
 % Node.js
-Originally, JavaScript engines were mainly used in browser environments. However, with the development of Node.js in early 2009, this was dramatically changed. Node.js provides a runtime environment for executing JavaScript outside of a web browser. It set the stage for server-side JavaScript programs. In January 2010, a package manager named npm \cite{npm} was released for Node.js. This made it easy for developers to share and use source code.
+Originally, JavaScript engines were mainly used in browser environments. However, with the development of Node.js in early 2009, this was dramatically changed. Node.js provides a runtime environment for executing JavaScript outside of a web browser. It set the stage for server-side JavaScript programs. In January 2010, a package manager named npm \cite{npm} was released for Node.js. This made it easy for developers to share and reuse source code.
 
 % Module bundlers
 The size of JavaScript programs has increased massively in size. With increased size, so does the complexity of the code. However, JavaScript had very limited functionality in terms of splitting a program up in smaller modules for use with the browser. Maintaining large codebases was a nightmare. It therefore became apparent that a way of breaking down a JavaScript program into smaller modules was needed. Several open-source module systems were therefore developed by the community in order to tackle this problem.
@@ -114,7 +116,7 @@ Due to the many versions of JavaScript, or more specifically ECMAScript, like ES
 \label{sec:intro-bundling}
 JavaScript bundling is an optimization technique to combine separate resource files into one file. This is done in order to reduce the number of HTTP requests required for a page to load. Several bundlers are able to do so called tree-shaking, dramatically reducing the size of the finished bundle. In addition to the performance gain, bundling is also often done in order to develop a JavaScript application in separate files, effectively employing a form of module system. The bundlers often use one or more of the popular module systems like UMD and ES modules. There are three main actors in terms of bundling JavaScript.
 \begin{itemize}
-    \item \textbf{Webpack} \cite{webpack} is a module bundler for JavaScript. However, id is also able to transform front-end assets like HTML, CSS, and images. Webpack is mostly used for bundling JS applications, and is highly extendible. It also provides a way to bundle an application for Node.js to be used in the Browser \footnote{This requires that no Node.js specific APIs are used. Alternatively, polyfills could be supplied.}. However, as of may 2020, it does not support exporting ES Modules.
+    \item \textbf{Webpack} \cite{webpack} is a module bundler for JavaScript. However, it is also able to transform front-end assets like HTML, CSS, and images. Webpack is mostly used for bundling JS applications, and is highly extendible. It also provides a way to bundle an application for Node.js to be used in the Browser \footnote{This requires that no Node.js specific APIs are used. Alternatively, polyfills could be supplied.}. However, as of may 2020, it does not support exporting ES Modules.
     \item \textbf{Rollup} \cite{rollup} is a module bundler primarily focusing on JavaScript libraries. It has a lot of similarities with Webpack. However, it is a bit lighter and provides exporting support for ES Modules.
     \item \textbf{Browserify} \cite{browserify} is a lightweight module bundler for enabling the use of CommonJS syntax in the Browser.
 \end{itemize}
@@ -140,7 +142,7 @@ WebGL (Web Graphics Library) \cite{webgl} is a JavaScript API for rendering inte
 three.js\cite{three.js} is a cross-browser JavaScript library for creating and displaying 3D computer graphics in a web browser. It is open-source and licensed under the MIT license. three.js uses WebGL under the hood. The library abstracts away a lot of tedious manual labour, like the setup of WebGL, construction of vertices, faces, etc. three.js provides the user with an easy API for directly constructing three-dimensional objects like boxes, spheres and toruses, as well as easy camera controls. The library also includes a vast set of shaders, making it very simple to make use of high quality materials. three.js is one of the most popular 3D graphics JavaScript library for use in the browser, as can be seen on its GitHub repo \cite{three.js}.
 
 \subsection{ndarray}
-ndarray is an open-source JavaScript package providing modular multidimensional arrays, written by Mikola Lysenko in 2013. In short does ndarray implement a higher dimensional views of 1D arrays. The 1D array can either be a normal JavaScript  Array, or a JavaScript typed array. MDN defines typed arrays as \textquote[\citet{mdn-typed-arrays}]{array-like objects that provide a mechanism for reading and writing raw binary data in memory buffers.}. Mainly, they are used for maximizing efficiency and reducing memory footprint. However, typed arrays are normally quite difficult to work with in JavaScript. Multidimensional typed arrays even more so. ndarray provides a simple but powerful API, making use of multidimensional typed arrays easy.
+ndarray is an open-source JavaScript package providing modular multidimensional arrays, written by Mikola Lysenko in 2013. In short, ndarray implement a higher dimensional views of 1D arrays. The 1D array can either be a normal JavaScript Array, or a JavaScript typed array. MDN defines typed arrays as \textquote[\citet{mdn-typed-arrays}]{array-like objects that provide a mechanism for reading and writing raw binary data in memory buffers.}. Mainly, they are used for maximizing efficiency and reducing memory footprint. However, typed arrays are normally quite difficult to work with in JavaScript. Multidimensional typed arrays even more so. ndarray provides a simple but powerful API, making use of multidimensional typed arrays easy.
 
 \subsection{Electron}
 Electron \cite{electron} is an open-source framework developed and maintained by \citet{github}. It allows one to build cross-platform desktop applications with JavaScript, HTML and CSS. Electron is used by thousands of people, and apps like Visual Studio Code \cite{visual-studio-code}, Facebook Messenger \cite{messenger} and Microsoft Teams \cite{teams} are all made with Electron.
@@ -155,7 +157,7 @@ LGTM by Semmle \cite{lgtm} is a web service providing code security analysis. Th
 Coveralls \cite{coveralls} is a web service for code testing coverage. It enables one to track a projects code coverage over time, providing valuable insight in a projects testing suite. Coveralls also features close integration with GitHub, enabling pull request coverage reviews.
 
 \section{3D computer graphics}
-3D computer graphics refers to three-dimensional representation of geometric data in computers, normally to be rendered to a two-dimensional image. The finalized render may be saved or displayed on a screen in realtime. The geometric data is usually a 3D model, stored in an appropriate file format. The most basic polygon primitives in computer graphics includes vertices, edges and faces. A vertex is simply point in space. An edge is a connection between two vertices. A face is a closed set of edges. Figure \ref{fig:triangular-mesh} shows a yellow triangle with the appropriate vertex, edge and face labels. These primitives together defines a polyhedral. Polyhedrons can then be further grouped together into a mesh. The most common type of polygon mesh is a triangular mesh. This is a mesh comprised of only triangles. Figure \ref{fig:triangular-mesh} shows an illustration of a section of a triangular mesh.
+3D computer graphics refers to three-dimensional representation of geometric data in computers, normally to be rendered into a two-dimensional image. The finalized render may be saved or displayed on a screen in realtime. The geometric data is usually a 3D model, stored in an appropriate file format. The most basic polygon primitives in computer graphics includes vertices, edges and faces. A vertex is simply point in space. An edge is a connection between two vertices. A face is a closed set of edges. Figure \ref{fig:triangular-mesh} shows a yellow triangle with the appropriate vertex, edge and face labels. These primitives together defines a polyhedral. Polyhedrons can then be further grouped together into a mesh. The most common type of polygon mesh is a triangular mesh. This is a mesh comprised of only triangles. Figure \ref{fig:triangular-mesh} shows an illustration of a section of a triangular mesh.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.75\textwidth]{sections/theory/figures/mesh.eps}
@@ -188,7 +190,7 @@ The first use of the term ray casting was made by Scott Roth, in a paper from 19
 \subsection{Octrees}
 An octree is a type of tree structure. Each internal node of an octree has exactly eight children. An octree is most commonly used for partitioning three-dimensional space. This is done by recursively subdividing the space into eight octants. Note that depending on the number of recursive subdivisions, an octree may contain multiple objects in its leaf nodes. Figure \ref{fig:octree-example} shows an example of an octree with three levels. Octrees are very commonly used in 3D computer graphics. Another common use case of octrees is for storing voxel data. 
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \begin{subfigure}[c]{0.33\textwidth}
         \vspace{0pt}
@@ -206,9 +208,9 @@ An octree is a type of tree structure. Each internal node of an octree has exact
 \end{figure}
 
 \subsection{Bounding volume hierarchy }
-A bounding volume hierarchy, abbreviated BVH, is a tree structure on a set of geometric objects. A BVH construction algorithm partitions the actual objects. The objects are wrapped in a so-called bounding volume. These forms the leaves of the tree. These are then grouped together into a larger bounding volume. This process is then repeated in a recursive manner. The result is a tree structure with one single bounding volume as the root node. An example of a BVH is shown in Figure \ref{fig:bvh-example}. BVH are often used for accelerating collision detection and raytracing.
+A bounding volume hierarchy, abbreviated BVH, is a tree structure on a set of geometric objects. A BVH construction algorithm partitions the actual objects. The objects are wrapped in a so-called bounding volume, forming the leaves of the tree. These are then grouped together into a larger bounding volume. This process is then repeated in a recursive manner. The result is a tree structure with one single bounding volume as the root node. An example of a BVH is shown in Figure \ref{fig:bvh-example}. BVH are often used for accelerating collision detection and raytracing.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \begin{subfigure}[c]{0.37\textwidth}
         \vspace{0pt}
@@ -237,13 +239,13 @@ A voxel is the three-dimensional analogue of a pixel \cite{wiki-voxel}. It repre
 
 \section{Voxelizer v0.1.3}
 \label{sec:voxelizer-v013}
-Voxelizer v0.1.3 \cite{voxelizer-v0.1.3} is a JavaScript library for conducting voxelization of 3D models. It was written by me, André Storhaug, in 2019. Version 0.1.3 features a relatively simple voxelization algorithm which is based on raycasting. The sampling algorithm tries to produce a filled volume-representation of a supplied 3D model. It samples the front and the back of the model, combines the two results together and tries to fill the in-between gap. The 3D model loading capabilities of the program is limited to plain OBJ files. In terms of exporting, the software is able to output a 3D JavaScript array (nested arrays).
+Voxelizer v0.1.3 \cite{voxelizer-v0.1.3} is a JavaScript engine (or library) for conducting voxelization of 3D models. It was written by me, André Storhaug, in 2019. Version 0.1.3 features a relatively simple voxelization algorithm which is based on raycasting. The sampling algorithm tries to produce a filled volume-representation of a supplied 3D model. It samples the front and the back of the model, combines the two results together and tries to fill the in-between gap. The 3D model loading capabilities of the program is limited to plain OBJ files. In terms of exporting, the software is able to output a 3D JavaScript array (nested arrays).
 
-The library is using ES6 features, hence it is transpiled with Babel (see Section \ref{sec:intro-transpilation}). However, the library is not bundled. It is therefore not possible to use the program out of the box in a browser. One is limited to Node.js, or setting up a build system involving a module bundler like Webpack or Rollup, as described in Section \ref{sec:intro-bundling}. The source code is messy, and it is very hard to extend functionality. Especially due to a severe lack of documentation.
+The engine is using ES6 features, hence it is transpiled with Babel (see Section \ref{sec:intro-transpilation}). However, is not bundled. It is therefore not possible to use the program out of the box in a browser. One is limited to Node.js, or setting up a build system involving a module bundler like Webpack or Rollup, as described in Section \ref{sec:intro-bundling}. The source code is messy, and it is very hard to extend functionality. Especially due to a severe lack of documentation.
 
-Voxelizer v0.1.3 produces unsatisfactory voxelization results. Firstly, several of the voxelizations contains holes. This can be clearly seen in Figure \ref{fig:voxelizer-v0.1.3-torus}. A voxelization with holes often renders the voxelization useless. Secondly, a lot of artifacts are often generated, severely degrading the results. This is shown in Figure \ref{fig:voxelizer-v0.1.3-monkey}, where long strains of voxels appear in the front of the model. This is especially pronounced around the ears of the monkey. Thirdly, the software is only able to produce a filled voxelization result. This is mainly due to the fact that the model is only sampled from the front and back. The other sides of the model is not taken into account. Shell voxelization is therefore not an option.
+Voxelizer v0.1.3 produces unsatisfactory voxelization results. Firstly, several of the voxelizations contains holes. This can be clearly seen in Figure \ref{fig:voxelizer-v0.1.3-torus}. A voxelization with holes often renders the voxelization useless. Secondly, a lot of artifacts are often generated, severely degrading the results. This is shown in Figure \ref{fig:voxelizer-v0.1.3-monkey}, where long strains of voxels appear in the front of the model. This is especially pronounced around the ears of the monkey. Thirdly, the software is only able to produce a filled voxelization result. This is mainly due to the fact that the model is only sampled from the front and back. The other sides of the model are not taken into account. This means that shell voxelization is not an option, and details may be lost.
 
-\begin{figure}[h]
+\begin{figure}[p]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
@@ -262,7 +264,7 @@ Voxelizer v0.1.3 produces unsatisfactory voxelization results. Firstly, several 
     \label{fig:voxelizer-v0.1.3-torus}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[p]
     \centering
     \begin{subfigure}[b]{0.46\textwidth}
         \centering

@@ -5,11 +5,11 @@
 Since the introduction of the relatively new technology WebGL, users has been able to significantly expand the graphical user-experience for the large user mass of the web. It has allowed for almost desktop like graphics performance.
 WebGl has especially expanded the abilities regarding the creation of web browser games and simulations. Creating high performance graphics applications in the browser has never been easier. It has opened up for a sea of possibilities where only your imagination is the limit.
 
-In a lot of simulation software, and even some games, volumetric information plays a crucial part. With everything from fluid dynamics to voxel games like Minecraft, volumetric information is a key component. One way to acquire such volumetric data is through voxelizing a 3D model (polygon mesh). However, to the best of my knowledge, it does not exist any easy-to-use open-source voxelization software written in JavaScript. So, in order to obtain such volumetric data, developers are therefore forced to go through a tedious preprocessing steps, often involving old and complex, har to use, platform specific tools.
+In a lot of simulation software, and even some games, volumetric information plays a crucial part. With everything from fluid dynamics to voxel games like Minecraft, volumetric information is a key component. One way to acquire such volumetric data is through voxelizing a 3D model (polygon mesh). However, to the best of my knowledge, it does not exist any easy-to-use open-source voxelization software written in JavaScript. In order to obtain such volumetric data, developers are therefore forced to go through a tedious preprocessing steps, often involving old and complex, har to use, platform specific tools.
 
-This was a problem I encountered myself a year ago in 2019. In connection with an assignment in a simulation course at the Norwegian University of Science and Technology (NTNU), I needed to be able to easily generate some volumetric data based on 3D models. I was using web-technologies so I was looking for a simple solution in plain JavaScript. However, I was not able to find such a solution. I therefore decided to make one myself. The result was an open-source voxelization project, written entirely in JavaScript, named Voxelizer.
+This was a problem I encountered myself a year ago in 2019. In connection with an assignment in a simulation course at the Norwegian University of Science and Technology (NTNU), I needed to be able to easily generate some volumetric data based on 3D models. I was using web-technologies, so I was looking for a simple solution in plain JavaScript. However, I was not able to find such a solution. I therefore decided to make one myself. The result was an open-source voxelization project, written entirely in JavaScript. It was named Voxelizer.
 
-However, the Voxelizer project carries strong signs of the limited amount of time allocated for sowing the software together. Due to it's vast range of applicability, improving and expanding the capabilities of the project could therefore serve to be a valuable open-source asset to the web based game- and simulation-development ecosystem, providing easy access to voxelization.
+However, the Voxelizer project carries strong signs of the limited amount of time allocated for creating the software. Due to it's vast range of applicability, improving and expanding the capabilities of the project could therefore serve to be a valuable open-source asset to the web based game- and simulation-development ecosystem, providing easy access to voxelization.
 
 %==========================================
 \section{Problem Formulation}
@@ -30,17 +30,16 @@ In order to ensure the maintainability of the various software projects, automat
 \section{Scope}
 The main purpose of this project is to make it easy to conduct high quality voxelization of 3D models. Its scope is limited by the requirements specification defined in the Preliminary report. Complementary to these requirements, a backlog with user-stories has been created. See Appendix \ref{appendix:requirements-specification}.
 
-It is important to note that the project does not primary focus on speed of the voxelization algorithm. The targeted systems often run in an environment where resources are scarce. Performance is therefore of course important. However, usability is also extremely important. This thesis will mainly focus on providing easy access to high-quality voxelization, with reasonable performance. If speed is of the main concerns, it would be better to do the extra work of setting up a native solution (for example binvox \cite{binvox}), often written in C/C++.
+It is important to note that the project does not primarily focus on speed of the voxelization algorithm. The targeted systems often run in an environment where resources are scarce. Performance is therefore of course important. However, usability is also extremely important. This thesis will mainly focus on providing easy access to high-quality voxelization, with reasonable performance. If speed is of the main concerns, it would be better to do the extra work of setting up a native solution (for example binvox \cite{binvox}), often written in C/C++.
 
 %%=========================================
 \section{Systems overview}
-\subsection{Voxelization systems}
-The diagram in figure \ref{fig:voxel-systems-overview} shows how the different software repositories regarding voxelization interconnects. The green boxes represents the main software projects. The blue box represents side projects. During development, some components were generalized and extracted into a separate repository. The white box represents a third party library.
-%\clearpage % remove this ??
+\subsection{Voxel systems}
+The diagram in figure \ref{fig:voxel-systems-overview} shows how the different software repositories regarding voxelization interconnects. The green boxes represents the main software projects developed in conjunction with this thesis. During development, some components were generalized and extracted into a separate repository. This side project is represented by the blue box. The white box represents a third party library.
 \begin{figure}[ht]
     \centering
     \includegraphics[page=1,scale=0.85]{sections/introduction/figures/voxel-systems-overview.pdf}
-    \caption{Automation of release publishing process.}
+    \caption{Voxel systems overview.}
     \label{fig:voxel-systems-overview}
 \end{figure}
 
@@ -49,7 +48,7 @@ Figure \ref{fig:automation-systems-overview} shows a diagram of the various auto
 \begin{figure}[ht]
     \centering
     \includegraphics[page=1,scale=0.85]{sections/introduction/figures/automation-systems-overview.pdf}
-    \caption{Automation of release publishing process.}
+    \caption{Automation systems overview.}
     \label{fig:automation-systems-overview}
 \end{figure}
 
@@ -57,9 +56,8 @@ Figure \ref{fig:automation-systems-overview} shows a diagram of the various auto
 \section{Outline}
 
 The rest of the report is structured as follows.\\
-\break
 \textbf{Chapter 2 - Theory:} Chapter two gives an introduction to the theoretical background that lies the foundation of this thesis.\\
 \textbf{Chapter 3 - Method:} Contains a description of the methodology and materials that were considered throughout the project.\\
-\textbf{Chapter 4 - Result:} Contains a description of the finished software systems.\\
+\textbf{Chapter 4 - Result:} Contains a description of the completed work.\\
 \textbf{Chapter 5 - Discussion:} Discusses the achieved results, the execution of methodologies and tools, in addition to encountered difficulties.\\
-\textbf{Chapter 6 - Conclusions:} This chapter presents an overall conclusion of the project, reviewing the objectives and the progress made.\\
+\textbf{Chapter 6 - Conclusions:} This chapter presents an overall conclusion of the project, reviewing the objectives and the progress made.
