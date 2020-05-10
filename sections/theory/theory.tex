@@ -142,7 +142,9 @@ WebGL (Web Graphics Library) \cite{webgl} is a JavaScript API for rendering inte
 three.js\cite{three.js} is a cross-browser JavaScript library for creating and displaying 3D computer graphics in a web browser. It is open-source and licensed under the MIT license. three.js uses WebGL under the hood. The library abstracts away a lot of tedious manual labour, like the setup of WebGL, construction of vertices, faces, etc. three.js provides the user with an easy API for directly constructing three-dimensional objects like boxes, spheres and toruses, as well as easy camera controls. The library also includes a vast set of shaders, making it very simple to make use of high quality materials. three.js is one of the most popular 3D graphics JavaScript library for use in the browser, as can be seen on its GitHub repo \cite{three.js}.
 
 \subsection{ndarray}
+\label{sec:theory-ndarray}
 ndarray is an open-source JavaScript package providing modular multidimensional arrays, written by Mikola Lysenko in 2013. In short, ndarray implement a higher dimensional views of 1D arrays. The 1D array can either be a normal JavaScript Array, or a JavaScript typed array. MDN defines typed arrays as \textquote[\citet{mdn-typed-arrays}]{array-like objects that provide a mechanism for reading and writing raw binary data in memory buffers.}. Mainly, they are used for maximizing efficiency and reducing memory footprint. However, typed arrays are normally quite difficult to work with in JavaScript. Multidimensional typed arrays even more so. ndarray provides a simple but powerful API, making use of multidimensional typed arrays easy.
+\colorbox{red}{strided arrays??}
 
 \subsection{Electron}
 Electron \cite{electron} is an open-source framework developed and maintained by \citet{github}. It allows one to build cross-platform desktop applications with JavaScript, HTML and CSS. Electron is used by thousands of people, and apps like Visual Studio Code \cite{visual-studio-code}, Facebook Messenger \cite{messenger} and Microsoft Teams \cite{teams} are all made with Electron.
@@ -176,6 +178,7 @@ A texture map is an image which is applied, or mapped, onto the surface of a geo
 \end{figure}
 
 \subsection{Ray casting}
+\label{sec:theory-raycasting}
 Ray casting is the concept of use of ray–surface intersection tests to solve a variety of problems in 3D computer graphics and computational geometry. 
 The first use of the term ray casting was made by Scott Roth, in a paper from 1982 titled "Ray casting for modeling solids" \cite{roth-ray-casting}. Raycasting is demonstrated in Figure \ref{fig:raycasting-intersections-example}. A ray is directed towards an object. If it crosses a face, an intersection is registered.
 
@@ -188,6 +191,7 @@ The first use of the term ray casting was made by Scott Roth, in a paper from 19
 
 \section{Acceleration data structures}
 \subsection{Octrees}
+\label{sec:theory-octree}
 An octree is a type of tree structure. Each internal node of an octree has exactly eight children. An octree is most commonly used for partitioning three-dimensional space. This is done by recursively subdividing the space into eight octants. Note that depending on the number of recursive subdivisions, an octree may contain multiple objects in its leaf nodes. Figure \ref{fig:octree-example} shows an example of an octree with three levels. Octrees are very commonly used in 3D computer graphics. Another common use case of octrees is for storing voxel data. 
 
 \begin{figure}[ht]
