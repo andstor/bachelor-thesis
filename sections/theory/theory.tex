@@ -76,6 +76,7 @@ Development of new features are done in \textbf{feature branches}. These branch 
 GitHub is primarily a hosting service for Git repositories. The company was acquired by Microsoft in 2019. In addition to repository hosting, GitHub provides a range of different services through it's web-based GUI. This includes both wikis, access controls, simple task management tools, statistics, automation capabilities and websites hosting.
 
 \subsection{GitHub Actions}
+\label{sec:theory-github-actions}
 GitHub Actions~\cite{github-actions} is a fairly very new service provided by GitHub. It enables users to automate software workflows, effectively providing a high quality CI/CD for free~\footnote{GitHub Actions usage is completely free for public repositories. For private repositories, depending on the subscription plan, some thousand minutes of free usage is provided each month.}. It is also possible to set up self-hosted runners. GitHub Actions makes it possible to both build, test and deploy code directly from within GitHub.
 
 To setup and configure an automated process, so-called workflows needs to be defined. These are made up of one or more jobs. The actual workflow has to be defined in a YAML file. This file needs to be created and placed in a repository hosted on GitHub. Consult the documentation available at GitHub for the appropriate workflow syntax for creating such YAML files~\cite{github-actions-workflow-syntax}.
@@ -101,6 +102,7 @@ Originally, JavaScript engines were mainly used in browser environments. However
 The size of JavaScript programs has increased massively in size. With increased size, so does the complexity of the code. However, JavaScript had very limited functionality in terms of splitting a program up in smaller modules for use with the browser. Maintaining large codebases was a nightmare. It therefore became apparent that a way of breaking down a JavaScript program into smaller modules was needed. Several open-source module systems were therefore developed by the community in order to tackle this problem.
 
 \subsection{Module systems}
+\label{sec:theory-module-system}
 \begin{itemize}
     \item \textbf{CommonJS} is a module specification meant for JavaScript outside the browser. It is mainly used in Node.js, and hence it is one of the most popularly used module definitions. The modules are mainly imported and exported with the keywords "require" and "module.exports".
     \item \textbf{Asynchronous module definition}, or more commonly known as AMD, is a JavaScript module definition intended for the browser. It defines an API for defining code as modules, including their dependencies. AMD also has the capability of loading modules asynchronously. The most popular AMD module loader is named RequireJS \cite{requirejs}.
@@ -109,11 +111,11 @@ The size of JavaScript programs has increased massively in size. With increased 
 \end{itemize}
 
 \subsection{Transpilation}
-\label{sec:intro-transpilation}
+\label{sec:theory-transpilation}
 Due to the many versions of JavaScript, or more specifically ECMAScript, like ES5, ES6 and ES7, compatibility is an issue. Not all browsers and environments support the latest ECMAScript versions. Tools like Babel \cite{babel} has been developed in order to transpile JavaScript to a specific version. The most common transpilation target, supported by all the major browsers is ECMAScript 5 (ES5).
 
 \subsection{Bundling}
-\label{sec:intro-bundling}
+\label{sec:theory-bundling}
 JavaScript bundling is an optimization technique to combine separate resource files into one file. This is done in order to reduce the number of HTTP requests required for a page to load. Several bundlers are able to do so called tree-shaking, dramatically reducing the size of the finished bundle. In addition to the performance gain, bundling is also often done in order to develop a JavaScript application in separate files, effectively employing a form of module system. The bundlers often use one or more of the popular module systems like UMD and ES modules. There are three main actors in terms of bundling JavaScript.
 \begin{itemize}
     \item \textbf{Webpack} \cite{webpack} is a module bundler for JavaScript. However, it is also able to transform front-end assets like HTML, CSS, and images. Webpack is mostly used for bundling JS applications, and is highly extendible. It also provides a way to bundle an application for Node.js to be used in the Browser \footnote{This requires that no Node.js specific APIs are used. Alternatively, polyfills could be supplied.}. However, as of may 2020, it does not support exporting ES Modules.
@@ -153,9 +155,11 @@ Electron \cite{electron} is an open-source framework developed and maintained by
 React \cite{react} is a JavaScript library for building user interfaces, created by \citet{facebook}. It is based around components, where each component manage its own state. These are then composed together, enabling the creation of intricate and complex UIs. The library also implements its own syntax extension to JavaScript. It is named JavaScript XML, or the more popular used term - JSX. In addition to this, there exists a vast ecosystem of plugins for React, greatly simplifying the implementation of everything from localization to state management.
 
 \subsection{Semmle LGTM}
+\label{sec:theory-semmle-lgtm}
 LGTM by Semmle \cite{lgtm} is a web service providing code security analysis. The service is free for open-source projects. LGTM integrates with sites like GitHub and Bitbucket, and is able to analyze projects written in Java, Python, JavaScript, TypeScript, C\#, Go, C and C++. It seeks out to combat the manual process of finding vulnerabilities. By catching them at an early stage, one can prevent vulnerabilities from reaching production. LGTM is based on large community of top security researchers, making it possible to help developers ship secure code \cite{lgtm-security}.
 
 \subsection{Coveralls}
+\label{sec:theory-coveralls}
 Coveralls \cite{coveralls} is a web service for code testing coverage. It enables one to track a projects code coverage over time, providing valuable insight in a projects testing suite. Coveralls also features close integration with GitHub, enabling pull request coverage reviews.
 
 \section{3D computer graphics}
@@ -168,6 +172,7 @@ Coveralls \cite{coveralls} is a web service for code testing coverage. It enable
 \end{figure}
 
 \subsection{Texture maps}
+\label{sec:info-texture-maps}
 A texture map is an image which is applied, or mapped, onto the surface of a geometry. The images is often in the form of a bitmap image or a procedural texture. Texture mapping, or UV mapping, is the process of projecting an actual 2D image onto a 3D model. The technique was initially developed by Edwin Catmull in 1974 \cite{catmull-texture-mapping}. UVs are two-dimensional texture coordinates, assigned to every vertex in a polygon. They are essential in terms of describing how an image gets applied onto a geometry. Figure \ref{fig:texture-mapping} shows an illustrative example of how a 2D image gets "wrapped" around a 3D model. A lot of 3D modeling software are able to do the UV unwrapping automatically, for example Blender \cite{blender}. It is also possible to map a finalized render into a surface texture, a process known as baking \cite{blender-texture-baking}. This is primarily used as an optimization technique.
 
 \begin{figure}[h]
@@ -245,7 +250,7 @@ A voxel is the three-dimensional analogue of a pixel \cite{wiki-voxel}. It repre
 \label{sec:voxelizer-v013}
 Voxelizer v0.1.3 \cite{voxelizer-v0.1.3} is a JavaScript engine (or library) for conducting voxelization of 3D models. It was written by me, André Storhaug, in 2019. Version 0.1.3 features a relatively simple voxelization algorithm which is based on raycasting. The sampling algorithm tries to produce a filled volume-representation of a supplied 3D model. It samples the front and the back of the model, combines the two results together and tries to fill the in-between gap. The 3D model loading capabilities of the program is limited to plain OBJ files. In terms of exporting, the software is able to output a 3D JavaScript array (nested arrays).
 
-The engine is using ES6 features, hence it is transpiled with Babel (see Section \ref{sec:intro-transpilation}). However, is not bundled. It is therefore not possible to use the program out of the box in a browser. One is limited to Node.js, or setting up a build system involving a module bundler like Webpack or Rollup, as described in Section \ref{sec:intro-bundling}. The source code is messy, and it is very hard to extend functionality. Especially due to a severe lack of documentation.
+The engine is using ES6 features, hence it is transpiled with Babel (see Section \ref{sec:theory-transpilation}). However, is not bundled. It is therefore not possible to use the program out of the box in a browser. One is limited to Node.js, or setting up a build system involving a module bundler like Webpack or Rollup, as described in Section \ref{sec:theory-bundling}. The source code is messy, and it is very hard to extend functionality. Especially due to a severe lack of documentation.
 
 Voxelizer v0.1.3 produces unsatisfactory voxelization results. Firstly, several of the voxelizations contains holes. This can be clearly seen in Figure \ref{fig:voxelizer-v0.1.3-torus}. A voxelization with holes often renders the voxelization useless. Secondly, a lot of artifacts are often generated, severely degrading the results. This is shown in Figure \ref{fig:voxelizer-v0.1.3-monkey}, where long strains of voxels appear in the front of the model. This is especially pronounced around the ears of the monkey. Thirdly, the software is only able to produce a filled voxelization result. This is mainly due to the fact that the model is only sampled from the front and back. The other sides of the model are not taken into account. This means that shell voxelization is not an option, and details may be lost.
 
