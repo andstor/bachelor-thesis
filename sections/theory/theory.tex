@@ -5,6 +5,7 @@
 %%=========================================
 \section{Agile methods}
 \subsection{Scrum}
+\label{sec:theory-scrum}
 Scrum~\cite{scrum} is an agile methodology. It is a lightweight, iterative and incremental framework for managing complex work. Scrum is one of the most popular agile methodologies used in the software business. The framework is mainly intended for developing information systems. Scrum defines several roles and different processes. Table~\ref{tab:scrum-roles} lists the various roles. An illustration of the Scrum process is shown in Figure~\ref{fig:scrum}.
 
 At the hart of Scrum, there is a development team. This team is comprised of around three to nine people. The team collectively breaks down project tasks (user-stories) from the backlog into projects. These are then to be completed within a given time frame, so-called "sprints". A sprint usually lasts for about two weeks, to a month. Scrum is also highly focused in the communication between the involved persons, defining several short planning- and review-meetings. Table~\ref{tab:scrum-processes} lists a more detailed description of the various processes in Scrum. 
@@ -61,6 +62,7 @@ Kanban~\cite{kanban} is a lean software development methodology, based on the le
 Git~\cite{git} is a type of distributed version control system (VCS), originally created by Linus Torvalds in 2005. Git is free and open-source, and is today the most popularly used VCS. It is fast and efficient, able to handle everything from small hobby projects to giant projects like the Linux kernel. Every Git directory is a complete repository with history and full version-tracking abilities. It does not need access to internet, nor a central server in order to work.
 
 \subsection{GitFlow}
+\label{sec:theory-gitflow}
 GitFlow is a popular branching model for Git, created by Vincent Driessen~\cite{gitflow}. Figure~\ref{fig:gitflow} displays an example git history, adhering to the GitFlow branching style. GitFlow truly excels in parallel development. It is extremely well suited for collaboration and scales well. It also provide an efficient and predictable merging flow, making it easy to customize workflows for various needs.
 
 Development of new features are done in \textbf{feature branches}. These branch off from the \textbf{development branch}, often named \textbf{develop}, reflecting the current state of "development". When a feature is done, it is merged back into the \textbf{development branch}. When it is time for a new release, a \textbf{release branch} is created based on the \textbf{development branch}. In this branch, finishing touches can be made, like bumping up the version numbers, etc. When approved, the \textbf{release branch} is then merged into a \textbf{master branch}, and also back into the \textbf{development branch}. The \textbf{master branch} only contains released code. In the event of an emergency, a \textbf{hotfix branch} can be used. This provides a shortcut for implementing critical fixes. A \textbf{hotfix branch} branches directly from master. When finished, the \textbf{hotfix} is merged into both \textbf{master} and \textbf{develop}.
@@ -149,7 +151,16 @@ ndarray is an open-source JavaScript package providing modular multidimensional 
 \colorbox{red}{strided arrays??}
 
 \subsection{Electron}
-Electron \cite{electron} is an open-source framework developed and maintained by \citet{github}. It allows one to build cross-platform desktop applications with JavaScript, HTML and CSS. Electron is used by thousands of people, and apps like Visual Studio Code \cite{visual-studio-code}, Facebook Messenger \cite{messenger} and Microsoft Teams \cite{teams} are all made with Electron.
+\label{sec:theory-electron}
+Electron \cite{electron} is an open-source framework developed and maintained by \citet{github}. It allows one to build cross-platform desktop applications with JavaScript, HTML and CSS. Electron is used by thousands of people, and apps like Visual Studio Code \cite{visual-studio-code}, Facebook Messenger \cite{messenger} and Microsoft Teams \cite{teams} are all made with Electron. 
+
+In short, the Electron Application architecture is as follows. An Electron application starts by running a package.json's main script. As shown in Figure~\ref{fig:electron-processes}, this creates a process that is called the main process. From within this process, a GUI can be displayed by creating web pages. Electron uses Chromium for creating web pages~\citet{chromium}. This means that Chromiums multi-process architecture is also available. Every generated web page is therefore run in its own process. These processes are called renderer processes. Communication between the main process and a rendering process is done using inter-process communication, or IPC. Electron also makes it possible to use Node.js APIs, effectively allowing lower level operating system interactions.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\textwidth]{sections/theory/figures/electron-processes.pdf}
+    \caption{Electron architecture.}
+    \label{fig:electron-processes}
+\end{figure}
 
 \subsection{React}
 React \cite{react} is a JavaScript library for building user interfaces, created by \citet{facebook}. It is based around components, where each component manage its own state. These are then composed together, enabling the creation of intricate and complex UIs. The library also implements its own syntax extension to JavaScript. It is named JavaScript XML, or the more popular used term - JSX. In addition to this, there exists a vast ecosystem of plugins for React, greatly simplifying the implementation of everything from localization to state management.
@@ -164,7 +175,7 @@ Coveralls \cite{coveralls} is a web service for code testing coverage. It enable
 
 \section{3D computer graphics}
 3D computer graphics refers to three-dimensional representation of geometric data in computers, normally to be rendered into a two-dimensional image. The finalized render may be saved or displayed on a screen in realtime. The geometric data is usually a 3D model, stored in an appropriate file format. The most basic polygon primitives in computer graphics includes vertices, edges and faces. A vertex is simply point in space. An edge is a connection between two vertices. A face is a closed set of edges. Figure \ref{fig:triangular-mesh} shows a yellow triangle with the appropriate vertex, edge and face labels. These primitives together defines a polyhedral. Polyhedrons can then be further grouped together into a mesh. The most common type of polygon mesh is a triangular mesh. This is a mesh comprised of only triangles. Figure \ref{fig:triangular-mesh} shows an illustration of a section of a triangular mesh.
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\textwidth]{sections/theory/figures/mesh.eps}
     \caption{Triangular mesh}
@@ -175,7 +186,7 @@ Coveralls \cite{coveralls} is a web service for code testing coverage. It enable
 \label{sec:info-texture-maps}
 A texture map is an image which is applied, or mapped, onto the surface of a geometry. The images is often in the form of a bitmap image or a procedural texture. Texture mapping, or UV mapping, is the process of projecting an actual 2D image onto a 3D model. The technique was initially developed by Edwin Catmull in 1974 \cite{catmull-texture-mapping}. UVs are two-dimensional texture coordinates, assigned to every vertex in a polygon. They are essential in terms of describing how an image gets applied onto a geometry. Figure \ref{fig:texture-mapping} shows an illustrative example of how a 2D image gets "wrapped" around a 3D model. A lot of 3D modeling software are able to do the UV unwrapping automatically, for example Blender \cite{blender}. It is also possible to map a finalized render into a surface texture, a process known as baking \cite{blender-texture-baking}. This is primarily used as an optimization technique.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{sections/theory/figures/texture-mapping.png}
     \caption{Texture mapping illustration.}
@@ -187,7 +198,7 @@ A texture map is an image which is applied, or mapped, onto the surface of a geo
 Ray casting is the concept of use of ray–surface intersection tests to solve a variety of problems in 3D computer graphics and computational geometry. 
 The first use of the term ray casting was made by Scott Roth, in a paper from 1982 titled "Ray casting for modeling solids" \cite{roth-ray-casting}. Raycasting is demonstrated in Figure \ref{fig:raycasting-intersections-example}. A ray is directed towards an object. If it crosses a face, an intersection is registered.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.8]{sections/theory/figures/raycast-intersections}
     \caption{Raycasting intersections example.}

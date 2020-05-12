@@ -8,38 +8,45 @@
 
 \section{Tools and libraries}
 \subsection{JavaScript}
-JavaScript has mainly been chosen as the base implementation language because of its cross compatibility and popularity. ...
+JavaScript has mainly been chosen as the base implementation language for all the projects because of its cross platform compatibility and popularity.
 
-\subsection{Babel}
-- Babel - ES6 needs to be transpiled to ES5 (Browser compatibility).
 \subsection{npm}
-Needed packages.. Published all packages to npm.. Most stabile compared to GitHubs new repo....
-
-\subsection{Third party libraries}
-Why did i use them???
-list up like:
-- xxx because ...
-- xxx provides ...
-Elaborate some on three.js - why is it good? (popularity)
+npm is used as the main package publishing- and installation-tool. Also, all published packages are published to the npm package registry. Alternatively, the new GitHub package registry could be used instead. However, npm is the both the most stable and popular JavaScript package registry available.
 
 \subsection{GitHub Actions}
-Why? How did i use it? - For automation... - deeply integrated in GitHub.
+For automation, several platforms are available. One of the more popular ones includes Travis~CI~\cite{travis-ci}. However, GitHub Actions is used instead. This is because GitHub Actions are deeply integrated into GitHub. It also has a unique concept of Actions, as described in Section~\ref{sec:theory-github-actions}.
+
+\subsection{Build tools}
+Several build tools are used. This includes:
+\begin{itemize}
+    \item \textbf{Rollup} for bundling the three-voxel-loader and BINVOX projects.
+    \item \textbf{Webpack} for bundling the Voxelizer engine.
+    \item \textbf{Babel} for transpiring JavaScript to ES5.
+    \item \textbf{electron-builder} for building and preparing Electron apps for distribution.
+\end{itemize}
+
+\subsection{Third party libraries}
+Several third party libraries and frameworks are used. A short summary of why these are put to use is now provided.
+\begin{itemize}
+    \item \textbf{three.js} provides a simple and powerful 3D graphics library. It also includes raycasting functionality.
+    \item \textbf{sparse-octree} is used for generating octrees.
+    \item \textbf{three-bvh-mesh} is used for improving the raycasting functionality of three.js.
+    \item \textbf{format-vox} provides tools for parsing VOX files.
+    \item \textbf{dat.gui} makes it easy to create input controls.
+    \item \textbf{ndarray} provides multidimensional views of 1D typed arrays.
+    \item \textbf{Jest} is used as testing framework.
+\end{itemize}
 
 \section{Working methodology}
 \subsection{Scrum}
-Even though this is a one man project, i have tried to adapt the scrum methodology.
-...
-
-\subsection{Requirements specification}
-\subsubsection{Acceptance criteria}
-Acceptance criteria - custom field in Jira.
-Specially for the voxelization algorithm?
+Even though this is a one man project, i have tried to adapt the scrum methodology. The main changes done are regarding the various meetings defined by Scrum, as described in Section \ref{sec:theory-scrum}. Sprint planning has been conducted normally. User stories
+are selected from the backlog, and story points are assigned. The sprint is then executed. Instead of daily stand-up meetings with a team, I have have set aside 10-15 minutes for planning every day. After a sprint is finished, a sprint review is done. Then, a sprint retrospect is conducted in order to improve the next sprint. This includes both investigating sprint burn-down charts and other statistics. These charts are available in Appendix \ref{appendix:sprints}.
 
 \subsection{GitFlow}
-Why did i follow gitflow? Any changes to the usage?? Good for enforcing standards, automation etc..
+The branching strategy used during development is GitFlow, as described in Section~\ref{sec:theory-gitflow}. This creates a consistent development and merging flow, making it easy to implement automation in the various project. Since GitFlow is very popular, a lot of potential contributors are already familiar with the strategy. Providing familiar guidelines helps in keeping the projects tidy and secure.
 
 \subsection{Semantic versioning}
-All published modules are enforcing Semantic versioning. This ....
+All the created projects are enforcing Semantic Versioning. This makes the use of the software predictable in terms of compatibility and potential breaking changes.
 
 \section{three-voxel-loader}
 \colorbox{green}{NEED UML DIAGRAMS}\\
@@ -67,7 +74,9 @@ The currently implemented loaders supports several file formats, including XML, 
 The most intuitive way to visualize a voxel is in the form of a cube. BoxBufferGeometry from three.js has therefore been used to generate the individual 3D visualization of the voxels. However, one BoxBuffer geometry consists of no less than twelve triangles. The number of triangles generated for visualizing the mesh is therefore twelve times the number of voxels. One of the more time consuming operations in terms of actually displaying the 3D graphics, is the number of draw calls made to the graphics API. In order to limit this, all the generated box meshes are merged into one big mesh. For actually coloring the voxels, color is applied to the vertices of the generated box meshes.
 
 \subsection{Debugging}
-For actually developing and testing the plugin, a HTML page was created. The page includes basic setup of three.js, alongside various input controls for inspecting and testing the three-voxel-loader plugin. The input controls are provided by a lightweight JavaScript controller library named dat.gui~\cite{dat.gui}. In the end, the debugging solution were polished and deployed to GitHub Pages, serving as an example for the various functionality the plugin provides. \colorbox{red}{LINK TO GITHUB PAGES EXAMPLE}
+For actually developing and testing the plugin, a HTML page was created. The page includes basic setup of three.js, alongside various input controls for inspecting and testing the three-voxel-loader plugin. The input controls are provided by a lightweight JavaScript controller library named dat.gui~\cite{dat.gui}. In the end, the debugging solution were polished and deployed to GitHub Pages, serving as an example for the various functionality the plugin provides.
+
+\colorbox{red}{LINK TO GITHUB PAGES EXAMPLE}
 
 \subsection{Building}
 The plugin is bundled with Rollup. This produces excellent bundles, with support for both UMD and ES Modules. See Section~\ref{sec:theory-bundling} for more details on Rollup, and Section~\ref{sec:theory-module-system} for UMD and ES Modules. three-voxel-loader makes use of ES6 features. All source files are therefore transpiled to ES5 with babel.
@@ -76,9 +85,9 @@ The plugin is bundled with Rollup. This produces excellent bundles, with support
 Short intro
 Three.js provides raycasting out  of the box. However, the raycasting method implemented It would be more efficient to implement the raycasting directly without the use of three.js. However, this would be laboursome. However, the main reason for using the three.js library is based on the popularity of the project. the ecosystem of three.js is vast, providing everything from file loaders to ... This, combined with excellent documentation, should make it very easy to produce a 3D model in three.js. This sets the stage for further processing of the 3D models with the Voxelizer engine.
 
-\subsection{Implementation}
+\subsection{Systems overview}
 \label{sec:method-implementation}
-\colorbox{RubineRed}{UML diagram of system here}
+\colorbox{red}{UML diagram of system here}
 
 The system is broken down in several modules (folders). This includes:
 \begin{itemize}
@@ -206,14 +215,36 @@ A separate open-source repo for building and parsing BINVOX file formats were cr
 The new binvox package provides tools to both parse and construct files according to the BINVOX file specification~\cite{binvox-file-format}. Parsing is done on the individual set of two bits, uncompressing the data and storing it in a JSON format. An example of the parsed JSON result can be seen in Program~Code~\ref{lst:binvox-example}. Similarly, a user can supply the same JSON data structure for constructing a BINVOX file resource. Hence, parsing and building commute.
 \lstinputlisting[language=JSON,style=numbers,label={lst:binvox-example},caption={Example BINVOX data in JSON format}]{sections/methodology/code/binvox-json.json}
 
-\section{Voxelizer-Desktop}
-\colorbox{red}{WRITE THIS SECTION!!!!}
-\subsection{Electron}
-\subsubsection{Auto updating}
+\section{Voxelizer Desktop}
+Voxelizer Desktop is an desktop application for voxelizing 3D models. The next few sections goes through how the application is developed.
 
-\subsection{GUI}
-... Sketches?? Wireframe diagrams of GUI etc...
+\subsection{Design}
+Wireframes diagrams were created for planning the application's GUI. Figure~\ref{fig:wireframe-dnd} shows a wireframe diagram over the start screen. Here, a drag and drop interface is presented. The user should be able to just drag and drop the files he/she wants to voxelize into the application. Then, the application will need to load the 3D file(s). Figure~\ref{fig:wireframe-loading} shows how this should be conveyed to the user by using some form of loading graphic. Finally, Figure~\ref{fig:wireframe-main-screen} shows the main screen. This interface is divided in two parts. In the lower half of the application window, various controls are presented. This is further divided into a \textit{Settings} section, and a \textit{Exporting} section. The settings section provides controls for the actual voxelization settings. This includes settings for resolution, coloring and solid/shell. The exporting section provides a UI for selecting exporting type and saving it as a file. In the upper half, an interactive widow should display the voxelized result of the voxelization.
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{sections/methodology/figures/wireframes/wireframe-dnd.pdf}
+    \caption{Wireframe diagram of drag and drop start screen.}
+    \label{fig:wireframe-dnd}
+\end{figure}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{sections/methodology/figures/wireframes/wireframe-loading.pdf}
+    \caption{Wireframe diagram of loading screen.}
+    \label{fig:wireframe-loading}
+\end{figure}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{sections/methodology/figures/wireframes/wireframe-main-screen.pdf}
+    \caption{Wireframe diagram of the main screen.}
+    \label{fig:wireframe-main-screen}
+\end{figure}
 
+\subsection{Implementation}
+The Voxelizer Desktop application is built with the Electron framework, described in Section~\ref{sec:theory-electron}. Alongside the bare Electron framework, the electron-builder~\cite{electron-builder} package is used. This package provides a complete solution for packaging and building a distribution ready Electron app for macOS, Windows and Linux. It also provides "auto update" out of the box. For creating the actual GUI, the React library is used. The create-react-app~\cite{create-react-app} is used for bootstrapping the react project.
+
+For providing the voxelization, the Voxelizer engine is put to use. For visualization of the voxelized result, the three-voxel-loader plugin is used to generate a 3D mesh. This is then passed on to three.js.
+
+In order to make the application user-friendly, a translation system is also implemented. This system is mainly backed by the react-intl~package~\cite{react-intl}. During application startup, the language setting (locale) on the users computer is read in the application's main process. This is then passed on to the instantiated renderer process through IPC. Based on this locale, the GUI is displayed in the appropriate language is presented.
 
 \section{JSDoc Action}
 In the next couple of subsections, the implementation and design decisions of the JSDoc Action will be presented.
