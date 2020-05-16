@@ -18,6 +18,7 @@
 \usepackage{pdfpages}
 \usepackage{minitoc}
 \usepackage{multirow, tabularx}
+\usepackage{pgfplots}
 
 %\usepackage{showframe}
 %%===================================
@@ -27,17 +28,18 @@
 %%===================================
 \begin{document}
 
-\setcounter{page}{0}
+\clearpage
 \pagenumbering{roman}
-\include{sections/_meta/frontpage} % This is the titlepage
-\include{sections/_meta/preface}
-\include{sections/_meta/acknowledgment}
+\setcounter{page}{5}
+%\include{sections/_meta/frontpage} % This is the titlepage
 \include{sections/_meta/abstract}
+\include{sections/_meta/acknowledgment}
+%\include{sections/_meta/preface}
+\tableofcontents
 \include{acronyms}
 \listoffigures
 \listoftables
 \lstlistoflistings
-\tableofcontents
 \setcounter{page}{0}
 \pagenumbering{arabic}
 

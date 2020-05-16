@@ -1,4 +1,4 @@
-\ProvidesFile{listings-javascript.prf}
+\ProvidesFile{listings-json.prf}
     [listings language file]
 
 \definecolor{jsondelim}{RGB}{0,0,0}
