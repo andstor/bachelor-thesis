@@ -39,6 +39,7 @@ Several third party libraries and frameworks are used. A short summary of why th
 
 \section{Working methodology}
 \subsection{Scrum}
+\label{sec:method-scrum}
 Even though this is a one-man project, I have tried to adapt the scrum methodology. Alternatively, the much more flexible Kanban methodology could also be a good fit. However, Scrum is chosen for its very good framework and supporting tools like Jira and Confluence. Scrum helps to keep the pace up, and stay on track with progress.
 
 The main adaptations made are mainly regarding the various meetings defined by Scrum, as described in Section \ref{sec:theory-scrum}. Sprint planning is done as normal. User stories are selected from the backlog, and story points are assigned. The sprint is then started, and lasts for two weeks. Instead of daily stand-up meetings with a team, I have have set aside 10-15 minutes for planning every day. After a sprint is finished, a sprint review is done. Then, a sprint retrospect is conducted, in order to be able to improve the next sprint. This includes investigating both sprint burn-down charts and other statistics generated with Jira. These charts are available in Appendix \ref{appendix:sprints}.
@@ -281,8 +282,7 @@ Figure~\ref{fig:cicd-pipelines} shows a simplified diagram of the CI/CD automati
 
 \begin{enumerate}
     \item \textbf{Pull request} - The pipelines are mainly triggered by a pull request. This starts up both a security analysis by LGTM and a build workflow.
-    \item \textbf{Security analysis} - As described in Section~\ref{sec:theory-semmle-lgtm}, LGTM provides a security analysis. If any vulnerabilities are found, the pull request fails.
-    \item \textbf{Build workflow} - The build workflow has four steps.
+    \item \textbf{Security analysis} - As described in Section~\ref{sec:theory-semmle-lgtm}, LGTM provides a security analysis.
     \begin{enumerate}
         \item \textbf{Checkout} - First, the repository in which the automation is done on is cloned.
         \item \textbf{Build} - Then, the JavaScript project is built.

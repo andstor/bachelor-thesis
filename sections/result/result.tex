@@ -1,11 +1,7 @@
 %This is chapter 4
 %%=========================================
 \chapter{Result}
-This chapter presents the results of this project. \colorbox{red}{SOME MORE HERE?}
-
-Due to various extra work like the binvox package, the file-existence-action and the file-reader-action, some functionality had to give way to others. It was simply not enough time to make the CLI tool for the Voxelizer engine.
-
-The chapter starts with presenting the various results from the different projects developed and connection with this thesis. First, the new three-voxel-loader three.js plugin and the improvements of the Voxelizer engine are presented. This is followed by the new BINVOX package, and the desktop application for the Voxelizer engine. Then, the results of the JSDoc GitHub Action is presented
+This chapter presents the results of this thesis. The chapter starts with presenting the various results from the different projects developed and connection with this thesis. First, the new three-voxel-loader three.js plugin and the improvements of the Voxelizer engine are presented. This is followed by the new BINVOX package, and the desktop application for the Voxelizer engine. Then, the results of the JSDoc GitHub Action is presented
 
 \section{three-voxel-loader}
 The three-voxel-loader is a plugin for three.js. It is published to the npm registry under the name "three-voxel-loader", and the source code is available at GitHub under "andstor/three-voxel-loader".
@@ -203,6 +199,7 @@ The voxelization with the old engine often fails in filling in the gap between t
 \end{figure}
 \clearpage
 \subsection{Performance}
+\label{sec:result-voxelizer-performance}
 The engine's algorithm is completly overhault. The old raycasting algorithm has a time complexity of:
 \[ \mathcal{O}(n^3\times m) \]
 where $n$ is the number resolution of the voxelization, and $m$ is the number of triangles in the 3D model. In order to produce and more accurate result, the new algorithm does a lot more sampling. Despite this, the time complexity is redused. With the settings set to colorless and filled, the time complexity of the upgraded raycasting algorithm is:
@@ -488,16 +485,12 @@ let torus = new THREE.Mesh(geometry, material);
 
 Figure~\ref{fig:plot-execution-time-high-poly} shows a graph over the execution time and the memory footprint for a voxelization of a high-detailed mesh with the Voxelizer engine v0.1.3 and v1.0.0. The raw data is available in Table~\ref{tab:performance-voxelizer-v0.1.3-high-poly} and Table~\ref{tab:performance-voxelizer-v1.0.0-high-poly}.
 
-The results shows similar characteristics as the ones with the low detailed mesh. However, very noticeable is the large difference in execution time. The old version is able to voxelize the mesh with 1,000,000 triangles in 4543 seconds, about 75 minutes. The new version is able to do the same in only about 6.1 second. The new version is also tested at a resolution of $2^10$. This takes only 88.8 seconds. This massive performance improvement is mainly due to the raycasting optimization discussed in Section~\ref{sec:three.js-optimization}.
+The results shows similar characteristics as the ones with the low detailed mesh. However, very noticeable is the large difference in execution time. The old version is able to voxelize the mesh with 1,000,000 triangles in 4543 seconds, about 75 minutes. The new version is able to do the same in only about 6.1 second. The new version is also tested at a resolution of $2^{10}$. This takes only 88.8 seconds. This massive performance improvement is mainly due to the raycasting optimization discussed in Section~\ref{sec:three.js-optimization}.
 
 The memory consumption of the old version is more or less the same as with a low detailed mesh. The new version does consume more memory than in the previous test. This is because the BVH tree generated for the raycasting performance improvement does need a bit of memory. The memory footprint of the new version seems to gradually scale up from 8MB at a resolution of $2^1$, to 76MB at resolution $2^7$. From here on, the memory footprint stay more or less constant. This is because the BVH implementation gradually builds up the BVH tree, as described in Section~\ref{sec:three.js-optimization}.
 
 \subsection{Exporting}
-Several formats...
-- XML
-- BINVOX
-- 3D array
-- ndarray
+Several new exporting options are added to the upgraded Voxelizer engine. This includes XML, BINVOX and ndarray. The old JavaScript array exporting option is also available, ensuring some backwards compatibility. The exporters system is made extensible, making it easy to add new exporting options in the future.
 
 \subsection{Code quality}
 This section describes how the code quality is improved. The old codebase had several problems. Firstly, all the code was contained in one large file. This made it hard to navigate and the code was messy. The new version makes use of ES Modules, enabling to organize the code in different files. Secondly, the engine previously hardcoded the one algorithm used. The new version includes an easily extensible algorithm system. This is ensured through the use of inheritance and factory patterns, as discussed in Section~\ref{sec:method-algorithm-system}. Thirdly, the code did barely include tests for the system. The new version now includes unit tests for almost the whole engine. Lastly, the code had no code documentation. This is resolved by writing JSDoc for all classes and functions. This documentation is also made easily accessible at GitHub Pages with the help of the new JSDoc Action, presented in Section~\ref{sec:result-jsdoc-action}. A screenshot of the public documentation page is shown in Figure~\ref{fig:result-voxelizer-documentation}.
@@ -518,10 +511,25 @@ An example of the engine is deployed to GitHub Pages. Visit \url{https://andstor
 \end{figure}
 
 \subsection{Usage example}
-Example walkthrough of how to use the library with code.
-Like the one done for the JSDoc Action further down.
+This section provides an example of how to use the Voxelizer engine v1.0.0. This example assumes that the project is bundled with a tool such as Webpack or Browserify, enabling the use of the ES Modules import syntax. Also, the node package manager (npm) is assumed to be installed.
 
-\lstinputlisting[language=JavaScript,style=numbers]{sections/methodology/code/voxelizer.js}
+First, the engine and its peer dependency three.js needs to be installed. This is easily done with npm. To install Voxelizer and the peer dependency three.js, run the following commands:
+\begin{verbatim}
+$ npm install voxelizer
+$ npm install three
+\end{verbatim}
+
+Then, Listing~\ref{voxelizer-engine-example} shows the example code now to be described in steps: 
+\begin{enumerate}
+    \item First, the Voxelizer engine v1.0.0, and its peer dependency three.js needs to be imported. This is done in lines 2 and 3.
+    \item Then something to voxelized is needed. This could be any three.js mesh with some BufferGeometry. For this example, a torus is programmatically generated with lines 6-8.
+    \item To set up the Voxelizer sampling class, some options are needed. These are defined on lines 11-14, making the engine produce a colored shell voxelization.
+    \item The sampler is then instantiated at line 15.
+    \item Line 18 and 19 actually samples the torus with a resolution of 10.
+    \item In order to see the results, the returned volume data is fed to a XMLExporter at lines 22-25. This converts the volume data to a XML resource.
+    \item Line 24 prints the XML output to the console.
+\end{enumerate}
+\lstinputlisting[language=JavaScript,style=numbers,label={voxelizer-engine-example}, caption={Voxelizer engine v1.0.0 example usage.}]{sections/result/code/voxelizer.js}
 
 \section{BINVOX}
 BINVOX is a package for parsing and building BINVOX files. It is published to the npm registry under the name "binvox", and the source code is available at GitHub under "andstor/binvox".
@@ -637,14 +645,14 @@ All that is needed for a minimum base setup is a workflow step like the one defi
 \subsection{Example usage}
 Following is a complete example of how easy it is to automate the JSDoc documentation process with the JSDoc Action. This assumes that GitHub is used for hosting the code to generate documentation for.
 
-First, a workflow yaml file needs to be created. This file needs a name, say \textbf{documentation.yaml}, and has to be uploaded to the default branch in the user's repository, under ".github/workflows/". Then, the actual workflow needs to be defined. Listing~\ref{lst:jsdoc-workflow-deploy-example} provides an example workflow. This workflow is set to only run when code is pushed to the master branch. Ubuntu is then chosen as the platform to run the workflow job on. Several workflow steps are then defined:
+First, a workflow yaml file needs to be created. This file needs a name, for example \textbf{documentation.yaml}, and has to be uploaded to the default branch in the user's repository, under ".github/workflows/". Then, the actual workflow needs to be defined. Listing~\ref{lst:jsdoc-workflow-deploy-example} provides an example workflow. This workflow is set to only run when code is pushed to the master branch. Ubuntu is then chosen as the platform to run the workflow job on. Several workflow steps are then defined:
 \begin{enumerate}
     \item First, the user's code repository is cloned with the help of the Checkout Action by GitHub. This makes the user's source code available to subsequent steps. 
     \item Second, the JSDoc Action is used for generating the actual JSDoc documentation files. Lines 15-19 defines several input options to the JSDoc Action. The source directory is set to "./src". The output directory is set to "./out". A path to a JSDoc configuration file in the user's repository is then specified. In order to freshen up the plain JSDoc theme, the minami template is used. This is the name of the package on npm. Finally, the README.md file in the user's repository is used as frontpage. 
     \item Third, the GitHub Pages action is used for deploying the generated documentation files to GitHub Pages. It needs two input configurations. One is a deployment key. See the documentation for the GitHub Pages action for how to set up this. The other is a directory to get the files to publish. This is set to the the JSDoc Action's output directory, "./out".
 \end{enumerate}
 
-INCLUDE EXAMPLE SCREENSHOT OF HTML PAGE WITH GENERATED DOCS
+\colorbox{red}{INCLUDE EXAMPLE SCREENSHOT OF HTML PAGE WITH GENERATED DOCS}
 
 %\begin{minipage}{\linewidth}
 \lstinputlisting[language=yaml,style=numbers,label={lst:jsdoc-workflow-deploy-example},caption={Example documentation workflow file}]{sections/result/code/documentation-workflow.yaml}
@@ -663,33 +671,59 @@ The File Reader action is a GitHub Action. The action is published to the GitHub
 By providing a path as input to the action, the action is simply able to read the contents of a file during a workflow run. The action produces an output variable with the contents of the file. This variable will be available to the subsequent workflow steps.
 
 \section{Automation}
-More or less fully automated all build and release/publishing steps.
-MORE HERE.... Describe how easy it is to maintain the various repositories!!!Include some screenshots from the GitHUb interface.
+Several automation systems are implemented for the various projects. This makes the maintenance of the projects very easy. All JavaScript package building and publishing is fully automated. Automatic JSDoc generation and publishing is also set up. Further, maintenance tasks for the GitHub actions are automated. See Section .... for a walkthrough of how the automations systems work, and what they do in details. For the GitHub Actions, automatic updating of version tags are implemented, according to the GitHub guidelines. For the JavaScript packages, the following tasks are automated:
+\begin{itemize}
+    \item Building.
+    \item Testing.
+    \item Code coverage generation, and uploading to Coveralls.io.
+    \item Security analysis with LGTM by Semmle.
+    \item JavaScript JSDoc documentation generation with the JSDoc Action.
+    \item Publishing of JavaScript package to the npm registry.
+\end{itemize}
+Figure~\ref{fig:automation-pull-request} shows how some of these automated task (defined in Workflows) are run on GitHub's CI/CD system. Here, one can see all the checks are passed. Also, an alert is triggered by the security analysis by LGTM, stating that three new alerts are introduced in the code.
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{sections/result/figures/automation-pull-request.png}
+    \caption{Screenshot of automation checks for a pull request on GitHub.}
+    \label{fig:automation-pull-request}
+\end{figure}
 
-\subsection{JavaScript packages}
-- Building
-- Testing
-- coverage upload to coveralls
-- Security analysis with LGTM
-- JavaScript documentation Generation and deployment of the docs to GH pages.
-- Publishing module to NPM.
+\section{Popularity and achievements}
+Several of the projects has already gained interest by the public. GitHub users can are able to star a repository. This is the main measurement for how popular a repository is. Several of the repositories created in connection with this thesis have received numerous of stars already, and is used by several people. Table~\ref{tab:statistics-github-repos} shows how many stars the different repositories have, as of May 17th, 2020 \footnote{The statistics also include personal staring and usage.}.
+\begin{table}[ht]
+    \newcolumntype{Y}{>{\centering\arraybackslash}X}
+    \def\arraystretch{1.5}
+    \centering
+    \medskip
+    \caption{Repositories statistics as of May 17th, 2020.}
+    \label{tab:statistics-github-repos}
+    \begin{tabularx}{0.5\textwidth}{|Y|c|c|}
+        \hline
+        \textbf{Repository} & \textbf{Stars} &  \textbf{Used by}\\
+        \hline
+        jsdoc-action & 12 & 22\\
+        file-existence-action & 6 & 17\\
+        voxelizer & 4 & 3\\
+        three-voxel-loader & 4 & 1\\
+        file-reader-action & 1 & 5\\
+        binvox & 1 & 2\\
+        voxelizer-desktop & 1 & 0\\
+        \hline
+    \end{tabularx}
+\end{table}
 
-\subsection{GitHub Actions}
-- automatic update of major version tags according to guidelines recommended by GitHub.
-
-
-\section{Open-source community}
-Several of the projects has already gained interest by the public. Say something about popularity....
-Promotion of JSDoc Action in the main repo with 38 thousand users. ...more intro....
-
-\subsection{Statistics}
-Number of stars, weekly downloads, etc
-MORE HERE...... Include screenshots of graphs etc...
-
-\subsection{Feedback}
-Several filed issues (which has been resolved). Feedback from the users, etc... Feature requests...
-
-Included in MAIN JSDOC REPO!!! 10.000 stars and 38.000 users!!!
-
-Supports templates and all that JSDoc3 natively supports.
-Can use other actions to deploy docs to arbitrary service.
+Another achievement is inclusion of a link to the JSDoc Action in the README.md file of the original JSDoc repository. As of May 17th, 2020 the JSDoc repository has 10.6 thousand stars and is used in 39.3 repositories. This gives the action a lot of marketing. The approved pull request is number \href{https://github.com/jsdoc/jsdoc/pull/1745}{\#1745}. 
+Figure~\ref{fig:jsdoc-link-readme} shows a screenshot of the \textbf{Templates and tools} section of the README.md file. The link to the JSDoc Action is located at the bottom of the \textbf{Build tools} subsection, marked in red.
+Figure~\ref{fig:comment-hegemonic} shows the response from the lead maintainer Jeff Williams (hegemonic) of JSDoc.
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{sections/result/figures/jsdoc-readme.png}
+    \caption{Screenshot of JSDoc README.md file.}
+    \label{fig:jsdoc-link-readme}
+\end{figure}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\textwidth]{sections/result/figures/jsdoc-action-pull-request-approval-jsdoc.png}
+    \caption{Screenshot of response from JSDoc lead maintainer.}
+    \label{fig:comment-hegemonic}
+\end{figure}
