@@ -1,10 +1,10 @@
 %This is chapter 4
 %%=========================================
 \chapter{Result}
-This chapter presents the results of this thesis. The chapter starts with presenting the different JavaScript projects developed and improved in connection with this thesis. First, the new three-voxel-loader three.js plugin, and the improvements of the Voxelizer engine are presented. This is followed by the new BINVOX package, and the desktop application for the Voxelizer engine. Then, the results of the JSDoc GitHub Action is presented. Section~\ref{sec:result-automation} will present the results in terms of automation of the projects. Finally, Section~\ref{sec:result-popularity-and-achievements} presents some achievements that are accomplished, including some statistics on the popularity of the projects.
+This chapter presents the results of this thesis. The chapter starts with presenting the different JavaScript projects developed and improved in connection with this thesis. First, the new three-voxel-loader three.js plugin, and the improvements of the Voxelizer engine are presented. This is followed by the new BINVOX package, and the desktop application for the Voxelizer engine. Then, the results of the JSDoc GitHub Action is presented. Section~\ref{sec:result-automation} will present the results in terms of automation of the projects. Finally, Section~\ref{sec:result-popularity-and-achievements} presents some additional achievements, including some statistics on the popularity of the projects.
 
 \section{three-voxel-loader}
-The three-voxel-loader is a plugin for three.js. It is published to the npm registry under the name "three-voxel-loader", and the source code is available at GitHub under "andstor/three-voxel-loader".
+The three-voxel-loader is a plugin for three.js. It is published to the npm registry under the name "\href{https://www.npmjs.com/package/three-voxel-loader}{three-voxel-loader}", and the source code is available at GitHub under "\href{https://github.com/andstor/three-voxel-loader}{andstor/three-voxel-loader}".
 
 The plugin is able to generate a three.js mesh based on voxel data in a variety of data formats. Figure~\ref{fig:three-voxel-loader} shows a screenshot of a VOX model loaded with the three-voxel-loader plugin.
 \begin{figure}[htp]
@@ -29,7 +29,7 @@ It is also possible to control the size of the individual voxels. This is shown 
         \caption{Voxel size set to 1.}
         \label{fig:chicken-voxels-size-1}
     \end{subfigure}
-       \caption{Generated meshes with different voxel sizes.}
+       \caption{Generated meshes of different voxel sizes with the three-voxel-loader plugin.}
        \label{fig:chicken-voxels-sizes}
 \end{figure}
 
@@ -195,7 +195,7 @@ The voxelization with the old engine often fails in filling in the gap between t
         \label{fig:result-original-anvil}
     \end{subfigure}
     \hfill
-    \caption{Voxelization of a monkey with Voxelizer v0.1.3 and v1.0.0. The voxelization is done with a resolution of $2^7$.}
+    \caption{Voxelization of an anvil with Voxelizer v0.1.3 and v1.0.0. The voxelization is done with a resolution of $2^7$.}
     \label{fig:result-voxelizer-comparison-anvil}
 \end{figure}
 \clearpage
@@ -203,9 +203,9 @@ The voxelization with the old engine often fails in filling in the gap between t
 \label{sec:result-voxelizer-performance}
 The engine's algorithm is completly overhault. The old raycasting algorithm has a time complexity of:
 \[ \mathcal{O}(n^3\times m) \]
-where $n$ is the number resolution of the voxelization, and $m$ is the number of triangles in the 3D model. In order to produce and more accurate result, the new algorithm does a lot more sampling. Despite this, the time complexity is redused. With the settings set to colorless and filled, the time complexity of the upgraded raycasting algorithm is:
+where $n$ is the resolution of the voxelization, and $m$ is the number of triangles in the 3D model. In order to produce more accurate results, the new algorithm does a lot more sampling. Despite this, the time complexity is redused. With the settings set to colorless and filled, the time complexity of the upgraded raycasting algorithm is:
 \[ \mathcal{O}(n^3\times \log(m)) \]
-where $n$ is the number resolution of the voxelization, and $m$ is the number of triangles in the 3D model.
+where $n$ is the resolution of the voxelization, and $m$ is the number of triangles in the 3D model.
 
 Following is a speed and memory comparison of the old and new vesion of the Voxelizer engine. The tests are executed in Node.js v12.16.3. The hardware used is a MacBook Pro (13-inch, 2018) with a 2.3GHz quad core processor and 16GB of 2133MHz LPDDR3 RAM, running MacOS Catalina v10.15.4.
 
@@ -302,7 +302,7 @@ First, the versions are tested with a low-poly mesh. Then, a high-poly mesh is u
     \newcolumntype{Y}{>{\centering\arraybackslash}X}
     \begin{minipage}[t]{.45\linewidth}
         \centering
-        \caption{Execution times and memory footprints for voxelization of low-detailed mesh with Voxelizer v0.1.3}
+        \caption{Execution times and memory footprints for voxelization of low-detailed mesh with Voxelizer v0.1.3.}
         \label{tab:performance-voxelizer-v0.1.3-low-poly}
         \medskip
         \begin{tabularx}{\textwidth}{*{3}{|Y}|}
@@ -324,7 +324,7 @@ First, the versions are tested with a low-poly mesh. Then, a high-poly mesh is u
     \end{minipage}\hfill
     \begin{minipage}[t]{.45\linewidth}
         \centering
-        \caption{Execution times and memory footprints for voxelization of low-detailed mesh with Voxelizer v1.0.0}
+        \caption{Execution times and memory footprints for voxelization of low-detailed mesh with Voxelizer v1.0.0.}
         \label{tab:performance-voxelizer-v1.0.0-low-poly}
         \medskip
         \begin{tabularx}{\textwidth}{*{3}{|Y}|}
@@ -352,7 +352,7 @@ The new engine has a relatively low memory footprint. At resolutions from $2^1$ 
 
 Regarding execution time, this is also greatly improved in the new engine version. This is especially noticeable at large resolutions. At a resolution of $2^{10}$, the old engine use 260 seconds to voxelize the 3D model. The new version only use 86 seconds, a reduction of about $60\%$.
 
-An new mesh is generated with the code in Listing~\ref{lst:voxelizer-speed-test-mesh-high}. This produces a highly detailed torus mesh with 1,000,000 triangles. The are presented in the figures below.
+An new mesh is generated with the code in Listing~\ref{lst:voxelizer-speed-test-mesh-high}. This produces a highly detailed torus mesh with 1,000,000 triangles. The results are presented in the figures below.
 
 \begin{lstlisting}[language=JavaScript,caption={JS code for generating high-detailed torus mesh.},label={lst:voxelizer-speed-test-mesh-high}]
 let geometry = new THREE.TorusBufferGeometry( 10, 3, 1000, 500 );
@@ -442,7 +442,7 @@ let torus = new THREE.Mesh(geometry, material);
     \def\arraystretch{1.5}
     \begin{minipage}[t]{.45\linewidth}
         \centering
-        \caption{Execution times and memory footprints for voxelization of high-detailed mesh with Voxelizer v0.1.3}
+        \caption{Execution times and memory footprints for voxelization of high-detailed mesh with Voxelizer v0.1.3.}
         \label{tab:performance-voxelizer-v0.1.3-high-poly}
         \medskip
         \begin{tabularx}{\textwidth}{*{3}{|Y}|}
@@ -462,7 +462,7 @@ let torus = new THREE.Mesh(geometry, material);
     \end{minipage}\hfill
     \begin{minipage}[t]{.45\linewidth}
         \centering
-        \caption{Execution times and memory footprints for voxelization of high-detailed mesh with Voxelizer v1.0.0}
+        \caption{Execution times and memory footprints for voxelization of high-detailed mesh with Voxelizer v1.0.0.}
         \label{tab:performance-voxelizer-v1.0.0-high-poly}
         \medskip
         \begin{tabularx}{\textwidth}{*{3}{|Y}|}
@@ -486,7 +486,7 @@ let torus = new THREE.Mesh(geometry, material);
 
 Figure~\ref{fig:plot-execution-time-high-poly} shows a graph over the execution time and the memory footprint for a voxelization of a high-detailed mesh with the Voxelizer engine v0.1.3 and v1.0.0. The raw data is available in Table~\ref{tab:performance-voxelizer-v0.1.3-high-poly} and Table~\ref{tab:performance-voxelizer-v1.0.0-high-poly}.
 
-The results shows similar characteristics as the ones with the low detailed mesh. However, very noticeable is the large difference in execution time. The old version is able to voxelize the mesh with 1,000,000 triangles in 4543 seconds, about 75 minutes. The new version is able to do the same in only about 6.1 second. The new version is also tested at a resolution of $2^{10}$. This takes only 88.8 seconds. This massive performance improvement is mainly due to the raycasting optimization discussed in Section~\ref{sec:three.js-optimization}.
+The results shows similar characteristics as the ones with the low detailed mesh. However, very noticeable is the large difference in execution time. At a resolution of $2^{7}$, the old version is able to voxelize the mesh with 1,000,000 triangles in 4543 seconds, about 75 minutes. The new version is able to do the same in only about 6.1 second. The new version is also tested at a resolution of $2^{10}$. This takes only 88.8 seconds. This massive performance improvement is mainly due to the raycasting optimization discussed in Section~\ref{sec:three.js-optimization}.
 
 The memory consumption of the old version is more or less the same as with a low detailed mesh. The new version does consume more memory than in the previous test. This is because the BVH tree generated for the raycasting performance improvement does need a bit of memory. The memory footprint of the new version seems to gradually scale up from 8MB at a resolution of $2^1$, to 76MB at resolution $2^7$. From here on, the memory footprint stay more or less constant. This is because the BVH implementation gradually builds up the BVH tree, as described in Section~\ref{sec:three.js-optimization}.
 
@@ -494,7 +494,7 @@ The memory consumption of the old version is more or less the same as with a low
 Several new exporting options are added to the upgraded Voxelizer engine. This includes XML, BINVOX and ndarray. The old multidimensional JavaScript array exporting option is also available, ensuring some backwards compatibility. The exporters system is made extensible, making it easy to add new exporting options in the future.
 
 \subsection{Code quality}
-This section describes how the code quality is improved. The old codebase had several problems. Firstly, all the code was contained in one large file. This made it hard to navigate and the code was messy. The new version makes use of ES Modules, making it possible to organize the code in different files. Secondly, the engine previously hardcoded the one algorithm used. The new version includes an easily extensible algorithm system. This is ensured through the use of inheritance and factory patterns, as discussed in Section~\ref{sec:method-algorithm-system}. Thirdly, the code did barely include tests for the system. The new version now includes unit tests for almost the whole engine. Lastly, the code had no code documentation. This is resolved by writing JSDoc for all classes and functions. This documentation is also made easily accessible at GitHub Pages with the help of the new JSDoc Action, presented in Section~\ref{sec:result-jsdoc-action}. A screenshot of the public documentation page is shown in Figure~\ref{fig:result-voxelizer-documentation}.
+This section describes how the code quality is improved. The old codebase had several problems. Firstly, all the code was contained in one large file. This made it hard to navigate and the code was messy. The new version makes use of ES Modules, making it possible to organize the code in different files. Secondly, the engine previously hardcoded the one algorithm used. The new version includes an easily extensible algorithm system. This is ensured through the use of inheritance and factory patterns, as discussed in Section~\ref{sec:method-algorithm-system}. Thirdly, the code did barely include tests for the system. The new version now includes unit tests for almost the whole engine. Lastly, the code had no code documentation. This is resolved by writing JSDoc for all classes and functions. This \href{https://andstor.github.io/voxelizer/}{documentation} is also made easily accessible at GitHub Pages with the help of the new JSDoc Action, presented in Section~\ref{sec:result-jsdoc-action}. A screenshot of the public documentation page is shown in Figure~\ref{fig:result-voxelizer-documentation}.
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.9\textwidth]{sections/result/figures/voxelizer-documentation.png}
@@ -525,7 +525,7 @@ Then, Listing~\ref{voxelizer-engine-example} provides the example code now to be
     \item First, the Voxelizer engine v1.0.0, and its peer dependency three.js needs to be imported. This is done in lines 2 and 3.
     \item Line 4 imports the GLTFLoader. This makes it possible to load a GLTF file.
     \item Then something to voxelized is needed. This could be any three.js mesh with BufferGeometry. By using the imported GLTFLoader, a GLTF file can be loaded. The GLTFLoader is instantiated on line 7.
-    \item To actually load the model, the asynchronous "load" function is used at line8. This function needs a path to the file to load.
+    \item To actually load the model, the asynchronous "load" function is used at line 8. This function needs a path to the file to load.
     \item To set up the Voxelizer sampling class, some options are needed. These are defined on lines 12-15, making the engine produce a colored shell voxelization.
     \item The sampler is then instantiated at line 16.
     \item Line 19 and 20 actually samples the model with a resolution of 10.
@@ -540,7 +540,7 @@ The result of the example code is a $10^3$ voxel result of the loaded 3D model.
 \section{BINVOX}
 BINVOX is a package for parsing and building BINVOX files. It is published to the npm registry under the name "\href{https://www.npmjs.com/package/binvox}{binvox}", and the source code is available at GitHub under "\href{https://github.com/andstor/binvox}{andstor/binvox}".
 
-The package handles BINVOX files according to the BINVOX file format specification~\cite{binvox-file-format}. The package able to parse a BINVOX resource, turning it into JSON. Further, it can do this in reverse. Hence, properly formatted JSON data can be turned into a BINVOX file resource. The package provides both an ES Module build and a UMB build. It can therefore be used with both Node.js and in the browser.
+The package handles BINVOX files according to the BINVOX file format specification~\cite{binvox-file-format}. The package is able to parse a BINVOX resource, turning it into JSON. Further, it can do this in reverse. Hence, properly formatted JSON data can be turned into a BINVOX file resource. The package provides both an ES Module build and a UMD build. It can therefore be used with both Node.js and in the browser.
 
 \section{Voxelizer Desktop}
 The Voxelizer Desktop application allows for easy use of the Voxelizer engine. It is a standalone cross platform desktop application. Ready-made installation files for macOS, Windows and Linux can be found at \url{https://github.com/andstor/voxelizer-desktop/releases/latest} on GitHub. The source code is also available at GitHub under "\href{https://github.com/andstor/voxelizer-desktop}{andstor/voxelizer-desktop}".
@@ -564,7 +564,7 @@ The user is first presented with an elegant and easy drag and drop user interfac
     \label{fig:voxelizer-desktop-gui-dnd}
 \end{figure}
 
-When a user drops one or more files, the application starts to load them up. If no supported filetype is found, an modal warning shows up like the one seen in Figure~\ref{fig:voxelizer-desktop-gui-dnd-file-warning}. Otherwise, a spinning loading wheel is presented, as shown in Figure~\ref{fig:voxelizer-desktop-gui-loading}, to indicate that the 3D model is loading.
+When a user drops one or more files, the application starts to load them up. If no supported filetype is found, a modal warning shows up like the one seen in Figure~\ref{fig:voxelizer-desktop-gui-dnd-file-warning}. Otherwise, a spinning loading wheel is presented, as shown in Figure~\ref{fig:voxelizer-desktop-gui-loading}, to indicate that the 3D model is loading.
 
 \begin{figure}[htp]
     \centering
@@ -616,7 +616,7 @@ To actually voxelize the model, the user needs to click on the \textbf{Voxelize}
 \end{figure}
 \clearpage
 
-To export and save the voxel data in the selected file format, the user needs to click on the \textbf{Export} button. This opens up the operating system's file system dialog, as can be seen in Figure~\ref{fig:voxelizer-desktop-gui-export}. A file name and location then needs to be selected. When the user clicks on the \textbf{Save} button, the file is saved.
+To export and save the voxel data in the selected file format, the user needs to click on the \textbf{Export} button. This opens up the operating system's file system dialog, as can be seen in Figure~\ref{fig:voxelizer-desktop-gui-export}. A file name and location then needs to be provided. When the user clicks on the \textbf{Save} button, the file is saved.
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.9\textwidth]{sections/result/figures/voxelizer-desktop-gui-export.png}
@@ -655,7 +655,7 @@ First, a workflow yaml file needs to be created. This file needs a name, for exa
 \begin{enumerate}
     \item First, the user's code repository is cloned with the help of the Checkout Action by GitHub. This makes the user's source code available to subsequent steps. 
     \item Second, the JSDoc Action is used for generating the actual JSDoc documentation files. Lines 15-19 defines several input options to the JSDoc Action. The source directory is set to "./src". The output directory is set to "./out". A path to a JSDoc configuration file in the user's repository is then specified. In order to freshen up the plain JSDoc theme, the minami template is used. This is the name of the package on npm. Finally, the README.md file in the user's repository is used as frontpage. 
-    \item Third, the GitHub Pages action is used for deploying the generated documentation files to GitHub Pages. It needs two input configurations. One is a deployment key. See the documentation for the GitHub Pages action for how to set up this. The other is a directory to get the files to publish. This is set to the the JSDoc Action's output directory, "./out".
+    \item Third, the GitHub Pages action is used for deploying the generated documentation files to GitHub Pages. It needs two input configurations. One is a deployment key. See the documentation for the GitHub Pages action for how to set up this. The other is a directory where the files to publish resides. This is set to the the JSDoc Action's output directory, "./out".
 \end{enumerate}
 When the workflow file is finished and saved to the correct place, the repository will feature automatic JSDoc documentation generation.
 
@@ -716,7 +716,7 @@ Several of the projects has already gained interest by the public. GitHub users 
     \end{tabularx}
 \end{table}
 
-Another achievement is the inclusion of a link to the JSDoc Action in the \href{https://github.com/jsdoc/jsdoc/blob/master/README.md}{README.md} file of the original JSDoc repository. As of May 17th, 2020 the JSDoc repository has 10.6 thousand stars and is used in 39.3 repositories. This gives the action a lot of marketing. The approved pull request is number \href{https://github.com/jsdoc/jsdoc/pull/1745}{\#1745}. 
+Another achievement is the inclusion of a link to the JSDoc Action in the \href{https://github.com/jsdoc/jsdoc/blob/master/README.md}{README.md} file of the original JSDoc repository. As of May 17th, 2020 the JSDoc repository has 10.6 thousand stars and is used in by more than 39.300 repositories. This gives the action a lot of marketing. The approved pull request is number \href{https://github.com/jsdoc/jsdoc/pull/1745}{\#1745}. 
 Figure~\ref{fig:jsdoc-link-readme} shows a screenshot of the \textbf{Templates and tools} section of the README.md file. The link to the JSDoc Action is located at the bottom of the \textbf{Build tools} subsection, marked in red.
 Figure~\ref{fig:comment-hegemonic} shows the response to the approved pull request from the lead maintainer Jeff Williams (\href{https://github.com/hegemonic}{hegemonic}) of JSDoc.
 \begin{figure}[htp]

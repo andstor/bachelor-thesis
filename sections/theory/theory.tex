@@ -134,7 +134,7 @@ JavaScript Object Notation, better known as JSON, is a lightweight data intercha
 \lstinputlisting[language=JSON,style=numbers,caption={Example JSON data},label={lst:json-example}]{sections/theory/code/json-example.json}
 
 \section{JSDoc}
-JSDoc is markup language for annotating JavaScript source code files. The JSDoc specification was released in 1999. Today it has become the de-facto JavaScript documentation language. It is for example used in projects like the Google Closure Compiler \cite{google-closure-compiler} by Google. Since JavaScript has no type-checking, JSDoc is able to patch some of this inconvenience. Figure \ref{lst:jsdoc-example} shows an example of JSDoc code, describing a soda bottle class implementation. By using various tools, one is able to generate documentation in formats like HTML and RTF. JSDoc 3 is the current version of the original companion documentation generation tool for JSDoc. JSDoc 3 \cite{jsdoc-3}, also referred to as just JSDoc, is the most used tool for programmatically generating JavaScript documentation. It has a wast feature set, even allowing users to create customized themes, known as templates. Currently, JSDoc is used by more than 38.800 public projects \cite{jsdoc-used-by}, and has over 10.600 stars on GitHub \cite{jsdoc-stargazers}.
+JSDoc is markup language for annotating JavaScript source code files. The JSDoc specification was released in 1999. Today it has become the de-facto JavaScript documentation language. It is for example used in projects like the Google Closure Compiler \cite{google-closure-compiler} by Google. Since JavaScript has no type-checking, JSDoc is able to patch some of this inconvenience. Figure \ref{lst:jsdoc-example} shows an example of JSDoc code, describing a soda bottle class implementation. By using various tools, one is able to generate documentation in formats like HTML and RTF. JSDoc 3 is the current version of the original companion documentation generation tool for JSDoc. JSDoc 3 \cite{jsdoc-3}, also referred to as just JSDoc, is the most used tool for programmatically generating JavaScript documentation. It has a wast feature set, even allowing users to create customized themes, known as templates. As of May 2020, JSDoc is used by more than 39.300 public projects \cite{jsdoc-used-by}, and has over 10.600 stars on GitHub \cite{jsdoc-stargazers}.
 
 \lstinputlisting[language=JavaScript,style=numbers,caption={JSDoc example code},label={lst:jsdoc-example}]{sections/theory/code/jsdoc-example.js}
 
@@ -148,13 +148,13 @@ three.js\cite{three.js} is a cross-browser JavaScript library for creating and d
 
 \subsection{ndarray}
 \label{sec:theory-ndarray}
-ndarray~\cite{ndarray} is an open-source JavaScript package providing modular multidimensional arrays, written by Mikola Lysenko in 2013. In short, ndarray implement a higher dimensional views of 1D arrays. The 1D array can either be a normal JavaScript Array, or a JavaScript typed array. MDN defines typed arrays as \textquote[\citet{mdn-typed-arrays}]{array-like objects that provide a mechanism for reading and writing raw binary data in memory buffers.}. Mainly, they are used for maximizing efficiency and reducing memory footprint. However, typed arrays are normally quite difficult to work with in JavaScript. Multidimensional typed arrays even more so. ndarray provides a simple but powerful API, making use of multidimensional typed arrays easy.
+ndarray~\cite{ndarray} is an open-source JavaScript package providing modular multidimensional arrays, written by Mikola Lysenko in 2013. In short, ndarray implements higher dimensional views of 1D arrays. The 1D array can either be a normal JavaScript Array, or a JavaScript typed array. MDN defines typed arrays as \textquote[\citet{mdn-typed-arrays}]{array-like objects that provide a mechanism for reading and writing raw binary data in memory buffers.}. Mainly, they are used for maximizing efficiency and reducing memory footprint. However, typed arrays are normally quite difficult to work with in JavaScript. Multidimensional typed arrays even more so. ndarray provides a simple but powerful API, making use of multidimensional typed arrays easy.
 
 \subsection{Electron}
 \label{sec:theory-electron}
-Electron \cite{electron} is an open-source framework developed and maintained by \citet{github}. It allows one to build cross-platform desktop applications with JavaScript, HTML and CSS. Electron is used by thousands of people, and apps like Visual Studio Code \cite{visual-studio-code}, Facebook Messenger \cite{messenger} and Microsoft Teams \cite{teams} are all made with Electron. 
+Electron \cite{electron} is an open-source framework developed and maintained by \citet{github}. It is used for building cross-platform desktop applications with JavaScript, HTML and CSS. Electron is used by thousands of people, and apps like Visual Studio Code \cite{visual-studio-code}, Facebook Messenger \cite{messenger} and Microsoft Teams \cite{teams} are all made with Electron. 
 
-In short, the Electron Application architecture is as follows. An Electron application starts by running a package.json's main script. As shown in Figure~\ref{fig:electron-processes}, this creates a process that is called the main process. From within this process, a GUI can be displayed by creating web pages. Electron uses Chromium for creating web pages~\citet{chromium}. This means that Chromiums multi-process architecture is also available. Every generated web page is therefore run in its own process. These processes are called renderer processes. Communication between the main process and a rendering process is done using inter-process communication, or IPC. Electron also makes it possible to use Node.js APIs, effectively allowing lower level operating system interactions.
+In short, the Electron Application architecture is as follows. An Electron application starts by running a package.json's main script. As shown in Figure~\ref{fig:electron-processes}, this creates a process that is called the main process. From within this process, a GUI can be displayed by creating web pages. Electron uses Chromium for creating web pages~\cite{chromium}. This means that Chromiums multi-process architecture is also available. Every generated web page is therefore run in its own process. These processes are called renderer processes. Communication between the main process and a rendering process is done using inter-process communication, or IPC. Electron also makes it possible to use Node.js APIs, effectively allowing lower level operating system interactions.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\textwidth]{sections/theory/figures/electron-processes.pdf}
@@ -167,18 +167,18 @@ React \cite{react} is a JavaScript library for building user interfaces, created
 
 \subsection{Semmle LGTM}
 \label{sec:theory-semmle-lgtm}
-LGTM by Semmle \cite{lgtm} is a web service providing code security analysis. The service is free for open-source projects. LGTM integrates with sites like GitHub and Bitbucket, and is able to analyze projects written in Java, Python, JavaScript, TypeScript, C\#, Go, C and C++. It seeks out to combat the manual process of finding vulnerabilities. By catching them at an early stage, one can prevent vulnerabilities from reaching production. LGTM is based on large community of top security researchers, making it possible to help developers ship secure code \cite{lgtm-security}.
+LGTM (Looks Good To Me) by Semmle \cite{lgtm} is a web service providing code security analysis. The service is free for open-source projects. LGTM integrates with sites like GitHub and Bitbucket, and is able to analyze projects written in Java, Python, JavaScript, TypeScript, C\#, Go, C and C++. It seeks out to combat the manual process of finding vulnerabilities. By catching them at an early stage, one can prevent vulnerabilities from reaching production. LGTM is based on large community of top security researchers, making it possible to help developers ship secure code \cite{lgtm-security}.
 
 \subsection{Coveralls}
 \label{sec:theory-coveralls}
 Coveralls \cite{coveralls} is a web service for code testing coverage. It enables one to track a projects code coverage over time, providing valuable insight in a projects testing suite. Coveralls also features close integration with GitHub, enabling pull request coverage reviews.
 
 \section{3D computer graphics}
-3D computer graphics refers to three-dimensional representation of geometric data in computers, normally to be rendered into a two-dimensional image. The finalized render may be saved or displayed on a screen in realtime. The geometric data is usually a 3D model, stored in an appropriate file format. The most basic polygon primitives in computer graphics includes vertices, edges and faces. A vertex is simply point in space. An edge is a connection between two vertices. A face is a closed set of edges. Figure \ref{fig:triangular-mesh} shows a yellow triangle with the appropriate vertex, edge and face labels. These primitives together defines a polyhedral. Polyhedrons can then be further grouped together into a mesh. The most common type of polygon mesh is a triangular mesh. This is a mesh comprised of only triangles. Figure \ref{fig:triangular-mesh} shows an illustration of a section of a triangular mesh.
+3D computer graphics refers to three-dimensional representation of geometric data in computers, normally to be rendered into a two-dimensional image. The finalized render may be saved or displayed on a screen in realtime. The geometric data is usually a 3D model, stored in an appropriate file format. The most basic polygon primitives in computer graphics includes vertices, edges and faces. A vertex is simply a point in space. An edge is a connection between two vertices. A face is a closed set of edges. Figure \ref{fig:triangular-mesh} shows a yellow triangle with the appropriate vertex, edge and face labels. These primitives together defines a polyhedral. Polyhedrons can then be further grouped together into a mesh. The most common type of polygon mesh is a triangular mesh. This is a mesh comprised of only triangles. Figure \ref{fig:triangular-mesh} shows an illustration of a section of a triangular mesh.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\textwidth]{sections/theory/figures/mesh.eps}
-    \caption{Triangular mesh}
+    \caption{Triangular mesh.}
     \label{fig:triangular-mesh}
 \end{figure}
 
@@ -310,7 +310,7 @@ Voxelizer v0.1.3 produces unsatisfactory voxelization results. Firstly, several 
     \begin{subfigure}[b]{0.7\textwidth}
         \centering
         \includegraphics[width=\textwidth]{sections/theory/figures/voxelizer-v013-anvil-128.png}
-        \caption{Voxelized anvil with Voxelizer v0.1.3.}
+        \caption{Voxelized result.}
         \label{fig:theory-voxelizer-v0.1.3-anvil-result}
     \end{subfigure}
     \\
@@ -321,6 +321,6 @@ Voxelizer v0.1.3 produces unsatisfactory voxelization results. Firstly, several 
         \label{fig:original-anvil}
     \end{subfigure}
     \hfill
-    \caption{Voxelization of a monkey with Voxelizer v0.1.3. The voxelization is done with a resolution of $2^7$.}
+    \caption{Voxelization of an anvil with Voxelizer v0.1.3. The voxelization is done with a resolution of $2^7$.}
     \label{fig:theory-voxelizer-v0.1.3-anvil}
 \end{figure}
