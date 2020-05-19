@@ -1,17 +1,19 @@
 %This is chapter 3
 %%=========================================
 \chapter[Method]{Materials and methods}
-
-%In this final chapter you should sum up what you have done and which results you have got. You should also discuss your findings, and give recommendations for further work.
+This chapter presents the materials and methods used in this thesis. The chapter is organized as follows. Section~\ref{sec:method-tools-and-libraries} lists the various tools used in this project. Section~\ref{sec:method-working-methodology} describes the working methodology used. Then, the following five sections presents how the different main projects are implemented. This includes the three-voxel-loader plugin, the Voxelizer engine, the BINVOX package, the Voxelizer Desktop application and the JSDoc Action. Section~\ref{sec:method-automation} presents how automation for the projects is implemented. Section \ref{sec:method-file-existence-action} and \ref{sec:method-file-reader-action} presents two additional GitHub Actions needed in connection with the automation. Finally, Section~\ref{sec:method-3d-models} provides a description of how the 3D models used in this thesis are created.
 
 %%=========================================
 
 \section{Tools and libraries}
+\label{sec:method-tools-and-libraries}
+This section provides a describes the various tools, libraries and services used.
+
 \subsection{JavaScript}
 JavaScript has mainly been chosen as the base implementation language for all the projects because of its cross platform compatibility and popularity.
 
-\subsection{npm}
-npm is used as the main package publishing- and installation-tool. Also, all published packages are published to the npm package registry. Alternatively, the new GitHub package registry could be used instead. However, npm is the both the most stable and popular JavaScript package registry available.
+\subsection{npm package manager}
+npm is used as the main package tool. Also, all published packages are published to the npm package registry. Alternatively, the new GitHub package registry could be used instead. However, npm is the both the most stable and popular JavaScript package registry available.
 
 \subsection{GitHub Actions}
 For automation, several platforms are available. One of the more popular ones includes Travis~CI~\cite{travis-ci}. However, GitHub Actions is used instead. This is because GitHub Actions are deeply integrated into GitHub. It also has a unique concept of Actions, as described in Section~\ref{sec:theory-github-actions}.
@@ -25,8 +27,8 @@ Several build tools are used. This includes:
     \item \textbf{electron-builder} for building and preparing Electron apps for distribution.
 \end{itemize}
 
-\subsection{Third party libraries}
-Several third party libraries and frameworks are used. A short summary of why these are put to use is now provided.
+\subsection{Third-party libraries}
+Several third-party libraries and frameworks are used. Following is a short summary:
 \begin{itemize}
     \item \textbf{three.js} provides a simple and powerful 3D graphics library. It also includes raycasting functionality.
     \item \textbf{sparse-octree} is used for generating octrees.
@@ -38,11 +40,13 @@ Several third party libraries and frameworks are used. A short summary of why th
 \end{itemize}
 
 \section{Working methodology}
+\label{sec:method-working-methodology}
+This section presents the working methodology used throughout the project.
 \subsection{Scrum}
 \label{sec:method-scrum}
 Even though this is a one-man project, I have tried to adapt the scrum methodology. Alternatively, the much more flexible Kanban methodology could also be a good fit. However, Scrum is chosen for its very good framework and supporting tools like Jira and Confluence. Scrum helps to keep the pace up, and stay on track with progress.
 
-The main adaptations made are mainly regarding the various meetings defined by Scrum, as described in Section \ref{sec:theory-scrum}. Sprint planning is done as normal. User stories are selected from the backlog, and story points are assigned. The sprint is then started, and lasts for two weeks. Instead of daily stand-up meetings with a team, I have have set aside 10-15 minutes for planning every day. After a sprint is finished, a sprint review is done. Then, a sprint retrospect is conducted, in order to be able to improve the next sprint. This includes investigating both sprint burn-down charts and other statistics generated with Jira. These charts are available in Appendix \ref{appendix:sprints}.
+The main adaptations made are mainly regarding the various meetings defined by Scrum, as described in Section \ref{sec:theory-scrum}. Sprint planning is done as normal. User stories are selected from the backlog, and story points are assigned. The sprint is then started, and lasts for two weeks. Instead of daily stand-up meetings with a team, I have have set aside 10-15 minutes for planning every day. After a sprint is finished, a sprint review is done. Then, a sprint retrospect is conducted, in order to be able to improve the next sprint. This includes investigating both sprint burn-down charts and other statistics generated with Jira.
 
 \subsection{GitFlow}
 The branching strategy used during development is GitFlow, as described in Section~\ref{sec:theory-gitflow}. This creates a consistent development and merging flow, making it easy to implement automation in the various project. Since GitFlow is very popular, a lot of potential contributors are already familiar with the strategy. Providing familiar guidelines helps to keep the projects tidy and secure.
@@ -51,11 +55,16 @@ The branching strategy used during development is GitFlow, as described in Secti
 All the created projects are enforcing Semantic Versioning. This makes the use of the software predictable in terms of compatibility and potential breaking changes.
 
 \section{three-voxel-loader}
-The main goal for the three-voxel-loader is to generate a 3D mesh based on voxel data. The next subsections will present a walkthrough of how the plugin is implemented, including the various design choices made.
-
-\colorbox{green}{NEED UML DIAGRAM here}\\
+The main goal for the three-voxel-loader is to generate a 3D mesh based on voxel data. The next subsections will present a walkthrough of how the plugin is implemented, including the various design choices made. Figure~\ref{fig:uml-three-voxel-loader} shows a simplified UML diagram of the three-voxel-loader.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.75]{sections/methodology/figures/uml/uml-three-voxel-loader.pdf}
+    \caption{UML class diagram of the three-voxel-loader.}
+    \label{fig:uml-three-voxel-loader}
+\end{figure}
 
 \subsection{Internal data structure}
+\label{sec:method-internal-data-structure}
 For the plugin to be able support loading of various voxel data formats, an internal data structure is used. This serves as an interface for the processing of various voxel data internally in the plugin. The chosen data structure is an octree, as described in Section~\ref{sec:theory-octree}. The actual implementation of the octree is done with the sparse-octree library by Raoul van R\"uschen~\cite{sparse-octree}. There are several reasons behind the choice of using an octree. 
 
 Voxel data normally consists of very large amounts of data. One of the main limitations for how big a dataset can be, is the amount of available computer memory (RAM). The memory footprint of the plugin is therefore a big concern, especially since the targeted runtime environments are often placing further restrictions on the available memory resources. Voxel data normally contains very large amounts of empty space, or "air". This data is not needed for generating the polygon mesh. Only the data about the actual voxels and their locations are of interest. The location of the voxels are normally not stored explicitly, but rather derived by their relative location to neighboring voxel cells. An octree is especially well suited for this purpose. Since an octree is based on partitioning of space, large amounts of this empty space in the voxel data can be discarded. This works especially well if the voxel data is clustered.
@@ -67,17 +76,18 @@ In order to actually load the voxel data (by generating an octree), several load
 
 The currently implemented loaders supports several file formats, including XML, VOX and BINVOX. It is also possible to import plain 3D arrays. Several of the loaders also supports color of the voxels. Following is a brief description of these loaders.
 \begin{itemize}
-    \item \textbf{XML} - XML is an incredible versatile file format. For implementing the XML loading, the native JavaScript DOM parser is used for the actual parsing of the XML data. The format supports color data. The required format of the XML document structure is described on the GitHub wiki page for the plugin. \colorbox{red}{PROVIDE LINK HERE!!!!! ACTUAL http//::.... or just textual link????}
-    \item \textbf{VOX} - VOX files are loaded with a third party package named \textit{format-vox}~\cite{format-vox}. The VOX file format is provided by MagicaVoxel, a popular voxel graphics editor. VOX files supports color data.
-    \item \textbf{BINVOX} - BINVOX \cite{binvox-file-format} is one of the more popular voxel data file formats. BINVOX is the file format used by the binvox~\cite{binvox} voxelization software. A separate repository named binvox~\cite{andstor-binvox} has been created for handling BINVOX files. See Section \ref{sec:method-binvox}
-    \item \textbf{3D array} - The 3D array loader is implemented by simply iterating the multidimensional array. For loading color data, a 4D array with RGB values has to be supplied along the 3D array.
+    \item \textbf{XML} is a versatile file format, which is easy to manipulate and customize. For implementing the XML loading, the native JavaScript DOM parser is used for the actual parsing of the XML data. The format supports color data. The required format of the XML document structure is described on the GitHub wiki page for the plugin. \colorbox{red}{PROVIDE LINK HERE!!!!! ACTUAL http//::.... or just textual link????}
+    \item \textbf{VOX} file format is provided by MagicaVoxel, a popular voxel graphics editor. The file format also supports color data. VOX files are loaded with a third party package named \textit{format-vox}~\cite{format-vox}.
+    \item \textbf{BINVOX}~\cite{binvox-file-format} is one of the more popular voxel data file formats. BINVOX is the file format used by the binvox~\cite{binvox} voxelization software. A separate repository named binvox~\cite{andstor-binvox} has been created for handling BINVOX files. See Section \ref{sec:method-binvox}
+    \item \textbf{Arrays} are normal datatypes in JavaScript. For plain voxel data, a 3D array needs to be supplied. This is simply several nested arrays. A filled voxel is represented with a truthy value, whereas a void/empty voxel is a falsy value. For loading color data, a 4D array with RGB values has to be supplied along with the 3D array. The array loading support is implemented by simply iterating the multidimensional array(s). 
+    \item \textbf{octrees} are used as the internal data structure for the three-voxel-loader, as discussed in Section~\ref{sec:method-internal-data-structure}. The three-voxel-loader support loading an octree of this type. This makes it simple to save and load the internal octree data.
 \end{itemize}
 
 \subsection{Visualization}
-The most intuitive way to visualize a voxel is in the form of a cube. BoxBufferGeometry from three.js has therefore been used to generate the individual 3D visualization of the voxels. However, one BoxBuffer geometry consists of no less than twelve triangles. The number of triangles generated for visualizing the mesh is therefore twelve times the number of voxels. One of the more time consuming operations in terms of actually displaying the 3D graphics, is the number of draw calls made to the graphics API. In order to limit this, all the generated box meshes are merged into one big mesh. For actually coloring the voxels, color is applied to the vertices of the generated box meshes.
+The most intuitive way to visualize a voxel is in the form of a cube. BoxBufferGeometry from three.js has therefore been used to generate the individual 3D visualization of the voxels. However, one BoxBuffer geometry consists of no less than twelve triangles. The number of triangles generated for visualizing the mesh is therefore twelve times the number of voxels. One of the more time-consuming operations in terms of actually displaying the 3D graphics, is the number of draw calls made to the graphics API. In order to limit this, all the generated box meshes are merged into one big mesh. For actually coloring the voxels, color is applied to the vertices of the generated box meshes.
 
 \subsection{Debugging}
-For actually developing and testing the plugin, a HTML page was created. The page includes basic setup of three.js, alongside various input controls for inspecting and testing the three-voxel-loader plugin. The input controls are provided by a lightweight JavaScript controller library named dat.gui~\cite{dat.gui}. In the end, the debugging solution were polished and deployed to GitHub Pages, serving as an example for the various functionality the plugin provides.
+For actually developing and testing the plugin, a HTML page was created. The page includes basic setup of three.js, alongside various input controls for inspecting and testing the three-voxel-loader plugin. The input controls are provided by a lightweight JavaScript controller library named dat.gui~\cite{dat.gui}. In the end, the debugging solution was polished and deployed to GitHub Pages, serving as an example for the various functionality the plugin provides.
 
 \colorbox{red}{LINK TO GITHUB PAGES EXAMPLE}
 
@@ -108,15 +118,15 @@ The system is broken down in several modules/systems (folders). Figure~\ref{fig:
 
 \subsection{Algorithm system}
 \label{sec:method-algorithm-system}
-Voxelizer implements an algorithm system that makes it easy to extend the voxelization support. Be it anew algorithm type, or new options. The system mainly consists of two base abstract algorithm classes. One for plain voxelization, and one which is colorable. By simply extending the appropriate base class, a new algorithm can be defined. Further, a factory pattern has been implemented for retrieving the appropriate algorithm.
+Voxelizer implements an algorithm system that makes it easy to extend the voxelization support for new algorithm types, or adding new options. The system mainly consists of two base abstract algorithm classes. One for plain voxelization, and another is colorable. By simply extending the appropriate base class, a new algorithm can be defined. Further, a factory pattern has been implemented for retrieving the appropriate algorithm.
 
-Since the generated voxel data can be huge, an efficient internal data structure needs to be used. Here is two main concerns to take into account. The first is the memory footprint. In order to be able to do high resolution voxelizations, a limiting factor is the amount of available system memory. A second concern is speed. The JavaScript engines are able to do quite a lot of optimization. By using the JavaScript language in clever ways, quite high processing speeds can be achieved.
+Since the generated voxel data can be huge, an efficient internal data structure needs to be used. Two main concerns need to be taken into account. The first is the memory footprint. In order to be able to do high resolution voxelizations, a limiting factor is the amount of available system memory. A second concern is speed. The JavaScript engines are able to do quite a lot of optimization. By using the JavaScript language in clever ways, quite high processing speeds can be achieved.
 
 The old Voxelizer v0.1.3 used normal JavaScript arrays which was nested. These arrays grows and shrink dynamically, potentially resulting in slow performance. Although, the JavaScript engines are often able to optimize the execution quite a bit, resulting in decent speeds. However, in order to comply with both the memory and performance requirements, typed arrays have been used instead. More specifically, only one large one-dimensional typed array is used. This is a more low level data type than normal arrays, providing mechanism for reading and writing raw binary data in memory buffers. In order to support multidimensionality, the efficient third party library ndarray is used. See Section \ref{sec:theory-ndarray} for more details on ndarray.
 
 \subsection{Raycasting algorithm}
 \label{sec:method-raycasting-algorithm}
-The new and upgraded voxelization algorithm is mainly based on raycasting (see Section \ref{sec:theory-raycasting}). Following is a description of how the algorithm works.
+The new and upgraded voxelization algorithm is mainly based on raycasting (see Section \ref{sec:theory-raycasting}). Next, a description of how the algorithm works is provided.
 
 First, several preparations are made on the mesh. Firstly, the mesh is centered at the origin. Then the mesh is manipulated to include both front and back faces. This ensures that raycasting against the mesh will result in a hit against both front and back sides of the model. This means that it is not needed to raycast from all 6 sides of the mesh. Hence, the algorithm samples the mesh from the front, left and top sides. Previously, this was only done from the front and back. These results are then merged together. Further, the result is wrapped inside a Volume class and returned to the user. Figure \ref{fig:voxel-sample-merging} illustrates how these three results are merged, resulting in a complete surface shell representation.
 \begin{figure}[h]
@@ -145,7 +155,7 @@ First, several preparations are made on the mesh. Firstly, the mesh is centered 
        \label{fig:voxel-sample-merging}
 \end{figure}
 
-The algorithm also has an option for producing filled, or solid, results. This is achieved by interpreting the first raycast intersect as the surface of the object. From this point will everything be considered "inside" the object. When a second intersect is detected, the state is changed to be "outside" the object. A new hit would indicate "inside", and so on. This works very well with a watertight 3D model, as can be seen from figure \ref{fig:filling-non-watertight-model}. However, when trying to fill an object which is not watertight, this can result in severe inaccuracies. This can be seen in figure \ref{fig:filling-watertight-model}, where no boundary is provided for the rays exiting after a third hit.
+The algorithm also has an option for producing filled, or solid, results. This is achieved by interpreting the first raycast intersect as the surface of the object. From this point on, everything will be considered "inside" the object. When a second intersect is detected, the state is changed to be "outside" the object. A new hit would indicate "inside", and so on. This works very well with a watertight 3D model, as can be seen from Figure \ref{fig:filling-non-watertight-model}. However, when trying to fill an object which is not watertight, this can result in severe inaccuracies. This can be seen in Figure \ref{fig:filling-watertight-model}, where no boundary is provided for the rays exiting after a third hit.
 \begin{figure}[h]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
@@ -177,7 +187,7 @@ The raycasting functionality, used by the raycasting algorithm described in Sect
 \end{figure}
 
 \subsection{Color system}
-The color system of Voxelizer handles the storing and extraction of color from polygon meshes. This enables the engine to extract color information from the 3D mesh, and apply it to the voxels. The system mainly comprises of a ColorExtractor class and a TextureHandler class. The TextureHandler class stores a copy of all the texture maps associated with a 3D object. These are stored in a hashmap, using the texture maps UUID as keys. Further, it is able to look up a UV coordinate of a texture map in its store, and retrieve the color. See Section~\ref{sec:info-texture-maps} for more details on texture maps and UV coordinates. The ColorExtractor class provides various methods for extracting colors from from an raycast intersect. It uses the TextureHandler as internally texture storage, for fast lookup of texture colors. 
+The color system of Voxelizer handles the storing and extraction of color from polygon meshes. This enables the engine to extract color information from the 3D mesh, and apply it to the voxels. The system mainly comprises of a ColorExtractor class and a TextureHandler class. The TextureHandler class stores a copy of all the texture maps associated with a 3D object. These are stored in a hashmap. The key used for each hashmap entry is a universally unique identifier (UUID), generated by three.js for all three.js objects. Further, it is able to look up a UV coordinate of a texture map in its store, and retrieve the color. See Section~\ref{sec:info-texture-maps} for more details on texture maps and UV coordinates. The ColorExtractor class provides various methods for extracting colors from from an raycast intersect. It uses the TextureHandler as internally texture storage, for fast lookup of texture colors. 
 
 During raycasting with the raycasting algorithm described in Section~\ref{sec:method-raycasting-algorithm}, each intersect produces an UV coordinate of the associated texture map, along with its UUID. This info is then fed to a ColorExtractor class, returning the appropriate RGB color of the intersect. This color data is then stored in a four-dimensional view of a large ndarray. For maximum efficiency and safety, the actual datatype supplied to ndarray is an Uint8ClampedArray~\cite{uint8clampedarray} (typed array).
 
@@ -202,8 +212,7 @@ The previous version of Voxelizer was version v0.1.3. Following Semantic Version
 \subsection{Debugging and Profiling}
 During development, the three-voxel-loader plugin was used to visualize the actual voxel outputs. This made it easy to visually inspect the results of the voxelization algorithm. A similar solution to the debugging setup used for the three-voxel-loader plugin was used. Likewise, this also resulted in an example usage of the engine, and is deployed to GitHub Pages. \colorbox{red}{LINK TO VOXELIZER EXAMPLE PAGE}.
 
-For assessing the memory consumption and speed of the engine, the performance tool~\cite{chrome-dev-tools-profiler} in the Google Chrome Developer Tools is used. This helped removing some CPU-heavy bugs, memory issues and other performance bottlenecks. Figure~\ref{fig:chrome-devtools-performance} shows an image of the performance tool.
-
+For assessing the memory consumption and speed of the engine, the performance tool~\cite{chrome-dev-tools-profiler} in the Google Chrome Developer Tools is used. This helped removing some CPU-heavy bugs, memory issues and other performance bottlenecks. Figure~\ref{fig:chrome-devtools-performance} shows a screenshot of the performance tool in action. In the middle section of the image, the execution time for the various methods in the main thread are displayed. In the lower part of the screenshot, a memory consumption graph is displayed.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{sections/methodology/figures/chrome-dev-tools-performance.png}
@@ -219,6 +228,7 @@ The engine is bundled and built with Webpack. This gives great control over the 
 A separate open-source repo for building and parsing BINVOX file formats were created during refactoring of the Voxelizer engine and the three-voxel-loader plugin. It is named BINVOX and licensed under the MIT license. The BINVOX file format consists of a header in plain ASCII, followed by binary data. The binary data is compressed using run-length encoding. From the BINVOX specification: \textquote[\citet{binvox-file-format}]{The binary data consists of pairs of bytes. The first byte of each pair is the value byte and is either 0 or 1 (1 signifies the presence of a voxel). The second byte is the count byte and specifies how many times the preceding voxel value should be repeated (so obviously the minimum count is 1, and the maximum is 255).}.
 
 The new binvox package provides tools to both parse and construct files according to the BINVOX file specification~\cite{binvox-file-format}. Parsing is done on the individual set of two bits. The data is uncompressed and stored in a JSON format. An example of the parsed JSON result can be seen in Listing~\ref{lst:binvox-example}. Similarly, a user can supply the same JSON data structure for constructing a BINVOX file resource. Hence, parsing and building commute.
+\clearpage
 \lstinputlisting[language=JSON,style=numbers,label={lst:binvox-example},caption={Example BINVOX data in JSON format}]{sections/methodology/code/binvox-json.json}
 
 \section{Voxelizer Desktop}
@@ -248,7 +258,7 @@ Wireframes diagrams are created for planning the application's GUI. Figure~\ref{
 \subsection{Implementation}
 The Voxelizer Desktop application is built with the Electron framework, described in Section~\ref{sec:theory-electron}. Alongside the bare Electron framework, the electron-builder~\cite{electron-builder} package is used. This package provides a complete solution for packaging and building a distribution ready Electron app for macOS, Windows and Linux. It also provides "auto update" out of the box. For creating the actual GUI, the React library is used. The create-react-app~\cite{create-react-app} is used for bootstrapping the react project.
 
-For providing the voxelization, the Voxelizer engine is put to use. For visualization of the voxelized result, the three-voxel-loader plugin is used to generate a 3D mesh. This is then passed on to three.js.
+For providing the voxelization, the Voxelizer engine is used. For visualization of the voxelized result, the three-voxel-loader plugin is used to generate a 3D mesh. This is then passed on to three.js.
 
 In order to make the application user-friendly, a translation system is also implemented. This system is mainly backed by the react-intl~package~\cite{react-intl}. During application startup, the language setting (locale) on the users computer is read in the application's main process. This is then passed on to the instantiated renderer process through IPC. Based on this locale, the GUI is displayed in the appropriate language is presented.
 
@@ -259,24 +269,31 @@ When it is time for a new release, application builds for both macOS, Windows an
 This enables the auto updating functionality to check for new versions. If there exists a newer version than currently installed, the application will download the newest version from GitHub. Then, the next time the application starts up, the downloaded update will be installed.
 
 \section{JSDoc Action}
-In the next couple of subsections, the implementation and design decisions of the JSDoc Action will be presented.
+In the next couple of subsections, the implementation and design decisions of the JSDoc Action are be presented.
 \subsection{Implementation}
-For creating a GitHub Action, several mandatory files and configurations has to be created. This documentation is available at GitHub. GitHub Actions provides two main types of action. One is JavaScript based. The other is based on Docker. They both have their advantages and disadvantages. A Docker container action provides an isolated environment, providing extremely flexible and stabile solutions. However, it is only possible to run on Linux. On the other hand, a JavaScript GitHub Action can be run directly on a runner machine. This makes it a lot faster than a Docker based Action. This is because of latency due to retrieve and build the container. A JavaScript action is also cross platform compatible, meaning it can run on both a Linux, Windows or MacOS operating system. In order to provide a fast and cross compatible solution, the JavaScript action type is chosen for the JSDoc Action.
+For creating a GitHub Action, several mandatory files and configurations has to be created. This documentation is available at GitHub. GitHub Actions provides two main types of action. One is JavaScript based. The other is based on Docker. They both have their advantages and disadvantages. A Docker container action provides an isolated environment, providing extremely flexible and stabile solutions. However, GitHub only supports running docker actions on Linux. On the other hand, a JavaScript GitHub Action can be run directly on a runner machine. This makes it a lot faster than a Docker based Action. This is because of latency due to retrieve and build the container. A JavaScript action is also cross platform compatible, meaning it can run on both a Linux, Windows or MacOS operating system. In order to provide a fast and cross compatible solution, the JavaScript action type is chosen for the JSDoc Action.
 
-The JSDoc Action is made up of mainly two parts. One is the template installation system, and the other is the actual execution of the JSDoc tool. For providing maximum flexibility, all functions of the JSDoc tool is made available as input configurations through the GitHub Actions Workflow API. The action is also able to use a JSDoc configuration file \cite{jsdoc-config-file}. If a user provides a template to be installed, the action will first install this. This is done with the help of the node package manager (npm). The supplied template can be everything from a GitHub repository, to an npm package. The installed template files are then processed. The action does all of its IO operations asynchronously, ensuring fast execution speed of the action. When finished, a JSDoc CLI command is then formed based on the various user inputs and (if provided) config file. This command is then executed, effectively telling JSDoc to generate the documentation. The result is a user-defined output folder with the generated API documentation.
+The JSDoc Action is made up of mainly two parts. One is the template installation system, and the other is the actual execution of the JSDoc tool. For providing maximum flexibility, all functions of the JSDoc tool is made available as input configurations through the GitHub Actions Workflow API. The action is also able to use a JSDoc configuration file \cite{jsdoc-config-file}. The reader can consult JSDoc Action's \href{https://github.com/andstor/jsdoc-action/blob/master/README.md}{README.md} file for further details on the available input variables. If a user provides a template to be installed, the action will first install this. This is done with the help of the node package manager (npm). The supplied template can be everything from a GitHub repository, to an npm package. The installed template files are then processed. The action does all of its input/output (IO) operations asynchronously, ensuring fast execution speed of the action. When finished, a JSDoc CLI command is then formed based on the various user inputs and (if provided) config file. This command is then executed, effectively telling JSDoc to generate the documentation. The result is a user-defined output folder with the generated API documentation. The entire flow of the action can be seen in Figure~\ref{fig:jsdoc-action-flowchart} which provides a flowchart diagram of the JSDoc Action.
+\begin{figure}[htp]
+    \centering
+    \includegraphics[scale=1]{sections/methodology/figures/jsdoc-action-flowchart.pdf}
+    \caption{JSDoc Action flowchart diagram.}
+    \label{fig:jsdoc-action-flowchart}
+\end{figure}
 
 \subsection{Usage}
-For actually using the action in a Workflow, the action makes a couple of assumptions. Firstly, the actual source files to generate documentation from, needs to be supplied. This is normally solved by using the Checkout~Action~\cite{checkout-action} made by GitHub. Secondly, the JSDoc Action only generates an output directory with files. This means that nearly any deployment action can be used for upload the files the desired service, for example GitHub pages. The deployment action supplied as example in the README.md file of the repository is named GitHub~Pages~action~\cite{github-pages-action}.
+For actually using the action in a Workflow, the action makes a couple of assumptions. Firstly, the actual source files to generate documentation from, needs to be supplied. This is normally solved by using the Checkout~Action~\cite{checkout-action} made by GitHub. Secondly, the JSDoc Action simply generates an output directory with files. This means that nearly any deployment action can be used for upload the files the desired service, for example GitHub pages. The deployment action supplied as example in the README.md file of the repository is named GitHub~Pages~action~\cite{github-pages-action}.
 
 \subsection{Feedback}
 The JSDoc Action generated quite a lot of feedback from eager users of GitHub Actions. Several wanted to test the action, and multiple issues were filed in the issue tracker on GitHub~\cite{jsdoc-action-issue-tracker}. See for example issue~\#20~\cite{jsdoc-issue-20}. Since maintenance is essential to the success of an open-source project, all feedback were responded to and handled accordingly. Alongside the development of the other main projects, many bug-fixes were made to the JSDoc Action. Eventually, all issues were resolved, resulting in several happy users.
 
 \section{Automation}
+\label{sec:method-automation}
 Automation is an important part for ensuring both efficiency and security. The next subsections will contain a description of how the various open-source systems developed in connection with this thesis have been automated.
 
 \subsection{JavaScript package workflows}
 \label{sec:method-javascript-package-workflows}
-GitHub provides CI and CD as a part of its GitHub Actions system. This system has been put to use, creating several workflows in order to automate various tasks like testing, building, documentation generation and publishing. The workflows have been made so that they should work out of the box for similar projects. See Section~\ref{sec:theory-github-actions} for a description of GitHub Actions. Do note that the default behavior of Workflows is to terminate if any errors are encountered.
+GitHub provides continuous integration (CI) and continuous development (CD) as a part of its GitHub Actions system. This system is heavily used in this thesis. Several workflows are created in order to automate various tasks like testing, building, documentation generation and publishing. The workflows have been made so that they should work out of the box for similar projects. See Section~\ref{sec:theory-github-actions} for a description of GitHub Actions. Do note that the default behavior of Workflows is to terminate if any errors are encountered.
 
 Figure~\ref{fig:cicd-pipelines} shows a simplified diagram of the CI/CD automation pipelines created for the JavaScript packages which are to run on new contributions to the codebase. This system mainly consists of two workflows. One for building the package, and one for generating and publishing API documentation. A simple step by step walkthrough of the system is now presented.
 
@@ -343,12 +360,25 @@ GitHub provides guidelines in terms of versioning and tagging of a GitHub Action
 
 \section{file-existence-action}
 \label{sec:method-file-existence-action}
-In order to be able to produce the general purpose workflows described in Section~\ref{sec:method-javascript-package-workflows}, it became apparent that i needed to be able to check if a file existed. Normally, a coverage script is defined in the projects package.json file. This runs all the tests and produces a coverage report file. However, if no such script is provided, the workflow will run the tests manually instead, and no file will be generated. If no such file is generated, this needs to be detected by the workflow, in order to avoid running the upload to Coveralls.io step. This was solved by creating a relatively small GitHub Action, named File Existence. The action is written in TypeScript, and based on a template provided by GitHub. The action is able to check one or more paths for the existence of a file. A boolean result is then available to the subsequent steps in the workflow.
+In order to be able to produce the general purpose workflows described in Section~\ref{sec:method-javascript-package-workflows}, it became apparent that it is needed to be able to check if a file existed. Normally, a coverage script is defined in the projects package.json file. This runs all the tests and produces a coverage report file. However, if no such script is provided, the workflow will run the tests manually instead, and no file will be generated. If no such file is generated, this needs to be detected by the workflow, in order to avoid running the upload to Coveralls.io step. This was solved by creating a relatively small GitHub Action, named File Existence. The action is written in TypeScript, and based on a template provided by GitHub. The action is able to check one or more paths for the existence of a file. A boolean result is then available to the subsequent steps in the workflow.
 
 \section{file-reader-action}
+\label{sec:method-file-reader-action}
 Following the problems described in Section~\ref{sec:method-file-existence-action} above, another problem arises if the coverage script is defined, but no tests are created. If this is the case, an empty coverage file is created. Trying to upload this to Coveralls.io results in an error. The need for reading the contents of a file was therefore necessary, in order to check if the coverage file is empty. If it is empty, the Coveralls step should not be executed. The solution was to create a small GitHub Action, named File Reader. The action is written in TypeScript, and based on a template provided by GitHub. The action is able to read the contents of a file at a path supplied by the user. The output is then available to the subsequent workflow steps.
 
 \section{3D models}
-For testing the various systems, several 3D models are used. These are created with the open-source 3D modeling software Blender. The torus is a default shape in Blender. So is the monkey face model. The monkey model is named Suzanne, and often used for testing purposes. In addition to these two 3D models, a third one is developed for the purpose of testing the coloring system of the Voxelizer engine. This is a 3D model of an anvil. It is built from the ground up. A procedural generated texture is created for the model. In order to actually apply the generated texture to the 3D model, the model is UV unwrapped. See section \ref{sec:info-texture-maps} for more details on texture maps. Lastly, for performance and reproducibility, the texture has been baked onto an image.
+\label{sec:method-3d-models}
+For testing the various systems, several 3D models are used. These are created with the open-source 3D modeling software Blender. The torus is a default shape in Blender. So is the monkey face model. The monkey model is named Suzanne, and often used for testing purposes. In addition to these two 3D models, a third one is developed for the purpose of testing the coloring system of the Voxelizer engine. This is a 3D model of an anvil. It is built from the ground up. A procedural generated texture is created for the model. The shader setup can be seen in Figure~\ref{fig:procedural-generated-texture} In order to actually apply the generated texture to the 3D model, the model is UV unwrapped. See Section \ref{sec:info-texture-maps} for more details on texture maps. Lastly, for performance and reproducibility, the texture has been baked onto an image. The final baked image is shown in Figure~\ref{fig:method-anvil-baked-texture}.
 
-\colorbox{red}{INCLUDE IMAGE OF SHADER TEXTURE}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{sections/methodology/figures/blender-procedural-texture.png}
+    \caption{Procedurally generation of rusty metal texture.}
+    \label{fig:procedural-generated-texture}
+\end{figure}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{sections/methodology/figures/anvil-baked-texture.png}
+    \caption{Baked rusty metal texture.}
+    \label{fig:method-anvil-baked-texture}
+\end{figure}

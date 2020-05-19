@@ -1,6 +1,7 @@
 %This is chapter 2
 %%=========================================
-\chapter{Theoretical basis}
+\chapter{Theory}
+This chapter includes the theory that lies the foundation of this thesis. The chapter consists of several parts. First, working methodologies are presented, followed by various programming tools and languages. Then, a section about 3D computer graphics is included. Acceleration data structures are then explained. Lastly, a through description of the Voxelizer engine version v0.1.3 is presented. 
 
 %%=========================================
 \section{Agile methods}
@@ -56,14 +57,14 @@ At the hart of Scrum, there is a development team. This team is comprised of aro
 \end{figure}
 
 \subsection{Kanban}
-Kanban~\cite{kanban} is a lean software development methodology, based on the lean methodologies. These have been highly successfully in manufacturing processes. At the center of Kanban is a just-in-time (JIT) process. No new tasks are to be started unless there is a need for it. Further, once a capacity limit has been reached, no further task can be started on. When a task has been resolved, a new one can be started. This can simply be described as a pulling workflow. Kanban also often focuses on the visualization of tasks. This is normally done with a Kanban Board. In contrast to Scrum, Kanban allows for the software to be developed in one large development cycle. It is much more flexible, and does not define any roles.
+Kanban~\cite{kanban} is a lean software development methodology, based on the lean methodologies. These have been highly successfully in manufacturing processes. At the center of Kanban is a just-in-time (JIT) process. No new tasks are to be started unless there is a need for it. Further, once a capacity limit has been reached, no further tasks can be started on. When a task has been resolved, a new one can be started. This can simply be described as a pulling workflow. Kanban also often focuses on the visualization of tasks. This is normally done with a Kanban Board. In contrast to Scrum, Kanban allows for the software to be developed in one large development cycle. It is much more flexible, and does not define any roles.
 
 \section{Git}
 Git~\cite{git} is a type of distributed version control system (VCS), originally created by Linus Torvalds in 2005. Git is free and open-source, and is today the most popularly used VCS. It is fast and efficient, able to handle everything from small hobby projects to giant projects like the Linux kernel. Every Git directory is a complete repository with history and full version-tracking abilities. It does not need access to internet, nor a central server in order to work.
 
 \subsection{GitFlow}
 \label{sec:theory-gitflow}
-GitFlow is a popular branching model for Git, created by Vincent Driessen~\cite{gitflow}. Figure~\ref{fig:gitflow} displays an example git history, adhering to the GitFlow branching style. GitFlow truly excels in parallel development. It is extremely well suited for collaboration and scales well. It also provide an efficient and predictable merging flow, making it easy to customize workflows for various needs.
+GitFlow is a popular branching model for Git, created by Vincent Driessen~\cite{gitflow}. Figure~\ref{fig:gitflow} displays an example of git history, adhering to the GitFlow branching style. GitFlow truly excels in parallel development of software features. It is extremely well suited for collaboration and scales well. It also provide an efficient and predictable merging flow, making it easy to customize workflows for various needs.
 
 Development of new features are done in \textbf{feature branches}. These branch off from the \textbf{development branch}, often named \textbf{develop}, reflecting the current state of "development". When a feature is done, it is merged back into the \textbf{development branch}. When it is time for a new release, a \textbf{release branch} is created based on the \textbf{development branch}. In this branch, finishing touches can be made, like bumping up the version numbers, etc. When approved, the \textbf{release branch} is then merged into a \textbf{master branch}, and also back into the \textbf{development branch}. The \textbf{master branch} only contains released code. In the event of an emergency, a \textbf{hotfix branch} can be used. This provides a shortcut for implementing critical fixes. A \textbf{hotfix branch} branches directly from master. When finished, the \textbf{hotfix} is merged into both \textbf{master} and \textbf{develop}.
 
@@ -75,13 +76,13 @@ Development of new features are done in \textbf{feature branches}. These branch 
 \end{figure}
 
 \section{GitHub}
-GitHub is primarily a hosting service for Git repositories. The company was acquired by Microsoft in 2019. In addition to repository hosting, GitHub provides a range of different services through it's web-based GUI. This includes both wikis, access controls, simple task management tools, statistics, automation capabilities and websites hosting.
+GitHub is primarily a hosting service for Git repositories. In addition to repository hosting, GitHub provides a range of different services through it's web-based GUI. This includes both wikis, access controls, simple task management tools, statistics, automation capabilities and websites hosting.
 
 \subsection{GitHub Actions}
 \label{sec:theory-github-actions}
-GitHub Actions~\cite{github-actions} is a fairly very new service provided by GitHub. It enables users to automate software workflows, effectively providing a high quality CI/CD for free~\footnote{GitHub Actions usage is completely free for public repositories. For private repositories, depending on the subscription plan, some thousand minutes of free usage is provided each month.}. It is also possible to set up self-hosted runners. GitHub Actions makes it possible to both build, test and deploy code directly from within GitHub.
+GitHub Actions~\cite{github-actions} is a fairly very new service provided by GitHub. It enables users to automate software workflows, effectively providing a high quality CI/CD for free~\footnote{GitHub Actions usage is completely free for public repositories. For private repositories, depending on the subscription plan, some thousand minutes of free usage is provided each month.}. It is also possible to set up self-hosted runners. GitHub Actions makes it possible to build, test and deploy code directly from within GitHub.
 
-To setup and configure an automated process, so-called workflows needs to be defined. These are made up of one or more jobs. The actual workflow has to be defined in a YAML file. This file needs to be created and placed in a repository hosted on GitHub. Consult the documentation available at GitHub for the appropriate workflow syntax for creating such YAML files~\cite{github-actions-workflow-syntax}.
+To setup and configure an automated process, so-called workflows needs to be defined. These are made up of one or more jobs. The actual workflow has to be defined in a YAML file. This file needs to be created and placed in a repository hosted on GitHub. The reader may consult the documentation available at GitHub for being aware of the appropriate workflow syntax for creating such YAML files~\cite{github-actions-workflow-syntax}.
 
 \subsection{GitHub Pages}
 Github provides its users with a public webpage hosting service. This is named GitHub Pages \cite{github-pages}. User are able to serve static websites directly from their repository hosted on GitHub. Normally, a GitHub Pages site is published by pushing static files to a specific branch named \textit{gh-pages}.
@@ -98,7 +99,7 @@ JavaScript is a lightweight interpreted programming language. The language is pr
 JavaScript was developed by Brendan Eichand and released in 1995~\cite{javascript-original-release}. Initially, it was designed to be a small scripting language for enabling interaction with web pages. A standardization effort of JavaScript, led by Ecma International~\cite{ecma-international}, lead to the ECMAScript specification that the modern JavaScript language conforms to. Since then, the language has evolved rapidly and gained massive in popularity. It has become the de-facto language for adding dynamic behavior to HTML. As of may 2020, JavaScript is among the top ten programming languages according to the TIOBE index \cite{tiobe-index}.
 
 % Node.js
-Originally, JavaScript engines were mainly used in browser environments. However, with the development of Node.js in early 2009, this was dramatically changed. Node.js provides a runtime environment for executing JavaScript outside of a web browser. It set the stage for server-side JavaScript programs. In January 2010, a package manager named npm \cite{npm} was released for Node.js. This made it easy for developers to share and reuse source code.
+Originally, JavaScript engines were mainly used in browser environments. However, with the development of Node.js in early 2009, this was dramatically changed. Node.js provides a runtime environment for executing JavaScript outside of a web browser. It set the stage for server-side JavaScript programs. In January 2010, a package manager named npm \cite{npm} (originally short for Node Package Manager) was released for Node.js. This made it easy for developers to share and reuse source code.
 
 % Module bundlers
 The size of JavaScript programs has increased massively in size. With increased size, so does the complexity of the code. However, JavaScript had very limited functionality in terms of splitting a program up in smaller modules for use with the browser. Maintaining large codebases was a nightmare. It therefore became apparent that a way of breaking down a JavaScript program into smaller modules was needed. Several open-source module systems were therefore developed by the community in order to tackle this problem.
@@ -129,7 +130,7 @@ JavaScript bundling is an optimization technique to combine separate resource fi
 TypeScript \cite{typescript} is a typed superset of JavaScript that compiles to plain JavaScript. It is open source, and primarily developed and maintained by Microsoft \cite{microsoft}. TypeScript provides optional static typing to the JavaScript language. The TypeScript compile also includes support for the latest ECMAScript features.
 
 \section{JavaScript Object Notation (JSON)}
-JavaScript Object Notation, better known as JSON, is a lightweight data interchange format. It is easy for both humans and machines to read and write. The data is stored as attribute–value pairs. An example is shown in Program Code \ref{lst:json-example}.
+JavaScript Object Notation, better known as JSON, is a lightweight data interchange format. It is easy for both humans and machines to read and write. The data is stored as attribute–value pairs. An example is shown in Listing~\ref{lst:json-example}. Here, the the first key is "name", and the corresponding value is "A. Storhaug".
 \lstinputlisting[language=JSON,style=numbers,caption={Example JSON data},label={lst:json-example}]{sections/theory/code/json-example.json}
 
 \section{JSDoc}
@@ -147,8 +148,7 @@ three.js\cite{three.js} is a cross-browser JavaScript library for creating and d
 
 \subsection{ndarray}
 \label{sec:theory-ndarray}
-ndarray is an open-source JavaScript package providing modular multidimensional arrays, written by Mikola Lysenko in 2013. In short, ndarray implement a higher dimensional views of 1D arrays. The 1D array can either be a normal JavaScript Array, or a JavaScript typed array. MDN defines typed arrays as \textquote[\citet{mdn-typed-arrays}]{array-like objects that provide a mechanism for reading and writing raw binary data in memory buffers.}. Mainly, they are used for maximizing efficiency and reducing memory footprint. However, typed arrays are normally quite difficult to work with in JavaScript. Multidimensional typed arrays even more so. ndarray provides a simple but powerful API, making use of multidimensional typed arrays easy.
-\colorbox{red}{strided arrays??}
+ndarray~\cite{ndarray} is an open-source JavaScript package providing modular multidimensional arrays, written by Mikola Lysenko in 2013. In short, ndarray implement a higher dimensional views of 1D arrays. The 1D array can either be a normal JavaScript Array, or a JavaScript typed array. MDN defines typed arrays as \textquote[\citet{mdn-typed-arrays}]{array-like objects that provide a mechanism for reading and writing raw binary data in memory buffers.}. Mainly, they are used for maximizing efficiency and reducing memory footprint. However, typed arrays are normally quite difficult to work with in JavaScript. Multidimensional typed arrays even more so. ndarray provides a simple but powerful API, making use of multidimensional typed arrays easy.
 
 \subsection{Electron}
 \label{sec:theory-electron}
@@ -229,7 +229,7 @@ An octree is a type of tree structure. Each internal node of an octree has exact
 
 \subsection{Bounding volume hierarchy}
 \label{sec:theory-bounding-volume-hierarchy}
-A bounding volume hierarchy, abbreviated BVH, is a tree structure on a set of geometric objects. A BVH construction algorithm partitions the actual objects. The objects are wrapped in a so-called bounding volume, forming the leaves of the tree. These are then grouped together into a larger bounding volume. This process is then repeated in a recursive manner. The result is a tree structure with one single bounding volume as the root node. An example of a BVH is shown in Figure \ref{fig:bvh-example}. BVH are often used for accelerating collision detection and raytracing.
+A bounding volume hierarchy, abbreviated BVH, is a tree structure on a set of geometric objects. A BVH construction algorithm partitions the actual objects. The objects are wrapped in a so-called bounding volume, forming the leaves of the tree. These are then grouped together into a larger bounding volume. This process is then repeated in a recursive manner. The result is a tree structure with one single bounding volume as the root node. An example of a BVH is shown in Figure \ref{fig:bvh-example}. BVHs are often used for accelerating collision detection and raytracing.
 
 \begin{figure}[ht]
     \centering

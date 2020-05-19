@@ -1,36 +1,46 @@
 %This is chapter 5
 %%=========================================
 \chapter{Discussion}
+This chapter discusses the achieved results, the execution of methodologies, and how the projects could be further improved. The chapter starts with Section~\ref{sec:discussion-requirements-scesification} that discusses the completeness of the entire project, compared to the requirements specification. Section~\ref{sec:discussion-working-methodology} describes how the chosen working methodology worked out. The improvements of the Voxelizer engine are discussed in Section~\ref{sec:discussion-voxelizer}, closely followed by the Voxelizer desktop application in Section~\ref{sec:discussion-voxelizer-desktop}. The level of automation achieved is described in Section~\ref{sec:discussion-automation}. The rest of the supportive projects are discussed in Section~\ref{sec:discussion-supportive-projects}. Finally, Section~\ref{sec:discussion-future-work} discusses some features that are left as future work.
+
 \section{Requirements specification completeness}
-Most of the primary objectives are completed according to the requirement specification. Also, the majority of the user-stories are addressed, as can be seen from the backlog included in Appendix~\ref{appendix:requirements-specification}. The project is therefore overall considered a success.
+\label{sec:discussion-requirements-scesification}
+Most of the primary objectives are completed according to the requirement specification. Also, the majority of the user-stories are addressed, as can be seen from the backlog included in Appendix~\ref{appendix:backlog}. The project is therefore overall considered a success.
 
 Due to various extra work like the binvox package, the file-existence-action and the file-reader-action, some functionality had to give way to others. It was not enough time to make the CLI tool for the Voxelizer engine. However, this could be a valuable companion tool for the Voxelizer engine, and should therefore be considered for future work.
 
 \section{Working methodology}
-Scrum was used as the working methodology for this project. However, since Scrum is designed for teams, the method needed some adaptations. The changes described in Section~\ref{sec:method-scrum} worked out very well. The method helped in keeping the project on track. Further, the desire to complete the sprints functioned as a strong motivator throughout the entire project.
+\label{sec:discussion-working-methodology}
+Scrum was used as the working methodology for this project. However, since Scrum is designed for teams, the method needed some adaptations. The changes described in Section~\ref{sec:method-scrum} worked out very well. The method helped in keeping the project on track. Further, the desire to complete the sprints functioned as a strong motivator throughout the entire project. This is backed by the sprint cumulative flow diagram available in Appendix~\ref{appendix:sprints}. The diagram shows a reasonable steady stream of completed issues throughout the entire project.
 
 \section{Voxelizer}
-Compared to the old Voxelizer engine, the new version produces voxelization results of a lot higher quality. The improvement can clearly be seen from the results described in Section~\ref{sec:visual-assesment}. The engine is also greatly improved in terms of performance. Although, the level of performance gain shown in Section~\ref{sec:result-voxelizer-performance} was not expected, especially the huge reduction in memory footprint. Further, several new features are introduced. Being able to produce shell and color voxelizations makes the engine much more attractive.
+\label{sec:discussion-voxelizer}
+Compared to the old Voxelizer engine, the new version produces voxelization results of a lot higher quality. The improvement can clearly be seen from the results described in Section~\ref{sec:method-visual-assesment}. The engine is also greatly improved in terms of performance. Although, the level of performance gain shown in Section~\ref{sec:result-voxelizer-performance} was not expected, especially the huge reduction in memory footprint. Further, several new features are introduced. Being able to produce shell and color voxelizations makes the engine much more attractive.
 
 During development, it became clear that extending the importing support for the different formats specified in the requirements specification was not beneficial. three.js already provides support for around 40 file formats. However, at the time of the creation of the old engine version, the loaders were hard to import and use. Since then, these loaders have implemented support for ES Modules. It was therefore decided that the task of loading the models should be left up to the user.
 
 \section{Voxelizer Desktop}
+\label{sec:discussion-voxelizer-desktop}
 The Voxelizer Desktop ensures easy use of the Voxelizer engine. It fulfills all the main requirements. The application provides an intuitive user interface, and the voxelization process is very easy. By supporting several of the most popular 3D file formats, like OBJ, GLTF and STL, the user is most likely able to voxelize his/her files directly, without additional conversion steps.
 
-\subsection{Automation}
+\section{Automation}
+\label{sec:discussion-automation}
 The different projects are highly automated at an early stage. This made the various maintenance task throughout the project very easy. Future support and maintenance is therefore also expected be easy. Especially valuable is the JSDoc action. This will ensure available and up-to-date high-quality API documentation for the projects.
 
 \section{Supportive projects}
+\label{sec:discussion-supportive-projects}
 Several tools were main to aid the various projects. This includes the three-voxel-loader plugin, the BINVOX package, the File Existence action and the File Reader action. With the exception of the three-voxel-loader, these tools are mainly the result of refactoring. Keeping the code in smaller modules, or packages, makes it easier to maintain. It also makes it easy for others to use the software for other projects. Further, this often means an increase in both testing and contributions to the project.
 
 The three-voxel-loader three.js plugin proved to be very valuable in terms of testing. Inspecting the raw voxel data is more or less impossible. By visualizing the voxelized results, testing and debugging the Voxelizer engine was very easy.
 
 \section{Future work}
-The uncompleted user-stories provides an excellent basis for future work. In addition to this, the following sections sugessts some additional improvements.
+\label{sec:discussion-future-work}
+The uncompleted requirements specification and the user-stories provides an excellent basis for future work. In addition to this, the following sections suggests some additional improvements.
+
 \subsection{three-voxel-loader}
 The three-voxel-loader plugin generates a cube (CubeBufferGeometry) for every voxel. Even for voxels that are not visible from outside the model. When loading a large and filled voxel model, this results in an enormous number of faces being rendered, putting a heavy load on the hardware. A future improvement could be to only render to extract the surface mesh of the voxels result, when a voxel size of 1 is used. This would dramatically reduce the number of triangles needed to render the voxel model.
 
-Another interesting future implementation here could be to implement isosurface extraction. This is the opposite process of the voxelization process. It tries to approximate a 3D mesh based on voxel data. The most popular isosurface extraction algorithm is the the marching cube algorithm, published in 1987 by \citet{marching-cubes-cline-lorentsen}. Including this feature into the project could be of great value.
+Another interesting feature could be to support isosurface extraction. This is the opposite process of the voxelization process. It tries to approximate a 3D mesh based on voxel data. The most popular isosurface extraction algorithm is the the marching cube algorithm, published in 1987 by \citet{marching-cubes-cline-lorentsen}. Including this feature into the project could be of great value.
 
 \subsection{Voxelizer}
 Due to the fact that JavaScript is single-threaded, no multithreading is implemented in the Voxelizer Engine. However, it is possible to implement a sort of multithreading with Web Workers in the browser, or Worker Threads in Node.js. A future improvement could be to implementing support for this type of multithreading directly into the Voxelizer engine. This way, the heavy voxelization calculations could be split up into chunks and voxelized in parallel.

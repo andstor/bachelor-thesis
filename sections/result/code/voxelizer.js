@@ -24,8 +24,4 @@ gltfloader.load('path/to/file.glb', function (data) {
   exporter.parse(volume, function (xml) {
     console.log(xml)
   });
-
-
-  // Do something with the data.
-  // ...
 });

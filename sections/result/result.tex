@@ -1,7 +1,7 @@
 %This is chapter 4
 %%=========================================
 \chapter{Result}
-This chapter presents the results of this thesis. The chapter starts with presenting the various results from the different projects developed and connection with this thesis. First, the new three-voxel-loader three.js plugin and the improvements of the Voxelizer engine are presented. This is followed by the new BINVOX package, and the desktop application for the Voxelizer engine. Then, the results of the JSDoc GitHub Action is presented
+This chapter presents the results of this thesis. The chapter starts with presenting the different JavaScript projects developed and improved in connection with this thesis. First, the new three-voxel-loader three.js plugin, and the improvements of the Voxelizer engine are presented. This is followed by the new BINVOX package, and the desktop application for the Voxelizer engine. Then, the results of the JSDoc GitHub Action is presented. Section~\ref{sec:result-automation} will present the results in terms of automation of the projects. Finally, Section~\ref{sec:result-popularity-and-achievements} presents some achievements that are accomplished, including some statistics on the popularity of the projects.
 
 \section{three-voxel-loader}
 The three-voxel-loader is a plugin for three.js. It is published to the npm registry under the name "three-voxel-loader", and the source code is available at GitHub under "andstor/three-voxel-loader".
@@ -90,32 +90,33 @@ The new Voxelizer engine version v1.0.0 is greatly improved, compared to the old
     \label{fig:voxelizer-logo}
 \end{figure}
 
-The new version is published to the npm registry, still under the name "voxelizer". The source code is available at GitHub under "andstor/voxelizer". Here, the old version is also available, tagged with the tag "v0.1.3".
+The new version is published to the npm registry, still under the name "\href{https://npmjs.org/package/voxelizer}{voxelizer}". The source code is available at GitHub under "\href{https://github.com/andstor/voxelizer}{andstor/voxelizer}". Here, the old version is also available, tagged with the tag "\href{https://github.com/andstor/voxelizer/tree/v0.1.3}{v0.1.3}".
 
 \subsection{Voxelization}
 The new version of the Vexelizer engine is greatly improved. The engine captures a lot more deatils of the 3D models. It is much more stabile, and produces a lot more consistent results. The engine also provides several new voxelization features. This includes both shell voxelization, and coloring support. Figure~\ref{fig:anvil-render} shows a rendered image of an anvil 3D model developed for testing purposes. The anvil has a blue-ish metallic surface, with several red/gold rust spots. Figure~\ref{fig:result-anvil-voxelization} shows a colored voxelization of this 3D model at a resolution of $2^7$. The individual rust spots are clearly seen, and the overall result seems to be correlating with the original 3D model. Further, in order to showcase the shell voxelization, the voxelization result is cut in half. This is seen in Figure~\ref{fig:result-anvil-voxelization-cut}.
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.95\textwidth]{sections/result/figures/anvil-color-render.png}
-    \caption{Render of anvil 3D model.}
+    \caption{Render of textured anvil 3D model.}
     \label{fig:anvil-render}
 \end{figure}
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.95\textwidth]{sections/result/figures/anvil-voxelized-v1-color-128.png}
-    \caption{Render of anvil 3D model.}
+    \caption{Colored voxelization (resolution of $2^7$) of anvil 3D model.}
     \label{fig:result-anvil-voxelization}
 \end{figure}
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.95\textwidth]{sections/result/figures/anvil-voxelized-clipped-v1-color-128.png}
-    \caption{Render of anvil 3D model.}
+    \caption{Colored voxelization (resolution of $2^7$) of anvil 3D model cut in half.}
     \label{fig:result-anvil-voxelization-cut}
 \end{figure}
 
 \clearpage
 \subsection{Visual assesment}
-In this section, the various improvements of the problems the old engine had will be presented. Fistly, the old engine produced a lot of artifacts. The new version fixes this problem. This can be seen in Figure~\ref{fig:result-voxelizer-comparison-monkey}, which shows the voxelization of a monkey 3D model. Figure~\ref{fig:result-voxelizer-v0.1.3-monkey} shows the voxelization of a monkey with the old version, and Figure~\ref{fig:result-voxelizer-v1-monkey} shows the result with the new version. Comparing the two, it is clear that the new engine produces voxelizations where the artifacts are more or less completly removed.
+\label{sec:method-visual-assesment}
+In this section, the various improvements of the problems the old engine had is presented. Fistly, the old engine produced several holes. The new version fixes this problem. This can be seen in Figure~\ref{fig:result-voxelizer-comparison-torus}, which shows the voxelization of a torus 3D model. Figure~\ref{fig:result-voxelizer-v0.1.3-torus} shows the voxelization of a torus with the old version, and Figure~\ref{fig:result-voxelizer-v1-torus} shows the result with the new version. Comparing the two, it is clear that the holes are no longer present.
 \begin{figure}[htp]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
@@ -170,7 +171,7 @@ As mentioned in Section~\ref{sec:voxelizer-v013}, the old engine produced a lot 
     \label{fig:result-voxelizer-comparison-monkey}
 \end{figure}
 \clearpage
-The voxelization with the old engine often fails in filling in the gap between the sampled front and back. This produces a completly unusable result. Also, since it is only sampled from the front and back, the details from the other sides of the models are not captured in the voxelization. The new version is much more robust, and captures details from all six sides of the model. This results in a much more accurate representation of the model. This improvement can clearly be seen in Figure~\ref{fig:result-voxelizer-comparison-anvil}, which shows the voxelization of an anvil 3D model. Figure~\ref{fig:result-voxelizer-v0.1.3-anvil} shows a voxelization of an anvil with the old engine. Here, the voxelization has failed in the filling process. Figure~\ref{fig:result-voxelizer-v1-anvil} shows the result with the new version. Comparing the two, it is clear that the new engine produces a lot more accureate voxelizations.
+The voxelization with the old engine often fails in filling in the gap between the sampled front and back. This produce completly unusable result. Also, since it is only sampled from the front and back, the details from the other sides of the models are not captured in the voxelization. The new version is much more robust, and captures details from all six sides of the model. This results in a much more accurate representation of the model. This improvement can clearly be seen in Figure~\ref{fig:result-voxelizer-comparison-anvil}, which shows the voxelization of an anvil 3D model. Figure~\ref{fig:result-voxelizer-v0.1.3-anvil} shows a voxelization of an anvil with the old engine. Here, the voxelization has failed in the filling process. Figure~\ref{fig:result-voxelizer-v1-anvil} shows the result with the new version. Comparing the two, it is clear that the new engine produces a lot more accureate voxelizations.
 \begin{figure}[hp!]
     \centering
     \begin{subfigure}[b]{0.7\textwidth}
@@ -347,11 +348,11 @@ First, the versions are tested with a low-poly mesh. Then, a high-poly mesh is u
 
 Figure~\ref{fig:plot-execution-time-low-poly} shows a graph over the execution time and the memory footprint for a voxelization of a low-detailed mesh with the Voxelizer engine v0.1.3 and v1.0.0. The raw data is available in Table~\ref{tab:performance-voxelizer-v0.1.3-low-poly} and Table~\ref{tab:performance-voxelizer-v1.0.0-low-poly}.
 
-The new engine has a relatively low memory footprint. At resolutions from $2^1$ to $2^7$, the memory consumption stays around 7MB. Then, at a resolution of $2^8$, the memory drops to around 2MB. This is most likely due to the JavaScript Garbage Collector (GC) kicking in. At larger resolutions, the memory seems to stay relatively stabile around 2MB. The old engine starts with a very low memory footprint. It stays low, between 1MB and 2MB, from a resolution of $2^1$ to $2^6$. Then, the memory footprint starts to increase rapidly. A total of 24MB are used for a resolution of $2^7$. At $2^10$ the footprint has risen to 8.7GB. This is most likely due to the fact that the old engine used normal JavaScript arrays that dynamically expands. A lot of obsolete data objects will accumulate, and the GC seems to not be able to handle this well.
+The new engine has a relatively low memory footprint. At resolutions from $2^1$ to $2^7$, the memory consumption stays around 7MB. Then, at a resolution of $2^8$, the memory drops to around 2MB. This is most likely due to the JavaScript Garbage Collector (GC) kicking in. At larger resolutions, the memory seems to stay relatively stabile around 2MB. The old engine starts with a very low memory footprint. It stays low, between 1MB and 2MB, from a resolution of $2^1$ to $2^6$. Then, the memory footprint starts to increase rapidly. A total of 24MB are used for a resolution of $2^7$. At $2^{10}$ the footprint has risen to 8.7GB. This is most likely due to the fact that the old engine used normal JavaScript arrays that dynamically expands. A lot of obsolete data objects will accumulate, and the GC seems to not be able to handle this well.
 
-Regarding execution time, this is also greatly improved in the new engine version. This is especially noticeable at large resolutions. At a resolution of $2^10$, the old engine use 260 seconds to voxelize the 3D model. The new version only use 86 seconds, a reduction of about $60\%$.
+Regarding execution time, this is also greatly improved in the new engine version. This is especially noticeable at large resolutions. At a resolution of $2^{10}$, the old engine use 260 seconds to voxelize the 3D model. The new version only use 86 seconds, a reduction of about $60\%$.
 
-A new mesh is generated with the code in Listing~\ref{lst:voxelizer-speed-test-mesh-high}. This produces a highly detailed torus mesh with 1,000,000 triangles. The are presented in the figures below.
+An new mesh is generated with the code in Listing~\ref{lst:voxelizer-speed-test-mesh-high}. This produces a highly detailed torus mesh with 1,000,000 triangles. The are presented in the figures below.
 
 \begin{lstlisting}[language=JavaScript,caption={JS code for generating high-detailed torus mesh.},label={lst:voxelizer-speed-test-mesh-high}]
 let geometry = new THREE.TorusBufferGeometry( 10, 3, 1000, 500 );
@@ -490,10 +491,10 @@ The results shows similar characteristics as the ones with the low detailed mesh
 The memory consumption of the old version is more or less the same as with a low detailed mesh. The new version does consume more memory than in the previous test. This is because the BVH tree generated for the raycasting performance improvement does need a bit of memory. The memory footprint of the new version seems to gradually scale up from 8MB at a resolution of $2^1$, to 76MB at resolution $2^7$. From here on, the memory footprint stay more or less constant. This is because the BVH implementation gradually builds up the BVH tree, as described in Section~\ref{sec:three.js-optimization}.
 
 \subsection{Exporting}
-Several new exporting options are added to the upgraded Voxelizer engine. This includes XML, BINVOX and ndarray. The old JavaScript array exporting option is also available, ensuring some backwards compatibility. The exporters system is made extensible, making it easy to add new exporting options in the future.
+Several new exporting options are added to the upgraded Voxelizer engine. This includes XML, BINVOX and ndarray. The old multidimensional JavaScript array exporting option is also available, ensuring some backwards compatibility. The exporters system is made extensible, making it easy to add new exporting options in the future.
 
 \subsection{Code quality}
-This section describes how the code quality is improved. The old codebase had several problems. Firstly, all the code was contained in one large file. This made it hard to navigate and the code was messy. The new version makes use of ES Modules, enabling to organize the code in different files. Secondly, the engine previously hardcoded the one algorithm used. The new version includes an easily extensible algorithm system. This is ensured through the use of inheritance and factory patterns, as discussed in Section~\ref{sec:method-algorithm-system}. Thirdly, the code did barely include tests for the system. The new version now includes unit tests for almost the whole engine. Lastly, the code had no code documentation. This is resolved by writing JSDoc for all classes and functions. This documentation is also made easily accessible at GitHub Pages with the help of the new JSDoc Action, presented in Section~\ref{sec:result-jsdoc-action}. A screenshot of the public documentation page is shown in Figure~\ref{fig:result-voxelizer-documentation}.
+This section describes how the code quality is improved. The old codebase had several problems. Firstly, all the code was contained in one large file. This made it hard to navigate and the code was messy. The new version makes use of ES Modules, making it possible to organize the code in different files. Secondly, the engine previously hardcoded the one algorithm used. The new version includes an easily extensible algorithm system. This is ensured through the use of inheritance and factory patterns, as discussed in Section~\ref{sec:method-algorithm-system}. Thirdly, the code did barely include tests for the system. The new version now includes unit tests for almost the whole engine. Lastly, the code had no code documentation. This is resolved by writing JSDoc for all classes and functions. This documentation is also made easily accessible at GitHub Pages with the help of the new JSDoc Action, presented in Section~\ref{sec:result-jsdoc-action}. A screenshot of the public documentation page is shown in Figure~\ref{fig:result-voxelizer-documentation}.
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.9\textwidth]{sections/result/figures/voxelizer-documentation.png}
@@ -510,34 +511,39 @@ An example of the engine is deployed to GitHub Pages. Visit \url{https://andstor
     \label{fig:voxelizer-example}
 \end{figure}
 
+\clearpage
 \subsection{Usage example}
 This section provides an example of how to use the Voxelizer engine v1.0.0. This example assumes that the project is bundled with a tool such as Webpack or Browserify, enabling the use of the ES Modules import syntax. Also, the node package manager (npm) is assumed to be installed.
 
-First, the engine and its peer dependency three.js needs to be installed. This is easily done with npm. To install Voxelizer and the peer dependency three.js, run the following commands:
+First, the engine and its peer dependency three.js needs to be installed. This is easily done with npm. To install the Voxelizer engine and the peer dependency three.js, run the following commands:
 \begin{verbatim}
-$ npm install voxelizer
-$ npm install three
+    $ npm install voxelizer
+    $ npm install three
 \end{verbatim}
-
-Then, Listing~\ref{voxelizer-engine-example} shows the example code now to be described in steps: 
+Then, Listing~\ref{voxelizer-engine-example} provides the example code now to be described in steps: 
 \begin{enumerate}
     \item First, the Voxelizer engine v1.0.0, and its peer dependency three.js needs to be imported. This is done in lines 2 and 3.
-    \item Then something to voxelized is needed. This could be any three.js mesh with some BufferGeometry. For this example, a torus is programmatically generated with lines 6-8.
-    \item To set up the Voxelizer sampling class, some options are needed. These are defined on lines 11-14, making the engine produce a colored shell voxelization.
-    \item The sampler is then instantiated at line 15.
-    \item Line 18 and 19 actually samples the torus with a resolution of 10.
-    \item In order to see the results, the returned volume data is fed to a XMLExporter at lines 22-25. This converts the volume data to a XML resource.
-    \item Line 24 prints the XML output to the console.
+    \item Line 4 imports the GLTFLoader. This makes it possible to load a GLTF file.
+    \item Then something to voxelized is needed. This could be any three.js mesh with BufferGeometry. By using the imported GLTFLoader, a GLTF file can be loaded. The GLTFLoader is instantiated on line 7.
+    \item To actually load the model, the asynchronous "load" function is used at line8. This function needs a path to the file to load.
+    \item To set up the Voxelizer sampling class, some options are needed. These are defined on lines 12-15, making the engine produce a colored shell voxelization.
+    \item The sampler is then instantiated at line 16.
+    \item Line 19 and 20 actually samples the model with a resolution of 10.
+    \item In order to inspect the results, the returned volume data is fed to a XMLExporter at lines 23-26. This converts the volume data to a XML resource.
+    \item Line 25 prints the XML output to the console.
 \end{enumerate}
+The result of the example code is a $10^3$ voxel result of the loaded 3D model.
+
 \lstinputlisting[language=JavaScript,style=numbers,label={voxelizer-engine-example}, caption={Voxelizer engine v1.0.0 example usage.}]{sections/result/code/voxelizer.js}
+\clearpage
 
 \section{BINVOX}
-BINVOX is a package for parsing and building BINVOX files. It is published to the npm registry under the name "binvox", and the source code is available at GitHub under "andstor/binvox".
+BINVOX is a package for parsing and building BINVOX files. It is published to the npm registry under the name "\href{https://www.npmjs.com/package/binvox}{binvox}", and the source code is available at GitHub under "\href{https://github.com/andstor/binvox}{andstor/binvox}".
 
 The package handles BINVOX files according to the BINVOX file format specification~\cite{binvox-file-format}. The package able to parse a BINVOX resource, turning it into JSON. Further, it can do this in reverse. Hence, properly formatted JSON data can be turned into a BINVOX file resource. The package provides both an ES Module build and a UMB build. It can therefore be used with both Node.js and in the browser.
 
 \section{Voxelizer Desktop}
-The Voxelizer Desktop application allows for easy use of the Voxelizer engine. It is a standalone cross platform desktop application. Ready-made installation files for macOS, Windows and Linux can be found at \url{https://github.com/andstor/voxelizer-desktop/releases/latest} on GitHub.
+The Voxelizer Desktop application allows for easy use of the Voxelizer engine. It is a standalone cross platform desktop application. Ready-made installation files for macOS, Windows and Linux can be found at \url{https://github.com/andstor/voxelizer-desktop/releases/latest} on GitHub. The source code is also available at GitHub under "\href{https://github.com/andstor/voxelizer-desktop}{andstor/voxelizer-desktop}".
 
 \subsection{Features}
 The Voxelizer Desktop application includes several features.
@@ -574,7 +580,7 @@ When a user drops one or more files, the application starts to load them up. If 
 \end{figure}
 \clearpage
 
-When the loading finishes, the user is presented with the main interface. This is shown in Figure~\ref{fig:voxelizer-desktop-gui-main-light}. Here, the loaded 3D model is first presented in an interactive display. Further, at the bottom is various controls for the voxelization and for exporting.
+When the loading finishes, the user is presented with the main interface. This is shown in Figure~\ref{fig:voxelizer-desktop-gui-main-light}. Here, the loaded 3D model is first presented in an interactive display. Further, at the bottom there are various controls for the voxelization and for exporting.
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.9\textwidth]{sections/result/figures/voxelizer-desktop-gui-main-light.png}
@@ -622,7 +628,7 @@ In order to voxelize a different 3D model, the user can click on the arrow icon 
 
 \section{JSDoc Action}
 \label{sec:result-jsdoc-action}
-The JSDoc Action makes it easy to automate the process of generating JSDoc documentation. It is a GitHub Action, and is published to the GitHub Marketplace. Figure~\ref{fig:jsdoc-action-logo} shows the graphics generated by the GitHub Marketplace for the JSDoc Action. The source code is available at GitHub under "andstor/jsdoc-action".
+The JSDoc Action makes it easy to automate the process of generating JSDoc documentation. It is a GitHub Action, and is published to the GitHub Marketplace under the name "\href{https://github.com/marketplace/actions/jsdoc-action}{JSDoc Action}". Figure~\ref{fig:jsdoc-action-logo} shows the graphics generated by the GitHub Marketplace for the JSDoc Action. The source code is available at GitHub under "\href{https://github.com/andstor/jsdoc-action}{andstor/jsdoc-action}".
 \begin{figure}[htp]
     \centering
     \includegraphics[width=0.75\textwidth]{sections/result/figures/jsdoc-action-logo.png}
@@ -632,7 +638,7 @@ The JSDoc Action makes it easy to automate the process of generating JSDoc docum
 
 The action is easy to combine with other deployment actions. This makes it very simple to publish the generated documentation to any hosting service, for example GitHub Pages. The JSDoc Action also supports templates. These are installed with npm, so any package can be used. See the npm documentation for more details on the installation command~\cite{npm-install-docs}.
 
-All that is needed for a minimum base setup is a workflow step like the one defined in Listing~\ref{lst:jsdoc-action-workflowstep}. This will generate documentation for all source files in the ./src directory, and output the built files to a ./out directory. Any other GitHub Action might further process this output.
+All that is needed for a minimum base setup is a workflow step like the one defined in Listing~\ref{lst:jsdoc-action-workflowstep}. This will generate documentation for all source files in the "./src" directory, and output the built files to a "./out" directory. Any other GitHub Action might further process this output.
 \begin{lstlisting}[language=yaml,caption={Basic JSDoc Action workflow step},label={lst:jsdoc-action-workflowstep}]
 - name: Build docs
   uses: andstor/jsdoc-action@v1
@@ -643,7 +649,7 @@ All that is needed for a minimum base setup is a workflow step like the one defi
 \end{lstlisting}
 
 \subsection{Example usage}
-Following is a complete example of how easy it is to automate the JSDoc documentation process with the JSDoc Action. This assumes that GitHub is used for hosting the code to generate documentation for.
+In the following, a complete example to illustrate how easy it is to automate the JSDoc documentation process with the JSDoc Action is provided. This assumes that GitHub is used for hosting the code to generate documentation for.
 
 First, a workflow yaml file needs to be created. This file needs a name, for example \textbf{documentation.yaml}, and has to be uploaded to the default branch in the user's repository, under ".github/workflows/". Then, the actual workflow needs to be defined. Listing~\ref{lst:jsdoc-workflow-deploy-example} provides an example workflow. This workflow is set to only run when code is pushed to the master branch. Ubuntu is then chosen as the platform to run the workflow job on. Several workflow steps are then defined:
 \begin{enumerate}
@@ -651,34 +657,31 @@ First, a workflow yaml file needs to be created. This file needs a name, for exa
     \item Second, the JSDoc Action is used for generating the actual JSDoc documentation files. Lines 15-19 defines several input options to the JSDoc Action. The source directory is set to "./src". The output directory is set to "./out". A path to a JSDoc configuration file in the user's repository is then specified. In order to freshen up the plain JSDoc theme, the minami template is used. This is the name of the package on npm. Finally, the README.md file in the user's repository is used as frontpage. 
     \item Third, the GitHub Pages action is used for deploying the generated documentation files to GitHub Pages. It needs two input configurations. One is a deployment key. See the documentation for the GitHub Pages action for how to set up this. The other is a directory to get the files to publish. This is set to the the JSDoc Action's output directory, "./out".
 \end{enumerate}
+When the workflow file is finished and saved to the correct place, the repository will feature automatic JSDoc documentation generation.
 
-\colorbox{red}{INCLUDE EXAMPLE SCREENSHOT OF HTML PAGE WITH GENERATED DOCS}
-
-%\begin{minipage}{\linewidth}
+\clearpage
 \lstinputlisting[language=yaml,style=numbers,label={lst:jsdoc-workflow-deploy-example},caption={Example documentation workflow file}]{sections/result/code/documentation-workflow.yaml}
-%\end{minipage}
-%\clearpage
-
 
 \section{file-existence-action}
-The File Existence action is a GitHub Action. The action is published to the GitHub Marketplace by the name "File Existence", and the source code is available at GitHub under "andstor/file-existence-action".
+The File Existence action is a GitHub Action. The action is published to the GitHub Marketplace by the name "\href{https://github.com/marketplace/actions/file-existence}{File Existence}", and the source code is available at GitHub under "\href{https://github.com/andstor/file-existence-action}{andstor/file-existence-action}".
 
 The action is able to check if one or more files exists during a workflow run. The user just supplies the paths as inputs to the action. The action then produces a boolean output variable which is available to the subsequent workflow steps. If any files are missing, the output is set to false. Otherwise, true. It is also possible to make the action trigger an error if one or more files are missing. This will effectively cancel the entire workflow.
 
 \section{file-reader-action}
-The File Reader action is a GitHub Action. The action is published to the GitHub Marketplace by the name "File Reader", and the source code is available at GitHub under "andstor/file-reader-action".
+The File Reader action is a GitHub Action. The action is published to the GitHub Marketplace by the name "\href{https://github.com/marketplace/actions/file-reader}{File Reader}", and the source code is available at GitHub under "\href{https://github.com/andstor/file-reader-action}{andstor/file-reader-action}".
 
 By providing a path as input to the action, the action is simply able to read the contents of a file during a workflow run. The action produces an output variable with the contents of the file. This variable will be available to the subsequent workflow steps.
 
 \section{Automation}
-Several automation systems are implemented for the various projects. This makes the maintenance of the projects very easy. All JavaScript package building and publishing is fully automated. Automatic JSDoc generation and publishing is also set up. Further, maintenance tasks for the GitHub actions are automated. See Section .... for a walkthrough of how the automations systems work, and what they do in details. For the GitHub Actions, automatic updating of version tags are implemented, according to the GitHub guidelines. For the JavaScript packages, the following tasks are automated:
+\label{sec:result-automation}
+Several automation systems are implemented for the various projects. This makes the maintenance of the projects very easy. All JavaScript package building and publishing is fully automated. Automatic JSDoc generation and publishing is also set up. Further, maintenance tasks for the GitHub actions are automated. See Section~\ref{sec:method-automation} for a walkthrough of how the automations systems work, and what they do in details. For the GitHub Actions, automatic updating of version tags are implemented, according to the GitHub guidelines. For the JavaScript packages, the following tasks are automated:
 \begin{itemize}
-    \item Building.
-    \item Testing.
-    \item Code coverage generation, and uploading to Coveralls.io.
-    \item Security analysis with LGTM by Semmle.
-    \item JavaScript JSDoc documentation generation with the JSDoc Action.
-    \item Publishing of JavaScript package to the npm registry.
+    \item Building
+    \item Testing
+    \item Code coverage generation, and uploading to Coveralls.io
+    \item Security analysis with LGTM by Semmle
+    \item JavaScript JSDoc documentation generation with the JSDoc Action
+    \item Publishing of JavaScript package to the npm registry
 \end{itemize}
 Figure~\ref{fig:automation-pull-request} shows how some of these automated task (defined in Workflows) are run on GitHub's CI/CD system. Here, one can see all the checks are passed. Also, an alert is triggered by the security analysis by LGTM, stating that three new alerts are introduced in the code.
 \begin{figure}[htp]
@@ -689,7 +692,8 @@ Figure~\ref{fig:automation-pull-request} shows how some of these automated task 
 \end{figure}
 
 \section{Popularity and achievements}
-Several of the projects has already gained interest by the public. GitHub users can are able to star a repository. This is the main measurement for how popular a repository is. Several of the repositories created in connection with this thesis have received numerous of stars already, and is used by several people. Table~\ref{tab:statistics-github-repos} shows how many stars the different repositories have, as of May 17th, 2020 \footnote{The statistics also include personal staring and usage.}.
+\label{sec:result-popularity-and-achievements}
+Several of the projects has already gained interest by the public. GitHub users are able to star a repository. This is one of the main measurements available for how popular a repository is. Several of the repositories created in connection with this thesis have received numerous of stars already, and is used by several people. Table~\ref{tab:statistics-github-repos} shows how many stars the different repositories have, as of May 17th, 2020 \footnote{The statistics also include personal staring and usage.}.
 \begin{table}[ht]
     \newcolumntype{Y}{>{\centering\arraybackslash}X}
     \def\arraystretch{1.5}
@@ -712,9 +716,9 @@ Several of the projects has already gained interest by the public. GitHub users 
     \end{tabularx}
 \end{table}
 
-Another achievement is inclusion of a link to the JSDoc Action in the README.md file of the original JSDoc repository. As of May 17th, 2020 the JSDoc repository has 10.6 thousand stars and is used in 39.3 repositories. This gives the action a lot of marketing. The approved pull request is number \href{https://github.com/jsdoc/jsdoc/pull/1745}{\#1745}. 
+Another achievement is the inclusion of a link to the JSDoc Action in the \href{https://github.com/jsdoc/jsdoc/blob/master/README.md}{README.md} file of the original JSDoc repository. As of May 17th, 2020 the JSDoc repository has 10.6 thousand stars and is used in 39.3 repositories. This gives the action a lot of marketing. The approved pull request is number \href{https://github.com/jsdoc/jsdoc/pull/1745}{\#1745}. 
 Figure~\ref{fig:jsdoc-link-readme} shows a screenshot of the \textbf{Templates and tools} section of the README.md file. The link to the JSDoc Action is located at the bottom of the \textbf{Build tools} subsection, marked in red.
-Figure~\ref{fig:comment-hegemonic} shows the response from the lead maintainer Jeff Williams (hegemonic) of JSDoc.
+Figure~\ref{fig:comment-hegemonic} shows the response to the approved pull request from the lead maintainer Jeff Williams (\href{https://github.com/hegemonic}{hegemonic}) of JSDoc.
 \begin{figure}[htp]
     \centering
     \includegraphics[width=\textwidth]{sections/result/figures/jsdoc-readme.png}
