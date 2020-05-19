@@ -49,13 +49,13 @@ At the hart of Scrum, there is a development team. This team is comprised of aro
     \end{tabularx}
 \end{table}
 
+\clearpage
 \begin{figure}[ht]
     \centering
     \includegraphics[page=1,width=0.75\textwidth]{sections/theory/figures/scrum.eps}
     \caption{Scrum workflow.}
     \label{fig:scrum}
 \end{figure}
-
 \subsection{Kanban}
 Kanban~\cite{kanban} is a lean software development methodology, based on the lean methodologies. These have been highly successfully in manufacturing processes. At the center of Kanban is a just-in-time (JIT) process. No new tasks are to be started unless there is a need for it. Further, once a capacity limit has been reached, no further tasks can be started on. When a task has been resolved, a new one can be started. This can simply be described as a pulling workflow. Kanban also often focuses on the visualization of tasks. This is normally done with a Kanban Board. In contrast to Scrum, Kanban allows for the software to be developed in one large development cycle. It is much more flexible, and does not define any roles.
 
@@ -131,8 +131,8 @@ TypeScript \cite{typescript} is a typed superset of JavaScript that compiles to 
 
 \section{JavaScript Object Notation (JSON)}
 JavaScript Object Notation, better known as JSON, is a lightweight data interchange format. It is easy for both humans and machines to read and write. The data is stored as attribute–value pairs. An example is shown in Listing~\ref{lst:json-example}. Here, the the first key is "name", and the corresponding value is "A. Storhaug".
+\clearpage
 \lstinputlisting[language=JSON,style=numbers,caption={Example JSON data},label={lst:json-example}]{sections/theory/code/json-example.json}
-
 \section{JSDoc}
 JSDoc is markup language for annotating JavaScript source code files. The JSDoc specification was released in 1999. Today it has become the de-facto JavaScript documentation language. It is for example used in projects like the Google Closure Compiler \cite{google-closure-compiler} by Google. Since JavaScript has no type-checking, JSDoc is able to patch some of this inconvenience. Figure \ref{lst:jsdoc-example} shows an example of JSDoc code, describing a soda bottle class implementation. By using various tools, one is able to generate documentation in formats like HTML and RTF. JSDoc 3 is the current version of the original companion documentation generation tool for JSDoc. JSDoc 3 \cite{jsdoc-3}, also referred to as just JSDoc, is the most used tool for programmatically generating JavaScript documentation. It has a wast feature set, even allowing users to create customized themes, known as templates. As of May 2020, JSDoc is used by more than 39.300 public projects \cite{jsdoc-used-by}, and has over 10.600 stars on GitHub \cite{jsdoc-stargazers}.
 
@@ -230,7 +230,7 @@ An octree is a type of tree structure. Each internal node of an octree has exact
 \subsection{Bounding volume hierarchy}
 \label{sec:theory-bounding-volume-hierarchy}
 A bounding volume hierarchy, abbreviated BVH, is a tree structure on a set of geometric objects. A BVH construction algorithm partitions the actual objects. The objects are wrapped in a so-called bounding volume, forming the leaves of the tree. These are then grouped together into a larger bounding volume. This process is then repeated in a recursive manner. The result is a tree structure with one single bounding volume as the root node. An example of a BVH is shown in Figure \ref{fig:bvh-example}. BVHs are often used for accelerating collision detection and raytracing.
-
+\clearpage
 \begin{figure}[ht]
     \centering
     \begin{subfigure}[c]{0.37\textwidth}
@@ -250,7 +250,6 @@ A bounding volume hierarchy, abbreviated BVH, is a tree structure on a set of ge
 
 \section{Voxel}
 A voxel is the three-dimensional analogue of a pixel \cite{wiki-voxel}. It represents a single data point in a regularly spaced three-dimensional grid. Figure \ref{fig:three-voxels} shows an illustration of three voxels, where one of the voxels are marked with blue color. A very common use of voxels are in medical imaging, for example datasets produced by a CT scan. Other areas where voxels are commonly used includes simulations and for representing terrain in games.
-
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.4\textwidth]{sections/theory/figures/voxels.eps}
@@ -258,6 +257,7 @@ A voxel is the three-dimensional analogue of a pixel \cite{wiki-voxel}. It repre
     \label{fig:three-voxels}
 \end{figure}
 
+\clearpage
 \section{Voxelizer v0.1.3}
 \label{sec:voxelizer-v013}
 Voxelizer v0.1.3 \cite{voxelizer-v0.1.3} is a JavaScript engine (or library) for conducting voxelization of 3D models. It was written by me, André Storhaug, in 2019. Version 0.1.3 features a relatively simple voxelization algorithm which is based on raycasting. The sampling algorithm tries to produce a filled volume-representation of a supplied 3D model. It samples the front and the back of the model, combines the two results together and tries to fill the in-between gap. The 3D model loading capabilities of the program is limited to plain OBJ files. In terms of exporting, the software is able to output a 3D JavaScript array (nested arrays).
